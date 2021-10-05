@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="338e1c6ff8ea4f26af71b7bb5859d21a" Name="Diagram1">
+        <EntityTypeShape EntityType="DBDauGiaModel.BID" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.BLOG" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.BRAND" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.CATEGORY" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.CATEGORY_BLOG" Width="1.5" PointX="6" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.CONTACT" Width="1.5" PointX="5.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.IMG" Width="1.5" PointX="7.5" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.IMG_BLOG" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.PRODUCT" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.RANK" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDauGiaModel.USER" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="DBDauGiaModel.FK__BID__IdProduct__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__BID__IdUser__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__BLOG__IdCate__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__BLOG__IdUser__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__IMG_BLOG__IdBlog__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__PRODUCT__IdBrand__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__PRODUCT__IdCate__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__CONTACT__IdUser__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK_PRODUCT_USER" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK_PRODUCT_USER1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDauGiaModel.FK__USER__IdRank__3A81B327" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
