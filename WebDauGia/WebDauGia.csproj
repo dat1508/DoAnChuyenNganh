@@ -128,19 +128,62 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DAO\UserDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BID.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BLOG.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BRAND.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CATEGORY.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CATEGORY_BLOG.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CONTACT.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.Context.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DBContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DBContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IMG.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IMG_BLOG.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRODUCT.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RANK.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\USER.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -156,16 +199,115 @@
     <Content Include="Models\DBContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DBContext.Context.cs</LastGenOutput>
+      <DependentUpon>DBContext.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\DBContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DBContext.edmx</DependentUpon>
+      <LastGenOutput>DBContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="Public\css\custom.css" />
+    <Content Include="Public\css\style.blue.css" />
+    <Content Include="Public\css\style.default.css" />
+    <Content Include="Public\css\style.green.css" />
+    <Content Include="Public\css\style.pink.css" />
+    <Content Include="Public\css\style.red.css" />
+    <Content Include="Public\css\style.sea.css" />
+    <Content Include="Public\css\style.violet.css" />
+    <Content Include="Public\img\AjaxLoader.gif" />
+    <Content Include="Public\img\banner.jpg" />
+    <Content Include="Public\img\banner2.jpg" />
+    <Content Include="Public\img\bannerchinh.jpg" />
+    <Content Include="Public\img\basketsquare.jpg" />
+    <Content Include="Public\img\bat_dong_san.jpg" />
+    <Content Include="Public\img\blog-avatar.jpg" />
+    <Content Include="Public\img\blog-avatar2.jpg" />
+    <Content Include="Public\img\blog.jpg" />
+    <Content Include="Public\img\blog2.jpg" />
+    <Content Include="Public\img\detailbig1.jpg" />
+    <Content Include="Public\img\detailbig2.jpg" />
+    <Content Include="Public\img\detailbig3.jpg" />
+    <Content Include="Public\img\detailsquare.jpg" />
+    <Content Include="Public\img\detailsquare2.jpg" />
+    <Content Include="Public\img\detailsquare3.jpg" />
+    <Content Include="Public\img\getinspired1.jpg" />
+    <Content Include="Public\img\getinspired2.jpg" />
+    <Content Include="Public\img\getinspired3.jpg" />
+    <Content Include="Public\img\grabbing.png" />
+    <Content Include="Public\img\logo-small.png" />
+    <Content Include="Public\img\logo.png" />
+    <Content Include="Public\img\logoDHCV.png" />
+    <Content Include="Public\img\main-slider1.jpg" />
+    <Content Include="Public\img\main-slider2.jpg" />
+    <Content Include="Public\img\main-slider3.jpg" />
+    <Content Include="Public\img\main-slider4.jpg" />
+    <Content Include="Public\img\marker.png" />
+    <Content Include="Public\img\product1.jpg" />
+    <Content Include="Public\img\product1_2.jpg" />
+    <Content Include="Public\img\product2.jpg" />
+    <Content Include="Public\img\product2_2.jpg" />
+    <Content Include="Public\img\product3.jpg" />
+    <Content Include="Public\img\product3_2.jpg" />
+    <Content Include="Public\img\search-solid.svg" />
+    <Content Include="Public\img\slider1.jpg" />
+    <Content Include="Public\img\slider2.jpg" />
+    <Content Include="Public\img\slider3.jpg" />
+    <Content Include="Public\img\slider4.jpg" />
+    <Content Include="Public\img\support.png" />
+    <Content Include="Public\img\template-mac.png" />
+    <Content Include="Public\img\texture-bw.png" />
+    <Content Include="Public\js\front.js" />
+    <Content Include="Public\js\login.js" />
+    <Content Include="Public\js\map.js" />
+    <Content Include="Public\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Public\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Public\vendor\font-awesome\css\font-awesome.css" />
+    <Content Include="Public\vendor\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Public\vendor\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Public\vendor\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="Public\vendor\jquery.cookie\jquery.cookie.js" />
+    <Content Include="Public\vendor\jquery.cookie\MIT-LICENSE.txt" />
+    <Content Include="Public\vendor\jquery\core.js" />
+    <Content Include="Public\vendor\jquery\jquery.js" />
+    <Content Include="Public\vendor\jquery\jquery.min.js" />
+    <Content Include="Public\vendor\jquery\jquery.slim.js" />
+    <Content Include="Public\vendor\jquery\jquery.slim.min.js" />
+    <Content Include="Public\vendor\owl.carousel2.thumbs\owl.carousel2.thumbs.js" />
+    <Content Include="Public\vendor\owl.carousel2.thumbs\owl.carousel2.thumbs.min.js" />
+    <Content Include="Public\vendor\owl.carousel\owl.carousel.js" />
+    <Content Include="Public\vendor\owl.carousel\owl.carousel.min.js" />
+    <Content Include="Public\vendor\popper.js\esm\popper-utils.js" />
+    <Content Include="Public\vendor\popper.js\esm\popper-utils.min.js" />
+    <Content Include="Public\vendor\popper.js\esm\popper.js" />
+    <Content Include="Public\vendor\popper.js\esm\popper.min.js" />
+    <Content Include="Public\vendor\popper.js\popper-utils.js" />
+    <Content Include="Public\vendor\popper.js\popper-utils.min.js" />
+    <Content Include="Public\vendor\popper.js\popper.js" />
+    <Content Include="Public\vendor\popper.js\popper.min.js" />
+    <Content Include="Public\vendor\popper.js\umd\popper-utils.js" />
+    <Content Include="Public\vendor\popper.js\umd\popper-utils.min.js" />
+    <Content Include="Public\vendor\popper.js\umd\popper.js" />
+    <Content Include="Public\vendor\popper.js\umd\popper.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\DBContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Models\DBContext.edmx.diagram">
+    <Content Include="Models\DBContext.edmx.diagram">
       <DependentUpon>DBContext.edmx</DependentUpon>
-    </None>
+    </Content>
+    <Content Include="Public\vendor\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Public\vendor\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Public\vendor\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Public\vendor\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Public\vendor\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Public\vendor\jquery.cookie\component.json" />
+    <Content Include="Public\vendor\jquery.cookie\cookie.jquery.json" />
+    <Content Include="Public\vendor\popper.js\umd\popper.js.flow" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -191,10 +333,12 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\SignUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="DAO\" />
+    <Folder Include="Public\vendor\owl.carousel\assets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

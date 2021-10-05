@@ -1,0 +1,37 @@
+/* your styles go here */
+#heading-breadcrumbs {
+    padding: 2rem 0;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
+  
+  #heading-breadcrumbs .breadcrumb {
+    margin-bottom: 0;
+    background: none;
+    font-size: 0.9rem;
+  }
+  
+  #heading-breadcrumbs h1 {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0;
+  }
+  
+  #heading-breadcrumbs li {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .background-pentagon, #heading-breadcrumbs {
+    background: url("../img/texture-bw.png") center center repeat;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #999;
+  }
+
+
+  h4,
+  p,
+  .h4
+  .p{
+      color: #000 !important;
+  }
