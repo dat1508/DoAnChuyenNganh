@@ -27,17 +27,33 @@ namespace WebDauGia.Models
     
         public int IdUser { get; set; }
         public Nullable<int> IdRank { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập họ tên")]
         public string Fullname { get; set; }
 
-        [Required]
+
+        [Required(ErrorMessage = "Vui lòng nhập tên tài khoản")]
         public string Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
         public string Password { get; set; }
+
+        [Compare("Password", ErrorMessage = "Xác nhận mật khẩu không khớp, vui lòng nhập lại")]
+        public string ConfirmPassword { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập địa chỉ")]
         public string Address { get; set; }
+
+
+        [Required(ErrorMessage = "Vui lòng nhập số điện thoại")]
         public string Phone { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
         public Nullable<System.DateTime> DateOfBirth { get; set; }
+
+        [Required(ErrorMessage = "Vui lòng nhập email")]
         public string Email { get; set; }
+
         public Nullable<bool> Gender { get; set; }
         public Nullable<bool> Admin { get; set; }
     

@@ -12,6 +12,7 @@ namespace WebDauGia.Controllers
     {
         // GET: Account
         UserDAO UserDAO = new UserDAO();
+        DBContext db = new DBContext();
         public ActionResult Login()
         {
             return View();
@@ -44,6 +45,19 @@ namespace WebDauGia.Controllers
         public ActionResult SignUp()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(USER user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(user);
+            }
+            user.Admin = false;
+            db.USER.Add(user);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
