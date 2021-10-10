@@ -40,10 +40,9 @@
     <meta property="og:description" content="Xe máy giá rẻ" />
     @RenderSection("head", required: false)
 </head>
-<body onload="myFunction()" style="margin:0;">
-    <div id="loader">Loading...</div>
-    <div id="all" style="display:none;" class="animate-bottom">
-        <header class="header">
+<body>
+   
+        <header>
             <!--
             *** TOPBAR ***
             _________________________________________________________
@@ -56,9 +55,9 @@
                         </div>
                         <div class="col-lg-6 text-center text-lg-right">
                             <ul class="menu list-inline mb-0">
-                                <li class="list-inline-item"><a href="signin.html">Đăng nhập</a></li>
-                                <li class="list-inline-item"><a href="register.html">Đăng ký</a></li>
-                                <li class="list-inline-item"><a href="contact.html">Liên hệ</a></li>
+                                <li class="list-inline-item"><a href="@Url.Action("Login", "Account")">Đăng nhập</a></li>
+                                <li class="list-inline-item"><a href="@Url.Action("SignUp", "Account")">Đăng ký</a></li>
+                                <li class="list-inline-item"><a href="@Url.Action("ContactPage", "Contact")">Liên hệ</a></li>
                                 <!-- <li class="list-inline-item"><a href="#">Recently viewed</a></li> -->
                             </ul>
                         </div>
@@ -272,18 +271,7 @@
 
         </div>
         <!--OnLoading-->
-        <script>
-            var myVar;
-
-            function myFunction() {
-                myVar = setTimeout(showPage, 2000);
-            }
-
-            function showPage() {
-                document.getElementById("loader").style.display = "none";
-                document.getElementById("all").style.display = "block";
-            }
-        </script>
+        
         <!-- JavaScript files-->
         <script src="~/Public/vendor/jquery/jquery.min.js"></script>
         <script src="~/Public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
