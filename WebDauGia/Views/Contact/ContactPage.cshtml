@@ -1,0 +1,106 @@
+﻿
+@model WebDauGia.Models.CONTACT
+@{
+    ViewBag.Title = "Liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+                <h1 class="h2">Liên hệ</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb d-flex justify-content-end">
+                    <li class="breadcrumb-item"><a href="home.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Liên hệ</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="content">
+    <div class="container">
+        <div class="row">
+
+            <div class="box text-center">
+
+                <section class="bar">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading">
+                                <h2>Liên hệ bán tài sản</h2>
+                            </div>
+                            <p class="lead">Hãy nhập đầy đủ thông tin cá nhân và thông tin chi tiết tài sản bạn muốn bán vào bên dưới:</p>
+
+                        </div>
+                    </div>
+                </section>
+                <div class="container">
+                    <div class="col-md-12">
+
+                        <div class="row py-1 mt-4 align-items-center">
+
+                            <div class="col-sm-6">
+                                <img src="~/Public/img/support.png" alt="" class="img-fluid">
+                            </div>
+                            <div class="col-sm-6 shadow">
+                                @using (Html.BeginForm())
+                                {
+
+                                    @Html.Raw(ViewBag.Notice)<form>
+                                                                 <div class="row">
+                                                                     <div class="col-md-6">
+                                                                         <div class="form-group">
+                                                                             <input name="name" id="firstname" type="text" class="form-control" placeholder="Họ tên" required>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-md-6">
+                                                                         <div class="form-group">
+
+                                                                             <input name="phone" id="phone" type="number" class="form-control" placeholder="Số điện thoại" required>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-md-6">
+                                                                         <div class="form-group">
+
+                                                                             <input name="email" id="email" type="text" class="form-control" placeholder="Email" required>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-md-6">
+                                                                         <div class="form-group">
+
+                                                                             <input id="Address" type="text" class="form-control" placeholder="Nơi công tác" required>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-md-12">
+                                                                         <div class="form-group">
+
+                                                                             <textarea name="title" id="title" class="form-control" placeholder="Tên tài sản" required></textarea>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-md-12">
+                                                                         <div class="form-group">
+
+                                                                             <textarea name="body" id="message" class="form-control" placeholder="thông tin chi tiết tài sản" required></textarea>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class="col-md-12 py-5 text-center">
+                                                                         <button type="submit" class="form-control bg-success btn btn-primary">
+                                                                             <i class="fa fa-envelope-o"></i> Gửi tin nhắn
+                                                                         </button>
+                                                                     </div>
+                                                                 </div>
+                                    </form>
+                                }             
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

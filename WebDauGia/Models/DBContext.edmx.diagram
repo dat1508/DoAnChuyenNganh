@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="DBDauGiaModel.IMG_BLOG" Width="1.5" PointX="10.5" PointY="8.25" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDauGiaModel.PRODUCT" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDauGiaModel.RANK" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="DBDauGiaModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDauGiaModel.USER" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="DBDauGiaModel.FK__BID__IdProduct__3D5E1FD2" ManuallyRouted="false" />
         <AssociationConnector Association="DBDauGiaModel.FK__BID__IdUser__37A5467C" ManuallyRouted="false" />
