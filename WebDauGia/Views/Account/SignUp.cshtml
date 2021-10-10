@@ -1,4 +1,4 @@
-﻿
+﻿@model WebDauGia.Models.USER
 @{
     ViewBag.Title = "SignUp";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -28,103 +28,60 @@
                     <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
                     <h1>Tạo tài khoản mới</h1>
                     <p class="font-italic text-muted mb-0">Nhanh chóng và dễ dàng</p>
-
-                    </p>
                 </div>
 
                 <!-- Registeration Form -->
                 <div class="col-md-7 col-lg-6 ml-auto">
-                    <form action="#">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="row">
 
-                            <!-- First Name -->
-                            <div class="input-group col-lg-6 mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                        <i class="fa fa-user text-muted"></i>
-                                    </span>
-                                </div>
-                                <input id="firstName" type="text" name="firstname" placeholder="First Name" class="form-control bg-white border-left-0 border-md">
+                            <!-- Full Name -->
+                            <div class="col-lg-12 mb-4">
+                                @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control bg-white border-left-0 border-md", placeholder = "Họ tên" } })
+                                @Html.ValidationMessageFor(model => model.Fullname, "", new { @class = "text-danger" })
                             </div>
-
-                            <!-- Last Name -->
-                            <div class="input-group col-lg-6 mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                        <i class="fa fa-user text-muted"></i>
-                                    </span>
-                                </div>
-                                <input id="lastName" type="text" name="lastname" placeholder="Last Name" class="form-control bg-white border-left-0 border-md">
-                            </div>
-
                             <!-- Email Address -->
-                            <div class="input-group col-lg-12 mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                        <i class="fa fa-envelope text-muted"></i>
-                                    </span>
-                                </div>
-                                <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md">
+                            <div class="col-lg-12 mb-4">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control bg-white border-left-0 border-md", placeholder = "Email" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
-
-                            <!-- Phone Number -->
-                            <div class="input-group col-lg-12 mb-2">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                        <i class="fa fa-phone-square text-muted"></i>
-                                    </span>
-                                </div>
-                                <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                    <option value="">+12</option>
-                                    <option value="">+10</option>
-                                    <option value="">+15</option>
-                                    <option value="">+18</option>
-                                </select>
-                                <input id="phoneNumber" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3">
-                            </div>.
-
-
-                            <!-- Job -->
-                            <div class="input-group col-lg-12 mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                        <i class="fa fa-black-tie text-muted"></i>
-                                    </span>
-                                </div>
-                                <select id="job" name="jobtitle" class="form-control custom-select bg-white border-left-0 border-md">
-                                    <option value="">Choose your job</option>
-                                    <option value="">Designer</option>
-                                    <option value="">Developer</option>
-                                    <option value="">Manager</option>
-                                    <option value="">Accountant</option>
-                                </select>
+                            <!-- User name -->
+                            <div class="col-lg-12 mb-4">
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control bg-white border-left-0 border-md", placeholder = "Tài khoản" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
                             </div>
-
-                            <!-- Password -->
-                            <div class="input-group col-lg-6 mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                        <i class="fa fa-lock text-muted"></i>
-                                    </span>
-                                </div>
-                                <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md">
+                            <!-- pass -->
+                            <div class="col-lg-12 mb-4">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control bg-white border-left-0 border-md", placeholder = "Mật khẩu" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                             </div>
-
-                            <!-- Password Confirmation -->
-                            <div class="input-group col-lg-6 mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                        <i class="fa fa-lock text-muted"></i>
-                                    </span>
-                                </div>
-                                <input id="passwordConfirmation" type="text" name="passwordConfirmation" placeholder="Confirm Password" class="form-control bg-white border-left-0 border-md">
+                            <!-- comfirm pass -->
+                            <div class="col-lg-12 mb-4">
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control bg-white border-left-0 border-md", placeholder = "Mật khẩu" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
                             </div>
-
+                            <div class="col-lg-12 mb-4">
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control bg-white border-left-0 border-md", placeholder = "Địa chỉ" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-12 mb-4">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control bg-white border-left-0 border-md", placeholder = "Số điện thoại" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-12 mb-4">
+                                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control bg-white border-left-0 border-md", type = "date" } })
+                                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-lg-12 mb-4">
+                                <b>Giới tính</b>
+                                @Html.DropDownListFor(modelItem => modelItem.Gender, new[] { new SelectListItem { Text = "Nam", Value = "true" }, new SelectListItem { Text = "Nữ", Value = "false" } }, new { htmlAttributes = new { @class = "custom-select" } })
+                            </div>
                             <!-- Submit Button -->
                             <div class="form-group col-lg-12 mx-auto mb-0">
-                                <a href="#" class="btn btn-primary w-100">
-                                    <span class="font-weight-bold">TẠO TÀI KHOẢN MỚI</span>
-                                </a>
+                                <input type="submit" value="TẠO TÀI KHOẢN MỚI" class="btn btn-primary w-100 font-weight-bold" />
                             </div>
 
                             <!-- Divider Text -->
@@ -140,10 +97,6 @@
                                     <i class="fa fa-facebook-f mr-2"></i>
                                     <span class="font-weight-bold text-light">ĐĂNG KÝ BẰNG FACEBOOK</span>
                                 </a>
-                                <!-- <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                                    <i class="fa fa-twitter mr-2"></i>
-                                    <span class="font-weight-bold">Continue with Twitter</span>
-                                </a> -->
                             </div>
 
                             <!-- Already Registered -->
@@ -152,11 +105,15 @@
                             </div>
 
                         </div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
 
     </div>
 </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
 
