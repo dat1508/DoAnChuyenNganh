@@ -1,0 +1,35 @@
+﻿@model WebDauGia.Models.IMG_BLOG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>IMG_BLOG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LinkImg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LinkImg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BLOG.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BLOG.Title)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,155 @@
+﻿@model WebDauGia.Models.PRODUCT
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PRODUCT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NameProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LowestBid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LowestBid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PriceBuy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PriceBuy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndingDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BidTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BidTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusBid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusBid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BRAND.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BRAND.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATEGORY.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATEGORY.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER.Fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER1.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER1.Fullname)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProduct }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
