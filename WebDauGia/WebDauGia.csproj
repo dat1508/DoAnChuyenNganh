@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -50,6 +49,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=3.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -120,14 +122,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BIDsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BLOGsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BRANDsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CATEGORiesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CATEGORY_BLOGController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CONTACTsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\IMGsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\IMG_BLOGController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PRODUCTsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RANKsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -187,6 +196,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Style\dashboard.css" />
+    <Content Include="Areas\Admin\Style\dashboard.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -308,6 +319,59 @@
     <Content Include="Public\vendor\jquery.cookie\component.json" />
     <Content Include="Public\vendor\jquery.cookie\cookie.jquery.json" />
     <Content Include="Public\vendor\popper.js\umd\popper.js.flow" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BIDs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BIDs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BIDs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BIDs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BIDs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BLOGs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BLOGs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BLOGs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BLOGs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BLOGs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BRANDs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BRANDs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BRANDs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BRANDs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BRANDs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORies\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORies\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORies\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORies\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORies\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORY_BLOG\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORY_BLOG\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORY_BLOG\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORY_BLOG\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CATEGORY_BLOG\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\CONTACTs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CONTACTs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CONTACTs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\CONTACTs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CONTACTs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\RANKs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\RANKs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\RANKs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\RANKs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\RANKs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PRODUCTs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\PRODUCTs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\PRODUCTs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\PRODUCTs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\PRODUCTs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\IMG_BLOG\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\IMG_BLOG\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\IMG_BLOG\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\IMG_BLOG\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\IMG_BLOG\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\IMGs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\IMGs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\IMGs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\IMGs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\IMGs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -340,6 +404,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Public\vendor\owl.carousel\assets\" />
   </ItemGroup>
   <ItemGroup>
@@ -386,11 +451,12 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.3.6.0\build\net472\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.targets'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

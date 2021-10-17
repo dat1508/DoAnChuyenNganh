@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebDauGia.Models.BID>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BidPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BidTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PRODUCT.NameProduct)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.USER.Fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BidPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BidTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PRODUCT.NameProduct)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.USER.Fullname)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+</tbody>
+</table>
+
+
