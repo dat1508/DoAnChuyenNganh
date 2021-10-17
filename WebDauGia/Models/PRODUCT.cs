@@ -11,7 +11,8 @@ namespace WebDauGia.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PRODUCT
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,8 +30,13 @@ namespace WebDauGia.Models
         public string Status { get; set; }
         public string Desc { get; set; }
         public Nullable<int> LowestBid { get; set; }
+
+        [DataType(DataType.Currency)]
         public Nullable<int> StartPrice { get; set; }
+
+        [DataType(DataType.Currency)]
         public Nullable<int> PriceBuy { get; set; }
+
         public Nullable<System.DateTime> DateCreate { get; set; }
         public Nullable<System.DateTime> StartingDate { get; set; }
         public Nullable<System.DateTime> EndingDate { get; set; }
