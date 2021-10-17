@@ -10,107 +10,112 @@ using WebDauGia.Models;
 
 namespace WebDauGia.Areas.Admin.Controllers
 {
-    public class BRANDsController : BaseController
+    public class USERsController : Controller
     {
         private DBContext db = new DBContext();
 
-        // GET: Admin/BRANDs
+        // GET: Admin/USERs
         public ActionResult Index()
         {
-            return View(db.BRAND.ToList());
+            var uSER = db.USER.Include(u => u.RANK);
+            return View(uSER.ToList());
         }
 
-        // GET: Admin/BRANDs/Details/5
+        // GET: Admin/USERs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BRAND bRAND = db.BRAND.Find(id);
-            if (bRAND == null)
+            USER uSER = db.USER.Find(id);
+            if (uSER == null)
             {
                 return HttpNotFound();
             }
-            return View(bRAND);
+            return View(uSER);
         }
 
-        // GET: Admin/BRANDs/Create
+        // GET: Admin/USERs/Create
         public ActionResult Create()
         {
+            ViewBag.IdRank = new SelectList(db.RANK, "IdRank", "NameRank");
             return View();
         }
 
-        // POST: Admin/BRANDs/Create
+        // POST: Admin/USERs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdBrand,Name")] BRAND bRAND)
+        public ActionResult Create([Bind(Include = "IdUser,IdRank,Fullname,Username,Password,Address,Phone,DateOfBirth,Email,Gender,Admin")] USER uSER)
         {
             if (ModelState.IsValid)
             {
-                db.BRAND.Add(bRAND);
+                db.USER.Add(uSER);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(bRAND);
+            ViewBag.IdRank = new SelectList(db.RANK, "IdRank", "NameRank", uSER.IdRank);
+            return View(uSER);
         }
 
-        // GET: Admin/BRANDs/Edit/5
+        // GET: Admin/USERs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BRAND bRAND = db.BRAND.Find(id);
-            if (bRAND == null)
+            USER uSER = db.USER.Find(id);
+            if (uSER == null)
             {
                 return HttpNotFound();
             }
-            return View(bRAND);
+            ViewBag.IdRank = new SelectList(db.RANK, "IdRank", "NameRank", uSER.IdRank);
+            return View(uSER);
         }
 
-        // POST: Admin/BRANDs/Edit/5
+        // POST: Admin/USERs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdBrand,Name")] BRAND bRAND)
+        public ActionResult Edit([Bind(Include = "IdUser,IdRank,Fullname,Username,Password,Address,Phone,DateOfBirth,Email,Gender,Admin")] USER uSER)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bRAND).State = EntityState.Modified;
+                db.Entry(uSER).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(bRAND);
+            ViewBag.IdRank = new SelectList(db.RANK, "IdRank", "NameRank", uSER.IdRank);
+            return View(uSER);
         }
 
-        // GET: Admin/BRANDs/Delete/5
+        // GET: Admin/USERs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            BRAND bRAND = db.BRAND.Find(id);
-            if (bRAND == null)
+            USER uSER = db.USER.Find(id);
+            if (uSER == null)
             {
                 return HttpNotFound();
             }
-            return View(bRAND);
+            return View(uSER);
         }
 
-        // POST: Admin/BRANDs/Delete/5
+        // POST: Admin/USERs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            BRAND bRAND = db.BRAND.Find(id);
-            db.BRAND.Remove(bRAND);
+            USER uSER = db.USER.Find(id);
+            db.USER.Remove(uSER);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

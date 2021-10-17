@@ -10,7 +10,7 @@ using WebDauGia.Models;
 
 namespace WebDauGia.Areas.Admin.Controllers
 {
-    public class RANKsController : Controller
+    public class RANKsController : BaseController
     {
         private DBContext db = new DBContext();
 

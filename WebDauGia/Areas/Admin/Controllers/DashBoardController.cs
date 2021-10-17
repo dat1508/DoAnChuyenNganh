@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace WebDauGia.Areas.Admin.Controllers
 {
-    public class DashBoardController : Controller
+    public class DashBoardController : BaseController
     {
         // GET: Admin/DashBoard
         public ActionResult Index()

@@ -126,6 +126,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\BIDsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BLOGsController.cs" />
     <Compile Include="Areas\Admin\Controllers\BRANDsController.cs" />
@@ -135,8 +136,10 @@
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\IMGsController.cs" />
     <Compile Include="Areas\Admin\Controllers\IMG_BLOGController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\PRODUCTsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RANKsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\USERsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -145,6 +148,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\MD5\MD5Helper.cs" />
     <Compile Include="Models\BID.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
@@ -372,6 +376,12 @@
     <Content Include="Areas\Admin\Views\IMGs\Details.cshtml" />
     <Content Include="Areas\Admin\Views\IMGs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\IMGs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Login\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\USERs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\USERs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\USERs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\USERs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\USERs\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

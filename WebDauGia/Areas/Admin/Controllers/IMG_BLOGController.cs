@@ -10,7 +10,7 @@ using WebDauGia.Models;
 
 namespace WebDauGia.Areas.Admin.Controllers
 {
-    public class IMG_BLOGController : Controller
+    public class IMG_BLOGController : BaseController
     {
         private DBContext db = new DBContext();
 
