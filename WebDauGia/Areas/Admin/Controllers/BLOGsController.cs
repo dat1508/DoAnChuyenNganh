@@ -49,6 +49,7 @@ namespace WebDauGia.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "IdBlog,IdUser,Title,Body,IdCate")] BLOG bLOG)
         {
             if (ModelState.IsValid)
@@ -85,6 +86,7 @@ namespace WebDauGia.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "IdBlog,IdUser,Title,Body,IdCate")] BLOG bLOG)
         {
             if (ModelState.IsValid)

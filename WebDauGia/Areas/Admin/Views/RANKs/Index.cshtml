@@ -10,31 +10,41 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NameRank)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Value)
-        </th>
-        <th></th>
-    </tr>
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NameRank)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th></th>
+        </tr>
+        </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NameRank)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Value)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IdRank }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IdRank }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IdRank })
-        </td>
-    </tr>
-}
-
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameRank)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                <a class="btn btn-sm btn-success" href="@Url.Action("Edit","RANKs",new { @id = item.IdRank })">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","RANKs",new { @id = item.IdRank })">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                <a class="btn btn-sm btn-info" href="@Url.Action("Details","RANKs",new { @id = item.IdRank })">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+            </td>
+        </tr>
+        }
+    </tbody>
 </table>

@@ -1,0 +1,99 @@
+﻿@using WebDauGia.Models
+
+
+@{
+    ViewBag.Title = "Tạp chí xe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using PagedList;
+@using PagedList.Mvc;
+
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+                <h1 class="h2">Liên hệ</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb d-flex justify-content-end">
+                    <li class="breadcrumb-item"><a href="home.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Liên hệ</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script></script>
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="row">
+
+
+
+                        @foreach (var blog in Model)
+                        {
+
+
+                            <div id="blog-listing" class="col-md-4 my-2">
+                                <a href="@Url.Action("Detail", "Blog", new { id = blog.IdBlog }, null)">
+                                    @foreach (var item in blog.IMG_BLOG)
+                                    {
+
+                                        if (blog.IdBlog == item.IdBlog)
+                                        {
+                                            <img src="@item.LinkImg" alt="Example blog post alt" class="img-fluid shadow">
+                                        }
+
+
+                                    }
+                                </a>
+                            </div>
+                            <div class="col-md-8 my-2">
+                                <a href="@Url.Action("Detail", "Blog", new { id = blog.IdBlog }, null)"><h2 class="h3 mt-0"> @blog.Title</h2></a>
+                                <div class="d-flex flex-wrap justify-content-between text-xs">
+                                    <p class="author-category">
+                                        <span>in</span> XEMAYDHCV
+                                    </p>
+
+                                </div>
+                                <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></p>
+                                <p class="read-more"><a href="@Url.Action("Detail", "Blog", new { id = blog.IdBlog }, null)" class="btn btn-primary">Đọc thêm</a></p>
+                            </div>
+                        }
+
+
+                    </div>
+
+
+
+                </div>
+                <div class="col-lg-3">
+                    <div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 panel-title">Blog</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="nav flex-column nav-pills">
+                                <li><a href="blog.html" class="nav-link">About us</a></li>
+                                <li><a href="blog.html" class="nav-link active">Fashion</a></li>
+                                <li><a href="blog.html" class="nav-link">News and gossip</a></li>
+                                <li><a href="blog.html" class="nav-link">Design</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+
+
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

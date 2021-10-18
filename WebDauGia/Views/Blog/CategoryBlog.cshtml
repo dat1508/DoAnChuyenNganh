@@ -1,0 +1,13 @@
+﻿
+@model IEnumerable<WebDauGia.Models.CATEGORY_BLOG>
+
+
+    <ul class="nav flex-column nav-pills">
+        <li>
+            <a class="nav-link">
+                @foreach (var categoryblog in Model)
+                {
+                    <a href="@Url.Action("BlogHome","Blog", new { IdCate = categoryblog.IdCate },null)" class="list-group-item">@categoryblog.Name</a>
+                }
+</a>
+    </ul>

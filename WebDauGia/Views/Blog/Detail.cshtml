@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="heading-breadcrumbs" class="border-top-0 border-bottom-0">
+    <div class="container">
+        <div class="row d-flex align-items-center flex-wrap">
+            <div class="col-md-7">
+                <h1 class="h2">Tạp chí xe</h1>
+            </div>
+            <div class="col-md-5">
+                <ul class="breadcrumb d-flex justify-content-end">
+                    <li class="breadcrumb-item"><a href="index.html">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="blog.html">Tạp chí xe</a></li>
+                    <li class="breadcrumb-item active"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div id="blog-post" class="col-lg-9">
+                    <div class="box">
+                        @Html.Raw(Model.Body)
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="card sidebar-menu mb-4">
+                        <div class="card-header">
+                            <h3 class="h4 panel-title">Blog</h3>
+                        </div>
+                        <div class="card-body">
+                            <ul class="nav flex-column nav-pills">
+                                <li><a href="blog.html" class="nav-link">About us</a></li>
+                                <li><a href="blog.html" class="nav-link active">Fashion</a></li>
+                                <li><a href="blog.html" class="nav-link">News and gossip</a></li>
+                                <li><a href="blog.html" class="nav-link">Design</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    img {
+        width: 100%;
+    }
+</style>
