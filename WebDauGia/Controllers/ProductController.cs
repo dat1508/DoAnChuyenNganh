@@ -17,5 +17,21 @@ namespace WebDauGia.Controllers
             ViewBag.brandList = db.BRAND.ToList();
             return View(products);
         }
+
+        public ActionResult filterByCategory(int id)
+        {
+            List<IMG> products = db.IMG.Where(p => p.PRODUCT.CATEGORY.IdCate == id).ToList();
+            ViewBag.categoryList = db.CATEGORY.ToList();
+            ViewBag.brandList = db.BRAND.ToList();
+            return View("Product", products);
+        }
+
+        public ActionResult filterByBrand(int id)
+        {
+            List<IMG> products = db.IMG.Where(p => p.PRODUCT.BRAND.IdBrand == id).ToList();
+            ViewBag.categoryList = db.CATEGORY.ToList();
+            ViewBag.brandList = db.BRAND.ToList();
+            return View("Product", products);
+        }
     }
 }

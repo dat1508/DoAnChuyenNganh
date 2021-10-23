@@ -121,7 +121,7 @@ h1 {
 }
 
 #top ul.menu > li a {
-  color: #fff !important;;
+  color: black;
 }
 
 #top ul.menu > li + li:before {

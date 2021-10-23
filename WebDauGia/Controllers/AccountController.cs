@@ -39,6 +39,9 @@ namespace WebDauGia.Controllers
                 ViewBag.alert = "<span style='color: red; font - size:medium'>Sai tên tài khoản hoặc mật khẩu</span>";
                 return View();
             }
+            USER user = db.USER.Where(u => u.Username == userName && u.Password == password).FirstOrDefault();
+            Session["userID"] = user.IdUser;
+            Session["fullName"] = user.Fullname;
             return RedirectToAction("Index", "Home");
         }
 
@@ -57,6 +60,13 @@ namespace WebDauGia.Controllers
             user.Admin = false;
             db.USER.Add(user);
             db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Logout()
+        {
+            Session["userID"] = null;
+            Session["fullName"] = null;
             return RedirectToAction("Index", "Home");
         }
     }
