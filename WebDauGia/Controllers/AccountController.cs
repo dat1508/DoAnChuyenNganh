@@ -69,5 +69,7 @@ namespace WebDauGia.Controllers
             Session["fullName"] = null;
             return RedirectToAction("Index", "Home");
         }
+
+
     }
 }

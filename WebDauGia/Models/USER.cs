@@ -31,7 +31,7 @@ namespace WebDauGia.Models
         public string Password { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
+        public System.DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
         public Nullable<bool> Gender { get; set; }
         public Nullable<bool> Admin { get; set; }
