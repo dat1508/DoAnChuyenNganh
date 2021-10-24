@@ -54,8 +54,8 @@
                             {
                                 <ul class="menu list-inline mb-0">
                                     <li class="dropdown" style=" cursor: pointer; list-style: none;">
-                                        <a data-toggle="dropdown" class="dropdown-toggle login-btn">@Session["fullName"] </a>
-                                        <a class="list-inline-item" href="@Url.Action("ContactPage", "Contact")">Liên hệ</a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle login-btn" style="color: #fff;">@Session["fullName"] </a>
+                                        <a class="list-inline-item" href="@Url.Action("ContactPage", "Contact")" style="color: #fff;">Liên hệ</a>
                                         <ul class="dropdown-menu">
                                             <li class="dropdown-item"><a href="@Url.Action("", "")">Thông tin cá nhân</a></li>
                                             <li class="dropdown-item"><a href="@Url.Action("", "")">Lịch sử mua hàng</a></li>
@@ -67,8 +67,8 @@
                             else
                             {
                                 <ul class="menu list-inline mb-0">
-                                    <li class="list-inline-item"><a href="@Url.Action("Login", "Account")">Đăng nhập</a></li>
-                                    <li class="list-inline-item"><a href="@Url.Action("SignUp", "Account")">Đăng ký</a></li>
+                                    <li class="list-inline-item"><a href="@Url.Action("Login", "Account")" style="color: #fff;">Đăng nhập</a></li>
+                                    <li class="list-inline-item"><a href="@Url.Action("SignUp", "Account")" style="color: #fff;">Đăng ký</a></li>
                                 </ul>
                             }
                     </div>
