@@ -785,6 +785,7 @@
     <Content Include="Public\img\support.png" />
     <Content Include="Public\img\template-mac.png" />
     <Content Include="Public\img\texture-bw.png" />
+    <Content Include="Public\js\countdown.js" />
     <Content Include="Public\js\front.js" />
     <Content Include="Public\js\login.js" />
     <Content Include="Public\js\map.js" />
