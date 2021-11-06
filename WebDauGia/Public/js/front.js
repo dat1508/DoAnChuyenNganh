@@ -1,62 +1,14 @@
 $(function () {
 
-    $('.shop-detail-carousel').owlCarousel({
-        items: 1,
-        thumbs: true,
-        nav: false,
-        dots: false,
-        loop: true,
-        autoplay: true,
-        thumbsPrerendered: true
-    });
-
-
-    $('#main-slider').owlCarousel({
-        items: 1,
-        nav: false,
-        dots: true,
-        autoplay: true,
-        autoplayHoverPause: true,
-        dotsSpeed: 400
-    });
-
-
-    $('#get-inspired').owlCarousel({
-        items: 1,
-        nav: false,
-        dots: true,
-        autoplay: true,
-        autoplayHoverPause: true,
-        dotsSpeed: 400
-    });
-
-
-    $('.product-slider').owlCarousel({
-        items: 1,
-        dots: true,
-        nav: false,
-        responsive: {
-            480: {
-                items: 1
-            },
-            765: {
-                items: 2
-            },
-            991: {
-                items: 3
-            },
-            1200: {
-                items: 5
-            }
-        }
-    });
 
 
 
+
+ 
 
 
     // productDetailGallery(4000);
-    utils();
+/*    utils();*/
 
     // ------------------------------------------------------ //
     // For demo purposes, can be deleted
@@ -90,8 +42,57 @@ $(function () {
 
 });
 
+$('.shop-detail-carousel').owlCarousel({
+
+    items: 1,
+    thumbs: true,
+    nav: false,
+    dots: false,
+    loop: true,
+    autoplay: true,
+    thumbsPrerendered: true
+
+});
+
+$('#main-slider').owlCarousel({
+    items: 1,
+    nav: false,
+    dots: true,
+    autoplay: true,
+    autoplayHoverPause: true,
+    dotsSpeed: 400
+});
 
 
+$('#get-inspired').owlCarousel({
+    items: 1,
+    nav: false,
+    dots: true,
+    autoplay: true,
+    autoplayHoverPause: true,
+    dotsSpeed: 400
+});
+
+
+$('.product-slider').owlCarousel({
+    items: 1,
+    dots: true,
+    nav: false,
+    responsive: {
+        480: {
+            items: 1
+        },
+        765: {
+            items: 2
+        },
+        991: {
+            items: 3
+        },
+        1200: {
+            items: 5
+        }
+    }
+});
 //$(window).on('load', function () {
 //    $(this).alignElementsSameHeight();
 //});
@@ -188,6 +189,7 @@ function utils() {
         }, 1000);
     }
 }
+
 
 
 $.fn.alignElementsSameHeight = function () {
