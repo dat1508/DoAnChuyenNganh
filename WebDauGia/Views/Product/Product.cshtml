@@ -1,6 +1,6 @@
 ﻿@using WebDauGia.Models
 @using System.Globalization
-@model IEnumerable<IMG>
+@model IEnumerable<PRODUCT>
 @{
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -69,18 +69,21 @@
                                 <div class="product">
                                     <div class="flip-container">
                                         <div class="flipper">
-                                            <div class="front"><a href="detail.html"><img src="@Url.Content(i.LinkImg.Trim())" alt="" class="img-fluid"></a></div>
-                                            <div class="back"><a href="detail.html"><img src="@Url.Content(i.LinkImg.Trim())" alt="" class="img-fluid"></a></div>
+                                            @foreach (var img in i.IMG)
+                                            {
+                                                <div class="front"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })"><img src="@Url.Content(img.LinkImg)" alt="" class="img-fluid"></a></div>
+                                                <div class="back"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })"><img src="@Url.Content(img.LinkImg)" alt="" class="img-fluid"></a></div>
+                                            }
                                         </div>
                                     </div><a href="detail.html" class="invisible"><img src="~/Public/img/product/xemayyamaha.jpg" alt="" class="img-fluid"></a>
                                     <div class="text">
-                                        <h3><a href="detail.html">@i.PRODUCT.NameProduct</a></h3>
+                                        <h3><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })">@i.NameProduct</a></h3>
                                         <p class="price">
                                             <del></del>
 
-                                            @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PRODUCT.PriceBuy)
+                                            @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)
                                         </p>
-                                        <p class="buttons"><a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a></p>
+                                        <p class="buttons"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a></p>
                                     </div>
                                 </div>
                             </div>
