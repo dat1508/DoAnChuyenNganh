@@ -33,5 +33,13 @@ namespace WebDauGia.Controllers
             ViewBag.brandList = db.BRAND.ToList();
             return View("Product", products);
         }
+        [Route("san-pham/{url}")]
+        public ActionResult Detail(int id)
+        {
+            PRODUCT product = new PRODUCT();
+            product = db.PRODUCT.Where(p => p.IdProduct == id).SingleOrDefault();
+            return View(product);
+        }
+
     }
 }

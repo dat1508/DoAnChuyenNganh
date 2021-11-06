@@ -58,6 +58,17 @@
           <Property Name="IdUser" Type="int" />
           <Property Name="Title" Type="nvarchar" MaxLength="30" />
           <Property Name="Body" Type="ntext" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="HISTORY">
+          <Key>
+            <PropertyRef Name="Stt" />
+          </Key>
+          <Property Name="IdUser" Type="int" />
+          <Property Name="IdProduct" Type="int" />
+          <Property Name="Price" Type="int" />
+          <Property Name="Time" Type="datetime" />
+          <Property Name="Stt" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="IMG">
           <Key>
@@ -105,6 +116,16 @@
           <Property Name="IdRank" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NameRank" Type="char" MaxLength="10" />
           <Property Name="Value" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -242,6 +263,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_HISTORY_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
+          <End Role="HISTORY" Type="Self.HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HISTORY_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="HISTORY" Type="Self.HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PRODUCT_USER">
           <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
           <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
@@ -273,10 +318,12 @@
           <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORY_BLOG" EntityType="Self.CATEGORY_BLOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CONTACT" EntityType="Self.CONTACT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HISTORY" EntityType="Self.HISTORY" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IMG" EntityType="Self.IMG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IMG_BLOG" EntityType="Self.IMG_BLOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RANK" EntityType="Self.RANK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USER" EntityType="Self.USER" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__BID__IdProduct__3D5E1FD2" Association="Self.FK__BID__IdProduct__3D5E1FD2">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
@@ -317,6 +364,14 @@
           <AssociationSet Name="FK__USER__IdRank__3A81B327" Association="Self.FK__USER__IdRank__3A81B327">
             <End Role="RANK" EntitySet="RANK" />
             <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORY_PRODUCT" Association="Self.FK_HISTORY_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORY_USER" Association="Self.FK_HISTORY_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
           </AssociationSet>
           <AssociationSet Name="FK_PRODUCT_USER" Association="Self.FK_PRODUCT_USER">
             <End Role="USER" EntitySet="USER" />
@@ -393,6 +448,7 @@
           <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="USER" Relationship="Self.FK__CONTACT__IdUser__38996AB5" FromRole="CONTACT" ToRole="USER" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
         <EntityType Name="IMG">
           <Key>
@@ -440,6 +496,7 @@
           <NavigationProperty Name="IMG" Relationship="Self.FK__IMG__IdProduct__3E52440B" FromRole="PRODUCT" ToRole="IMG" />
           <NavigationProperty Name="USER" Relationship="Self.FK_PRODUCT_USER" FromRole="PRODUCT" ToRole="USER" />
           <NavigationProperty Name="USER1" Relationship="Self.FK_PRODUCT_USER1" FromRole="PRODUCT" ToRole="USER" />
+          <NavigationProperty Name="HISTORY" Relationship="DBDauGiaModel.FK_HISTORY_PRODUCT" FromRole="PRODUCT" ToRole="HISTORY" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -471,6 +528,7 @@
           <NavigationProperty Name="PRODUCT" Relationship="Self.FK_PRODUCT_USER" FromRole="USER" ToRole="PRODUCT" />
           <NavigationProperty Name="PRODUCT1" Relationship="Self.FK_PRODUCT_USER1" FromRole="USER" ToRole="PRODUCT" />
           <NavigationProperty Name="RANK" Relationship="Self.FK__USER__IdRank__3A81B327" FromRole="USER" ToRole="RANK" />
+          <NavigationProperty Name="HISTORY" Relationship="DBDauGiaModel.FK_HISTORY_USER" FromRole="USER" ToRole="HISTORY" />
         </EntityType>
         <Association Name="FK__BID__IdProduct__3D5E1FD2">
           <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
@@ -676,7 +734,63 @@
             <End Role="RANK" EntitySet="RANK" />
             <End Role="USER" EntitySet="USER" />
           </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="DBDauGiaModel.sysdiagrams" />
+          <EntitySet Name="HISTORY" EntityType="DBDauGiaModel.HISTORY" />
+          <AssociationSet Name="FK_HISTORY_PRODUCT" Association="DBDauGiaModel.FK_HISTORY_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORY_USER" Association="DBDauGiaModel.FK_HISTORY_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="HISTORY">
+          <Key>
+            <PropertyRef Name="Stt" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="IdProduct" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Stt" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK_HISTORY_PRODUCT" FromRole="HISTORY" ToRole="PRODUCT" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_HISTORY_USER" FromRole="HISTORY" ToRole="USER" />
+        </EntityType>
+        <Association Name="FK_HISTORY_PRODUCT">
+          <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="0..1" />
+          <End Type="DBDauGiaModel.HISTORY" Role="HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HISTORY_USER">
+          <End Type="DBDauGiaModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="DBDauGiaModel.HISTORY" Role="HISTORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="HISTORY">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -733,6 +847,7 @@
           <EntitySetMapping Name="CONTACT">
             <EntityTypeMapping TypeName="DBDauGiaModel.CONTACT">
               <MappingFragment StoreEntitySet="CONTACT">
+                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="IdContact" ColumnName="IdContact" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="IdUser" ColumnName="IdUser" />
@@ -806,6 +921,28 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Admin" ColumnName="Admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBDauGiaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORY">
+            <EntityTypeMapping TypeName="DBDauGiaModel.HISTORY">
+              <MappingFragment StoreEntitySet="HISTORY">
+                <ScalarProperty Name="Stt" ColumnName="Stt" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

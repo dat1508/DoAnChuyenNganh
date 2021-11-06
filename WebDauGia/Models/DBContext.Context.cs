@@ -36,5 +36,7 @@ namespace WebDauGia.Models
         public virtual DbSet<PRODUCT> PRODUCT { get; set; }
         public virtual DbSet<RANK> RANK { get; set; }
         public virtual DbSet<USER> USER { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<HISTORY> HISTORY { get; set; }
     }
 }

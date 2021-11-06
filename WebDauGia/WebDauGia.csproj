@@ -156,7 +156,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\Email\EmailHelper.cs" />
+    <Compile Include="Helper\Email\EmailSetting.cs" />
     <Compile Include="Helper\MD5\MD5Helper.cs" />
+    <Compile Include="Helper\Service\EmailService.cs" />
     <Compile Include="Models\BID.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
@@ -190,6 +193,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HISTORY.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IMG.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
@@ -200,6 +206,9 @@
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RANK.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USER.cs">
@@ -797,6 +806,14 @@
     <Content Include="Public\vendor\jquery\jquery.slim.min.js" />
     <Content Include="Public\vendor\owl.carousel2.thumbs\owl.carousel2.thumbs.js" />
     <Content Include="Public\vendor\owl.carousel2.thumbs\owl.carousel2.thumbs.min.js" />
+    <Content Include="Public\vendor\owl.carousel\assets\ajax-loader.gif" />
+    <Content Include="Public\vendor\owl.carousel\assets\owl.carousel.css" />
+    <Content Include="Public\vendor\owl.carousel\assets\owl.carousel.min.css" />
+    <Content Include="Public\vendor\owl.carousel\assets\owl.theme.default.css" />
+    <Content Include="Public\vendor\owl.carousel\assets\owl.theme.default.min.css" />
+    <Content Include="Public\vendor\owl.carousel\assets\owl.theme.green.css" />
+    <Content Include="Public\vendor\owl.carousel\assets\owl.theme.green.min.css" />
+    <Content Include="Public\vendor\owl.carousel\assets\owl.video.play.png" />
     <Content Include="Public\vendor\owl.carousel\owl.carousel.js" />
     <Content Include="Public\vendor\owl.carousel\owl.carousel.min.js" />
     <Content Include="Public\vendor\popper.js\esm\popper-utils.js" />
@@ -856,10 +873,7 @@
     <Content Include="Areas\Admin\Views\CATEGORY_BLOG\Details.cshtml" />
     <Content Include="Areas\Admin\Views\CATEGORY_BLOG\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CATEGORY_BLOG\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\CONTACTs\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\CONTACTs\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\CONTACTs\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\CONTACTs\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\CONTACTs\Index.cshtml" />
     <Content Include="Areas\Admin\Views\RANKs\Create.cshtml" />
     <Content Include="Areas\Admin\Views\RANKs\Delete.cshtml" />
@@ -920,6 +934,7 @@
     <Content Include="Areas\Admin\Helper\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Areas\Admin\Helper\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Areas\Admin\Helper\ckeditor\skins\moono-lisa\readme.md" />
+    <Content Include="Areas\Admin\Views\CONTACTs\Feedback.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -953,11 +968,11 @@
     <Content Include="Views\Blog\Detail.cshtml" />
     <Content Include="Views\Blog\CategoryBlog.cshtml" />
     <Content Include="Views\User\UserInfor.cshtml" />
+    <Content Include="Views\Product\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Public\vendor\owl.carousel\assets\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

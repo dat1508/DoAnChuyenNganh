@@ -12,15 +12,15 @@ namespace WebDauGia.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class CONTACT
+    public partial class HISTORY
     {
-        public int IdContact { get; set; }
-        public string Email { get; set; }
         public Nullable<int> IdUser { get; set; }
-        public string Title { get; set; }
-        public string Body { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public Nullable<int> IdProduct { get; set; }
+        public Nullable<int> Price { get; set; }
+        public Nullable<System.DateTime> Time { get; set; }
+        public int Stt { get; set; }
     
+        public virtual PRODUCT PRODUCT { get; set; }
         public virtual USER USER { get; set; }
     }
 }

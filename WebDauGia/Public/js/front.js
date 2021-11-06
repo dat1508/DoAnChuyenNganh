@@ -92,15 +92,15 @@ $(function () {
 
 
 
-$(window).on('load', function () {
-    $(this).alignElementsSameHeight();
-});
+//$(window).on('load', function () {
+//    $(this).alignElementsSameHeight();
+//});
 
-$(window).resize(function () {
-    setTimeout(function () {
-        $(this).alignElementsSameHeight();
-    }, 150);
-});
+//$(window).resize(function () {
+//    setTimeout(function () {
+//        $(this).alignElementsSameHeight();
+//    }, 150);
+//});
 
 
 /* product detail gallery */
@@ -238,3 +238,46 @@ $(function () {
         $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
     });
 });
+
+
+$(function () {
+    $('input, select').on('focus', function () {
+        $(this).parent().find('.input-group-text').css('border-color', '#80bdff');
+    });
+    $('input, select').on('blur', function () {
+        $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
+    });
+});
+
+
+
+
+const countdown = () => {
+    const countDate = new Date('November 19, 2021 00:00:00').getTime();
+
+    const now = new Date().getTime();
+    const gap = countDate - now;
+
+    const second = 1000;
+    const minute = second * 60;
+    const hour = minute * 60;
+    const day = hour * 24;
+
+
+    const textDay = Math.floor(gap / day);
+    const textHour = Math.floor((gap % day) / hour);
+    const textMinute = Math.floor((gap % hour) / minute);
+    const textSecond = Math.floor((gap % minute) / second);
+
+    document.querySelector(".day").innerText = textDay;
+    document.querySelector(".hour").innerText = textHour;
+    document.querySelector(".minute").innerText = textMinute;
+    document.querySelector(".second").innerText = textSecond;
+
+
+};
+
+setInterval(countdown, 1000);
+
+
+

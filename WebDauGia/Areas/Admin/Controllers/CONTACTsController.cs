@@ -7,12 +7,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebDauGia.Models;
+using WebDauGia.Helper.Service;
 
 namespace WebDauGia.Areas.Admin.Controllers
 {
     public class CONTACTsController : BaseController
     {
         private DBContext db = new DBContext();
+        EmailService emailService = new EmailService();
 
         // GET: Admin/CONTACTs
         public ActionResult Index()
@@ -33,6 +35,8 @@ namespace WebDauGia.Areas.Admin.Controllers
             {
                 return HttpNotFound();
             }
+            cONTACT.Status = true;
+            db.SaveChanges();
             return View(cONTACT);
         }
 
@@ -127,6 +131,24 @@ namespace WebDauGia.Areas.Admin.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+        [HttpGet]
+        public ActionResult Feedback(int id)
+        {
+            var contact = db.CONTACT.Find(id);
+            return View(contact);
+        }
+
+        [HttpPost]
+
+        public ActionResult Feedback(FormCollection frm)
+        {
+            string Address = frm["address"];
+            string Title = frm["title"];
+            string Message = frm["message"];
+            emailService.sendEmail(Address, Title, Message);
+            return RedirectToAction("index", "CONTACTS");
+
         }
     }
 }

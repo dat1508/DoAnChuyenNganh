@@ -1,0 +1,512 @@
+﻿@model WebDauGia.Models.PRODUCT
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="all">
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!-- breadcrumb-->
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                            <li aria-current="page" class="breadcrumb-item active">Tài sản đấu giá</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-lg-12">
+                    <h1 class="text_Title_Detail">
+                        Cáp đồng viễn thông các loại thanh lý dạng phế liệu, tổng khối lượng 57.891,32
+                        kg của VNPT Cần Thơ
+                    </h1>
+                </div>
+
+                <div class="col-lg-12 order-1 order-lg-2">
+                    <div id="productMain" class="row">
+                        <div class="col-md-4">
+                            <div data-slider-id="1" class="owl-carousel shop-detail-carousel">
+                                <div class="item"> <img src="/Public/img/detailbig1.jpg" alt="" class="img-fluid"></div>
+                                <div class="item"> <img src="/Public/img/detailbig2.jpg" alt="" class="img-fluid"></div>
+                                <div class="item"> <img src="/Public/img/detailbig3.jpg" alt="" class="img-fluid"></div>
+                            </div>
+                            <div class="ribbon sale">
+                                <div class="theribbon">SALE</div>
+                                <div class="ribbon-background"></div>
+                            </div>
+                            <!-- /.ribbon-->
+                            <div class="ribbon new">
+                                <div class="theribbon">NEW</div>
+                                <div class="ribbon-background"></div>
+                            </div>
+                            <!-- /.ribbon-->
+                        </div>
+                        <div class="col-md-8">
+                            <p>Thời gian đếm ngược bắt đầu trả giá:</p>
+                            <div class="container">
+                                <div class="countdown">
+                                    <div class="container-day">
+                                        <h3 class="day">Time</h3>
+                                        <h3>Ngày</h3>
+                                    </div>
+                                    <div class="container-day">
+                                        <h3 class="hour">Time</h3>
+                                        <h3>Giờ</h3>
+                                    </div>
+                                    <div class="container-day">
+                                        <h3 class="minute">Time</h3>
+                                        <h3>Phút</h3>
+                                    </div>
+                                    <div class="container-day">
+                                        <h3 class="second">Time</h3>
+                                        <h3>Giây</h3>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+
+
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="text-center">Mã tài sản:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">MTS-LWXAHT</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Thời gian mở đăng ký:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">28/10/2021 08:00:00</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Thời gian kết thúc đăng ký:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">09/11/2021 16:30:00</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Phí đăng ký tham gia đấu giá:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty novaticPrice">500.000</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Bước giá:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">50.000.000</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Số bước giá tối đa/ lần trả:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span id="stepPrice" class="spanColorAuctionproperty">10 bước giá</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Tiền đặt trước:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty novaticPrice"> 2.270.000.000</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Tên chủ tài sản:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">VNPT Cần Thơ</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Nơi xem tài sản:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">
+                                            Kho tại đường Nguyễn Văn Cừ nối dài, P. An Khánh, Q.
+                                            Ninh Kiều, TP. Cần Thơ.
+                                            - Kho tại số 79 Trần Phú, P. Cái Khế, Q. Ninh Kiều, TP. Cần Thơ.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Giá khởi điểm: 11.372.000.000 VNĐ</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <p class="text-left buttons"><a href="basket.html" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box py-4">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2 class="mb-0">TÀI SẢN SẮP ĐƯỢC ĐẤU GIÁ</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="product-slider owl-carousel owl-theme">
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="~/Public/img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="~/Public/img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><a href="detail.html" class="invisible">
+                                        <img src="~/Public/img/product1.jpg" alt=""
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
+                                        <p class="price">
+                                            <del></del>$143.00
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                    <div class="ribbon sale">
+                                        <!-- <div class="theribbon">SALE</div>
+                <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon new">
+                                        <!-- <div class="theribbon">NEW</div>
+                <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon gift">
+                                        <!-- <div class="theribbon">GIFT</div> -->
+                                        <!-- <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product-->
+                            </div>
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="~/Public/img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="~/Public/img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><a href="detail.html" class="invisible">
+                                        <img src="~/Public/img/product1.jpg" alt=""
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
+                                        <p class="price">
+                                            <del></del>$143.00
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                    <div class="ribbon sale">
+                                        <!-- <div class="theribbon">SALE</div>
+                <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon new">
+                                        <!-- <div class="theribbon">NEW</div>
+                <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon gift">
+                                        <!-- <div class="theribbon">GIFT</div> -->
+                                        <!-- <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product-->
+                            </div>
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="~/Public/img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="~/Public/img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><a href="detail.html" class="invisible">
+                                        <img src="~/Public/img/product1.jpg" alt=""
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
+                                        <p class="price">
+                                            <del></del>$143.00
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                    <div class="ribbon sale">
+                                        <!-- <div class="theribbon">SALE</div>
+                <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon new">
+                                        <!-- <div class="theribbon">NEW</div>
+                <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon gift">
+                                        <!-- <div class="theribbon">GIFT</div> -->
+                                        <!-- <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product-->
+                            </div>
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="~/Public/img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="~/Public/img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><a href="detail.html" class="invisible">
+                                        <img src="~/Public/img/product1.jpg" alt=""
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
+                                        <p class="price">
+                                            <del></del>$143.00
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                    <div class="ribbon sale">
+                                        <!-- <div class="theribbon">SALE</div>
+                  <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon new">
+                                        <!-- <div class="theribbon">NEW</div>
+                  <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon gift">
+                                        <!-- <div class="theribbon">GIFT</div> -->
+                                        <!-- <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product-->
+                            </div>
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="img/product2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="img/product2_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><a href="detail.html" class="invisible">
+                                        <img src="img/product2.jpg" alt=""
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">White Blouse Versace</a></h3>
+                                        <p class="price">
+                                            <del></del>$143.00
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                    <div class="ribbon new">
+                                        <!-- <div class="theribbon">NEW</div>
+                <div class="ribbon-background"></div> -->
+                                    </div>
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product-->
+                            </div>
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="img/product1.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="img/product1_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><a href="detail.html" class="invisible">
+                                        <img src="img/product1.jpg" alt=""
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">Fur coat</a></h3>
+                                        <p class="price">
+                                            <del></del>$143.00
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                    <div class="ribbon gift">
+                                        <div class="theribbon">GIFT</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product-->
+                            </div>
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="img/product2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="img/product2_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><a href="detail.html" class="invisible">
+                                        <img src="img/product2.jpg" alt=""
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                        <p class="price">
+                                            <del>$280</del>$143.00
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                    <div class="ribbon sale">
+                                        <div class="theribbon">SALE</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon new">
+                                        <div class="theribbon">NEW</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                    <div class="ribbon gift">
+                                        <div class="theribbon">GIFT</div>
+                                        <div class="ribbon-background"></div>
+                                    </div>
+                                    <!-- /.ribbon-->
+                                </div>
+                                <!-- /.product-->
+                            </div>
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="flipper">
+                                            <div class="front">
+                                                <a href="detail.html">
+                                                    <img src="img/product3.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                            <div class="back">
+                                                <a href="detail.html">
+                                                    <img src="img/product3_2.jpg" alt=""
+                                                         class="img-fluid">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div><a href="detail.html" class="invisible">
+                                        <img src="img/product3.jpg" alt=""
+                                             class="img-fluid">
+                                    </a>
+                                    <div class="text">
+                                        <h3><a href="detail.html">Black Blouse Versace</a></h3>
+                                        <p class="price">
+                                            <del></del>$143.00
+                                        </p>
+                                    </div>
+                                    <!-- /.text-->
+                                </div>
+                                <!-- /.product-->
+                            </div>
+                            <!-- /.product-slider-->
+                        </div>
+                        <!-- /.container-->
+                    </div>
+                    <!-- /#hot-->
+                    <!-- *** HOT END ***-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
