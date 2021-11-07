@@ -9,6 +9,16 @@ namespace WebDauGia.DAO
     {
         DBContext db = new DBContext();
 
+        public Boolean isUserAlreadyExisted(String userName)
+        {
+            var user = db.USER.FirstOrDefault(u => u.Username == userName && u.Admin == false);
+            if (user != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public Boolean isUserAlreadyExisted(String userName, String password)
         {
             var user = db.USER.FirstOrDefault(u => u.Username == userName && u.Password == password && u.Admin == false);
