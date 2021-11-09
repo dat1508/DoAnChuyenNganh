@@ -1,62 +1,14 @@
 $(function () {
 
-    $('.shop-detail-carousel').owlCarousel({
-        items: 1,
-        thumbs: true,
-        nav: false,
-        dots: false,
-        loop: true,
-        autoplay: true,
-        thumbsPrerendered: true
-    });
-
-
-    $('#main-slider').owlCarousel({
-        items: 1,
-        nav: false,
-        dots: true,
-        autoplay: true,
-        autoplayHoverPause: true,
-        dotsSpeed: 400
-    });
-
-
-    $('#get-inspired').owlCarousel({
-        items: 1,
-        nav: false,
-        dots: true,
-        autoplay: true,
-        autoplayHoverPause: true,
-        dotsSpeed: 400
-    });
-
-
-    $('.product-slider').owlCarousel({
-        items: 1,
-        dots: true,
-        nav: false,
-        responsive: {
-            480: {
-                items: 1
-            },
-            765: {
-                items: 2
-            },
-            991: {
-                items: 3
-            },
-            1200: {
-                items: 5
-            }
-        }
-    });
 
 
 
+
+ 
 
 
     // productDetailGallery(4000);
-    utils();
+/*    utils();*/
 
     // ------------------------------------------------------ //
     // For demo purposes, can be deleted
@@ -90,17 +42,66 @@ $(function () {
 
 });
 
+$('.shop-detail-carousel').owlCarousel({
 
+    items: 1,
+    thumbs: true,
+    nav: false,
+    dots: false,
+    loop: true,
+    autoplay: true,
+    thumbsPrerendered: true
 
-$(window).on('load', function () {
-    $(this).alignElementsSameHeight();
 });
 
-$(window).resize(function () {
-    setTimeout(function () {
-        $(this).alignElementsSameHeight();
-    }, 150);
+$('#main-slider').owlCarousel({
+    items: 1,
+    nav: false,
+    dots: true,
+    autoplay: true,
+    autoplayHoverPause: true,
+    dotsSpeed: 400
 });
+
+
+$('#get-inspired').owlCarousel({
+    items: 1,
+    nav: false,
+    dots: true,
+    autoplay: true,
+    autoplayHoverPause: true,
+    dotsSpeed: 400
+});
+
+
+$('.product-slider').owlCarousel({
+    items: 1,
+    dots: true,
+    nav: false,
+    responsive: {
+        480: {
+            items: 1
+        },
+        765: {
+            items: 2
+        },
+        991: {
+            items: 3
+        },
+        1200: {
+            items: 5
+        }
+    }
+});
+//$(window).on('load', function () {
+//    $(this).alignElementsSameHeight();
+//});
+
+//$(window).resize(function () {
+//    setTimeout(function () {
+//        $(this).alignElementsSameHeight();
+//    }, 150);
+//});
 
 
 /* product detail gallery */
@@ -190,6 +191,7 @@ function utils() {
 }
 
 
+
 $.fn.alignElementsSameHeight = function () {
     $('.same-height-row').each(function () {
 
@@ -238,3 +240,15 @@ $(function () {
         $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
     });
 });
+
+
+$(function () {
+    $('input, select').on('focus', function () {
+        $(this).parent().find('.input-group-text').css('border-color', '#80bdff');
+    });
+    $('input, select').on('blur', function () {
+        $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
+    });
+});
+
+

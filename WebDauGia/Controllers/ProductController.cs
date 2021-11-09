@@ -10,9 +10,10 @@ namespace WebDauGia.Controllers
     {
         // GET: Product
         DBContext db = new DBContext();
+
         public ActionResult Product()
         {
-            List<IMG> products = db.IMG.ToList();
+            List<PRODUCT> products = db.PRODUCT.ToList();
             ViewBag.categoryList = db.CATEGORY.ToList();
             ViewBag.brandList = db.BRAND.ToList();
             return View(products);
@@ -20,7 +21,7 @@ namespace WebDauGia.Controllers
 
         public ActionResult filterByCategory(int id)
         {
-            List<IMG> products = db.IMG.Where(p => p.PRODUCT.CATEGORY.IdCate == id).ToList();
+            List<PRODUCT> products = db.PRODUCT.Where(p => p.CATEGORY.IdCate == id).ToList();
             ViewBag.categoryList = db.CATEGORY.ToList();
             ViewBag.brandList = db.BRAND.ToList();
             return View("Product", products);
@@ -28,10 +29,19 @@ namespace WebDauGia.Controllers
 
         public ActionResult filterByBrand(int id)
         {
-            List<IMG> products = db.IMG.Where(p => p.PRODUCT.BRAND.IdBrand == id).ToList();
+            List<PRODUCT> products = db.PRODUCT.Where(p => p.BRAND.IdBrand == id).ToList();
             ViewBag.categoryList = db.CATEGORY.ToList();
             ViewBag.brandList = db.BRAND.ToList();
             return View("Product", products);
+        }
+
+        [Route("san-pham/{url}")]
+        public ActionResult Detail(int id)
+        {
+            PRODUCT product = new PRODUCT();
+            product = db.PRODUCT.Where(p => p.IdProduct == id).SingleOrDefault();
+            ViewBag.ImageList = db.IMG.Where(i => i.IdProduct == product.IdProduct).ToList();
+            return View(product);
         }
     }
 }

@@ -19,6 +19,7 @@ namespace WebDauGia.Models
         public Nullable<int> IdUser { get; set; }
         public string Title { get; set; }
         public string Body { get; set; }
+        public Nullable<bool> Status { get; set; }
     
         public virtual USER USER { get; set; }
     }
