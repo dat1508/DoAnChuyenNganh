@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="338e1c6ff8ea4f26af71b7bb5859d21a" Name="Diagram1">
+      <Diagram DiagramId="338e1c6ff8ea4f26af71b7bb5859d21a" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="DBDauGiaModel.BID" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDauGiaModel.BLOG" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DBDauGiaModel.BRAND" Width="1.5" PointX="3" PointY="2.25" IsExpanded="true" />
@@ -28,6 +28,10 @@
         <AssociationConnector Association="DBDauGiaModel.FK_PRODUCT_USER" ManuallyRouted="false" />
         <AssociationConnector Association="DBDauGiaModel.FK_PRODUCT_USER1" ManuallyRouted="false" />
         <AssociationConnector Association="DBDauGiaModel.FK__USER__IdRank__3A81B327" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DBDauGiaModel.HISTORY" Width="1.5" PointX="10.5" PointY="4.25" />
+        <EntityTypeShape EntityType="DBDauGiaModel.sysdiagrams" Width="1.5" PointX="10.375" PointY="0.75" />
+        <AssociationConnector Association="DBDauGiaModel.FK_HISTORY_PRODUCT" />
+        <AssociationConnector Association="DBDauGiaModel.FK_HISTORY_USER" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

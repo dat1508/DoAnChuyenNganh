@@ -190,6 +190,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HISTORY.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\IMG.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
@@ -200,6 +203,9 @@
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RANK.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagrams.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\USER.cs">
@@ -953,6 +959,8 @@
     <Content Include="Views\Blog\Detail.cshtml" />
     <Content Include="Views\Blog\CategoryBlog.cshtml" />
     <Content Include="Views\User\UserInfor.cshtml" />
+    <Content Include="Views\User\HistoryBid.cshtml" />
+    <Content Include="Views\User\HistoryDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

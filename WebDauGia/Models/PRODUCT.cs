@@ -19,6 +19,7 @@ namespace WebDauGia.Models
         {
             this.BID = new HashSet<BID>();
             this.IMG = new HashSet<IMG>();
+            this.HISTORY = new HashSet<HISTORY>();
         }
     
         public int IdProduct { get; set; }
@@ -48,5 +49,7 @@ namespace WebDauGia.Models
         public virtual ICollection<IMG> IMG { get; set; }
         public virtual USER USER { get; set; }
         public virtual USER USER1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HISTORY> HISTORY { get; set; }
     }
 }
