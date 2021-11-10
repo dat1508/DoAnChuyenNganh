@@ -6,6 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <script src="~/Public/js/countdown.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <div id="all">
     <div id="content">
         <div class="container">
@@ -149,17 +150,38 @@
                                     </div>
                                 </div>
                                 <div class="row novaticDivAuctionProperty">
-                                    <div class="col-sm-12 col-xs-12">
-                                        <span class="spanauctionproperty" style="font-size:24px;">Giá khởi điểm: <span class="spanColorAuctionproperty">@Model.StartPrice</span></span>
-                                    </div>
-                                    <div class="col-sm-12 col-xs-12">
-                                        <span class="spanauctionproperty" style="font-size:24px;">Giá mua: <span class="spanColorAuctionproperty">@Model.PriceBuy</span></span>
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty" style="font-size:20px;">Giá khởi điểm:</span>
                                     </div>
                                     <div class="col-sm-7 col-xs-6">
-                                        <p class="text-left buttons"><a href="basket.html" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a>
+                                        <span class="spanColorAuctionproperty">
+                                            <span class="spanColorAuctionproperty" style="font-size:20px;"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                        </span>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty" style="font-size:20px;">Giá mua:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">
+                                            <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    @*<div class="col-sm-12 col-xs-12">
+            <span class="spanauctionproperty" style="font-size:24px;">Giá khởi điểm: <span class="spanColorAuctionproperty">@Model.StartPrice</span></span>
+        </div>
+        <div class="col-sm-12 col-xs-12">
+            <span class="spanauctionproperty" style="font-size:24px;">Giá mua: <span class="spanColorAuctionproperty">@Model.PriceBuy</span></span>
+        </div>*@
+                              
+                                        <div class="col-sm-12 col-xs-6">
+                                            <p class="text-left buttons"><a href="basket.html" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a>
+                                        </div>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <div class="box py-4">
@@ -195,9 +217,10 @@
                                              class="img-fluid">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
-                                            <del>$280</del>$143.00
+                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -227,9 +250,10 @@
                                              class="img-fluid">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
-                                            <del>$280</del>$143.00
+                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -259,9 +283,10 @@
                                              class="img-fluid">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
-                                            <del>$280</del>$143.00
+                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -291,9 +316,10 @@
                                              class="img-fluid">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
-                                            <del>$280</del>$143.00
+                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -323,9 +349,10 @@
                                              class="img-fluid">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
-                                            <del>$280</del>$143.00
+                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -355,9 +382,10 @@
                                              class="img-fluid">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
-                                            <del>$280</del>$143.00
+                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -387,9 +415,10 @@
                                              class="img-fluid">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">White Blouse Armani</a></h3>
+                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
-                                            <del>$280</del>$143.00
+                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -419,9 +448,10 @@
                                              class="img-fluid">
                                     </a>
                                     <div class="text">
-                                        <h3><a href="detail.html">Black Blouse Versace</a></h3>
+                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
-                                            <del></del>$143.00
+                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->

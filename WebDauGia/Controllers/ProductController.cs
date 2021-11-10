@@ -69,7 +69,6 @@ namespace WebDauGia.Controllers
             ViewBag.ImageList = db.IMG.Where(i => i.IdProduct == product.IdProduct).ToList();
             return View(product);
         }
-
     }
 }
 

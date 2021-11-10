@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebDauGia.Models;
 using WebDauGia.DAO;
 using System.Data.Entity;
+using System.Net;
 
 namespace WebDauGia.Controllers
 {
@@ -39,6 +40,25 @@ namespace WebDauGia.Controllers
                 RedirectToAction("UserInfor", "User");
             }
             return RedirectToAction("UserInfor", "User");
+        }
+
+        public ActionResult HistoryBid()
+        {
+            var history = db.HISTORY.Where(h => h.IdUser == Int32.Parse(Session["userID"].ToString())).ToList();
+            return View(history);
+        }
+        public ActionResult HistoryDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HISTORY history = db.HISTORY.Find(id);
+            if (history == null)
+            {
+                return HttpNotFound();
+            }
+            return View(history);
         }
     }
 }
