@@ -29,7 +29,7 @@
         <AssociationConnector Association="DBDauGiaModel.FK_PRODUCT_USER1" ManuallyRouted="false" />
         <AssociationConnector Association="DBDauGiaModel.FK__USER__IdRank__3A81B327" ManuallyRouted="false" />
         <EntityTypeShape EntityType="DBDauGiaModel.sysdiagrams" Width="1.5" PointX="10.375" PointY="0.75" />
-        <EntityTypeShape EntityType="DBDauGiaModel.HISTORY" Width="1.5" PointX="10.5" PointY="4.25" />
+        <EntityTypeShape EntityType="DBDauGiaModel.HISTORY" Width="1.5" PointX="9.75" PointY="4.375" />
         <AssociationConnector Association="DBDauGiaModel.FK_HISTORY_PRODUCT" />
         <AssociationConnector Association="DBDauGiaModel.FK_HISTORY_USER" />
       </Diagram>

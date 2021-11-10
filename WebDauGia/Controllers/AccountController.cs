@@ -66,7 +66,7 @@ namespace WebDauGia.Controllers
             }
             user.Admin = false;
             user.Password = MD5.MD5Hash(user.Password);
-            user.ConfirmPassword = MD5.MD5Hash(user.ConfirmPassword);
+            //user.ConfirmPassword = MD5.MD5Hash(user.ConfirmPassword);
             db.USER.Add(user);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");

@@ -778,6 +778,7 @@
     <Content Include="Public\img\product2_2.jpg" />
     <Content Include="Public\img\product3.jpg" />
     <Content Include="Public\img\product3_2.jpg" />
+    <Content Include="Public\img\product\kawasaki-z1000.jpg" />
     <Content Include="Public\img\product\xemayyamaha.jpg" />
     <Content Include="Public\img\search-solid.svg" />
     <Content Include="Public\img\slider1.jpg" />
@@ -944,6 +945,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -972,6 +975,7 @@
     <Content Include="Views\Blog\CategoryBlog.cshtml" />
     <Content Include="Views\User\UserInfor.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
+    <Content Include="Views\Shared\_Products.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

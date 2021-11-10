@@ -19,20 +19,46 @@ namespace WebDauGia.Controllers
             return View(products);
         }
 
-        public ActionResult filterByCategory(int id)
+        public PartialViewResult filterByCategory(int id)
         {
             List<PRODUCT> products = db.PRODUCT.Where(p => p.CATEGORY.IdCate == id).ToList();
-            ViewBag.categoryList = db.CATEGORY.ToList();
-            ViewBag.brandList = db.BRAND.ToList();
-            return View("Product", products);
+            return PartialView("_Products", products);
         }
 
-        public ActionResult filterByBrand(int id)
+        public PartialViewResult filterByBrand(int id)
         {
             List<PRODUCT> products = db.PRODUCT.Where(p => p.BRAND.IdBrand == id).ToList();
-            ViewBag.categoryList = db.CATEGORY.ToList();
-            ViewBag.brandList = db.BRAND.ToList();
-            return View("Product", products);
+            return PartialView("_Products", products);
+        }
+
+        [HttpGet]
+        public PartialViewResult filter(int? idcate, int? idbrand, string price)
+        {
+            List<PRODUCT> products = db.PRODUCT.ToList();
+            if (idcate != null)
+            {
+                products = products.Where(p => p.CATEGORY.IdCate == idcate).ToList();
+            }
+            if (idbrand != null)
+            {
+                products = products.Where(p => p.BRAND.IdBrand == idbrand).ToList();
+            }
+            if (price != null)
+            {
+                if (price.Equals("low-to-high"))
+                {
+                    products = products.OrderBy(p => p.PriceBuy).ToList();
+                }
+                if (price.Equals("high-to-low"))
+                {
+                    products = products.OrderByDescending(p => p.PriceBuy).ToList();
+                }
+            }
+            if (products.Count() == 0)
+            {
+                ViewBag.notify = "<span style='padding:0px 15px; font-size:1rem;'>Không có sản phẩm</span>";
+            }
+            return PartialView("_Products", products);
         }
 
         [Route("san-pham/{url}")]
@@ -46,3 +72,5 @@ namespace WebDauGia.Controllers
 
     }
 }
+
+
