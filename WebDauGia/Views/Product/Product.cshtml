@@ -72,31 +72,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row products">
-                        @foreach (var i in Model)
-                        {
-                            <div  class="col-lg-4 col-md-6"  >
-                                <a href="@Url.Action("Detail","Product", new { @id = i.IdProduct}, null)">
-                                    <div class="product">
-                                        <div class="flip-container">
-                                            <div class="image">
-                                                @foreach (var img in i.IMG)
-                                                {
-                                                    <img src="@Url.Content(img.LinkImg)" alt="" class="img-fluid">
-                                                }
-                                            </div>
-                                        </div>
-                                        <div class="text">
-                                            <h3>@i.NameProduct</h3>
-                                            <p class="price">
-                                                @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)
-                                            </p>
-                                            @*<p class="buttons"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a></p>*@
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        }
+                  
                         <!-- /.products-->
                     <div id="products" class="row products">
                         @Html.Partial("_Products")
@@ -114,7 +90,7 @@
                             </ul>
                         </nav>
                     </div>
-                </div>
+             
                 <!-- /.col-lg-9-->
             </div>
         </div>
