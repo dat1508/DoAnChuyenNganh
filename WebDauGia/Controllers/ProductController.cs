@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebDauGia.Models;
+using System.Diagnostics;
 namespace WebDauGia.Controllers
 {
     public class ProductController : Controller
@@ -19,7 +20,7 @@ namespace WebDauGia.Controllers
             return View(products);
         }
 
-        public PartialViewResult filterByCategory(int id)
+        /*public PartialViewResult filterByCategory(int id)
         {
             List<PRODUCT> products = db.PRODUCT.Where(p => p.CATEGORY.IdCate == id).ToList();
             return PartialView("_Products", products);
@@ -29,7 +30,7 @@ namespace WebDauGia.Controllers
         {
             List<PRODUCT> products = db.PRODUCT.Where(p => p.BRAND.IdBrand == id).ToList();
             return PartialView("_Products", products);
-        }
+        }*/
 
         [HttpGet]
         public PartialViewResult filter(int? idcate, int? idbrand, string price)
