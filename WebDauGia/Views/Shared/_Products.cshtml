@@ -5,26 +5,38 @@
 @foreach (var i in Model)
 {
     <div class="col-lg-4 col-md-6">
-        <div class="product">
-            @foreach (var img in i.IMG)
-            {
-                <div class="flip-container">
-                    <div class="flipper">
-                        <div class="front"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })"><img src="@Url.Content(img.LinkImg)" alt="@Url.Content(img.LinkImg)" class="img-fluid" style="height:145px"></a></div>
-                        <div class="back"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })"><img src="@Url.Content(img.LinkImg)" alt="@Url.Content(img.LinkImg)" class="img-fluid" style="height: 145px "></a></div>
+        <a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })">
+            <div class="product shadow" style="border-radius: 15px;">
+                @foreach (var img in i.IMG)
+                {
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <img src="@Url.Content(img.LinkImg)"
+                                     alt="@Url.Content(img.LinkImg)"
+                                     style="width:100%;
+                                            height:133px;
+                                            border-top-left-radius: 15px;
+                                            border-top-right-radius: 15px;">
+                            </div>
+                        </div>
                     </div>
+                    <div class="invisible">
+                        <img src="@Url.Content(img.LinkImg)" alt="@Url.Content(img.LinkImg)" class="img-fluid" style="width: 100%; height: 133px; ">
+                    </div>
+                }
+                <div class="text">
+                    <h3>@i.NameProduct</h3>
+                        <p class="price">
+                            <span style="color:#dc3545; font-weight:bold;">
+                                @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)
+                            </span>
+                           
+                        </p>
+                   
+
                 </div>
-                <a href="detail.html" class="invisible">
-                    <img src="@Url.Content(img.LinkImg)" alt="@Url.Content(img.LinkImg)" class="img-fluid" style="height:145px">
-                </a>
-            }
-            <div class="text">
-                <h3><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })">@i.NameProduct</a></h3>
-                <p class="price">
-                    @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)
-                </p>
-                <p class="buttons"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a></p>
             </div>
-        </div>
+        </a>
     </div>
 }
