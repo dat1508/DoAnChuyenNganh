@@ -70,16 +70,6 @@
           <Property Name="Time" Type="datetime" />
           <Property Name="Stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
-        <EntityType Name="HISTORY">
-          <Key>
-            <PropertyRef Name="Stt" />
-          </Key>
-          <Property Name="IdUser" Type="int" />
-          <Property Name="IdProduct" Type="int" />
-          <Property Name="Price" Type="int" />
-          <Property Name="Time" Type="datetime" />
-          <Property Name="Stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
         <EntityType Name="IMG">
           <Key>
             <PropertyRef Name="Id" />
