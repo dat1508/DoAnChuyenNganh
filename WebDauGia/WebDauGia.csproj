@@ -150,6 +150,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JsonNetResult.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="DAO\UserDAO.cs" />
@@ -788,10 +789,10 @@
     <Content Include="Public\img\support.png" />
     <Content Include="Public\img\template-mac.png" />
     <Content Include="Public\img\texture-bw.png" />
-    <Content Include="Public\js\countdown.js" />
     <Content Include="Public\js\front.js" />
     <Content Include="Public\js\login.js" />
     <Content Include="Public\js\map.js" />
+    <Content Include="Public\js\Time.js" />
     <Content Include="Public\vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.min.js" />

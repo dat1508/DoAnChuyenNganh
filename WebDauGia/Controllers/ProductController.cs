@@ -70,6 +70,47 @@ namespace WebDauGia.Controllers
             ViewBag.ImageList = db.IMG.Where(i => i.IdProduct == product.IdProduct).ToList();
             return View(product);
         }
+
+
+        //[HttpGet]
+        //public JsonResult LoadData()
+        //{
+        //    try
+        //    {
+        //        var result = new List<ProductModel>();
+
+        //        var listProduct = from l in db.PRODUCT where l.IdProduct != -1 select l;
+        //        if (listProduct?.Any() ?? false)
+        //        {
+        //            result = listProduct.Select(l => new ProductModel
+        //            {
+        //                IdProduct = l.IdProduct,
+        //                IdBrand = l.IdBrand,
+        //                NameProduct = l.NameProduct,
+        //                DateCreate = l.DateCreate,
+        //                StartingDate = l.StartingDate,/*HasValue ? l.StartingDate.Value : DateTime.Now,*/
+        //                EndingDate = l.EndingDate
+        //            }).ToList();
+        //        }
+
+        //        return Json(new
+        //        {
+        //            code = 200,
+        //            listProduct = result
+        //        }, JsonRequestBehavior.AllowGet);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return Json(new
+        //        {
+        //            code = 500,
+
+        //        }, JsonRequestBehavior.AllowGet);
+        //    }
+        //}
+
+
     }
 }
 

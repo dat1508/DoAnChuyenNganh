@@ -32,9 +32,9 @@ namespace WebDauGia.Models
         public Nullable<int> LowestBid { get; set; }
         public Nullable<int> StartPrice { get; set; }
         public Nullable<int> PriceBuy { get; set; }
-        public Nullable<System.DateTime> DateCreate { get; set; }
-        public Nullable<System.DateTime> StartingDate { get; set; }
-        public Nullable<System.DateTime> EndingDate { get; set; }
+        public System.DateTime DateCreate { get; set; }
+        public System.DateTime StartingDate { get; set; }
+        public System.DateTime EndingDate { get; set; }
         public Nullable<int> BidTime { get; set; }
         public string Location { get; set; }
         public Nullable<int> IdOwner { get; set; }
