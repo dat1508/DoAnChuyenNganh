@@ -1,3 +1,12 @@
+#navbar {
+    overflow: hidden;
+   
+    transition: 0.4s;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 9999;
+}
 /* your styles go here */
 #heading-breadcrumbs {
     padding: 2rem 0;
@@ -70,4 +79,73 @@
 }
 
 
+.tab {
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
 
+/* Style tab links */
+.tablink {
+    background-color: #b41712;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 25%;
+    font-weight: bold;
+}
+
+    .tablink:hover {
+        background-color: #FFF;
+        color: #b41712;
+    }
+
+/* Style the tab content (and add height:100% for full page content) */
+.tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+    .tabcontent:hover {
+        color: #b41712;
+    }
+.tab button.active {
+    background-color: #FFF;
+    color: #b41712;
+}
+.tabcontent {
+    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#Info .list-item{
+    margin: 5px;
+    color: #b41712;
+}
+
+#clockDisplay {
+    float: right;
+    margin-right: 3px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 2px;
+    color: #555;
+}
+.body-content{
+    margin-top: 120px;
+}

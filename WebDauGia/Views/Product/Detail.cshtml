@@ -5,8 +5,11 @@
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Public/js/countdown.js"></script>
+
+
+<script src="~/Scripts/jquery-3.4.1.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
 <div id="all">
     <div id="content">
         <div class="container">
@@ -35,15 +38,15 @@
                                     <div class="item"> <img src="@Url.Content(item.LinkImg)" alt="" class="img-fluid"></div>
                                 }
                             </div>
-                            <div data-slider-id="1" class="owl-thumbs">
+                            @*<div data-slider-id="1" class="owl-thumbs">
                                 <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
                                 <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
                                 <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                            </div>
+                            </div>*@
                             <!-- /.ribbon-->
                         </div>
                         <div class="col-md-7">
-                            <p>Thời gian đếm ngược bắt đầu trả giá:</p>
+                            <div id="notify" style="color: blue;"><b>Thời gian đếm ngược bắt đầu trả giá:</b></div>
                             <div class="container">
                                 <div class="countdown">
                                     <div class="container-day">
@@ -88,7 +91,8 @@
                                         <span class="spanauctionproperty">Thời gian mở đăng ký:</span>
                                     </div>
                                     <div class="col-sm-7 col-xs-6">
-                                        <span class="spanColorAuctionproperty">@Model.StartingDate</span>
+                                        <span id="StartingDate" class="spanColorAuctionproperty">@Model.StartingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
+
                                     </div>
                                 </div>
                                 <div class="row novaticDivAuctionProperty">
@@ -96,7 +100,7 @@
                                         <span class="spanauctionproperty">Thời gian kết thúc đăng ký:</span>
                                     </div>
                                     <div class="col-sm-7 col-xs-6">
-                                        <span class="spanColorAuctionproperty">@Model.EndingDate</span>
+                                        <span id="EndingDate" class="spanColorAuctionproperty">@Model.EndingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
                                     </div>
                                 </div>
                                 <div class="row novaticDivAuctionProperty">
@@ -171,17 +175,357 @@
                                 </div>
                                 <div class="row novaticDivAuctionProperty">
                                     @*<div class="col-sm-12 col-xs-12">
-            <span class="spanauctionproperty" style="font-size:24px;">Giá khởi điểm: <span class="spanColorAuctionproperty">@Model.StartPrice</span></span>
-        </div>
-        <div class="col-sm-12 col-xs-12">
-            <span class="spanauctionproperty" style="font-size:24px;">Giá mua: <span class="spanColorAuctionproperty">@Model.PriceBuy</span></span>
-        </div>*@
-                              
-                                        <div class="col-sm-12 col-xs-6">
-                                            <p class="text-left buttons"><a href="basket.html" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a>
+                                            <span class="spanauctionproperty" style="font-size:24px;">Giá khởi điểm: <span class="spanColorAuctionproperty">@Model.StartPrice</span></span>
                                         </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <span class="spanauctionproperty" style="font-size:24px;">Giá mua: <span class="spanColorAuctionproperty">@Model.PriceBuy</span></span>
+                                        </div>*@
+
+                                    <div id="dangkydaugia" class="col-sm-12 col-xs-6">
+                                        <p  class="text-left buttons"><a href="basket.html" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a></p>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <button class="tablink" onclick="openPage(event,this,'Description')" id="defaultOpen">THÔNG TIN TÀI SẢN</button>
+                        <button class="tablink" onclick="openPage(event,this,'Document')">TÀI LIỆU LIÊN QUAN</button>
+                        <button class="tablink" onclick="openPage(event,this,'Info')">THÔNG TIN ĐẤU GIÁ</button>
+                        <button class="tablink" onclick="openPage(event,this,'Asset')">TÀI SẢN LIÊN QUAN</button>
+                    </div>
+                    <div id="Description" class="tabcontent">
+                        @if (Session["userID"] != null)
+                        {
+                            @Html.Raw(Model.Desc)
+                        }
+                        else
+                        {
+                            <p>Đăng nhập để xem thông tin này.</p>
+                        }
+                    </div>
+
+                    <div id="Document" class="tabcontent">
+                        <h3>News</h3>
+                        <p>Some news this fine day!</p>
+                    </div>
+
+                    <div id="Info" class="tabcontent">
+                        <ul class="list-unstyled">
+
+                            <li class="list-item">
+                                <i class="fa fa-info-circle"></i>
+                                <span>Tên tổ chức: </span>
+                                <span class="details">
+                                    <a href="">Công ty Đấu giá hợp danh Đạt Trường Vũ</a>
+                                </span>
+                            </li>
+
+                            <li class="list-item">
+                                <i class="fa fa-user-circle"> </i>
+                                <span class="fa-padding-right">
+                                    Đấu giá viên:
+                                </span>
+
+                                <span class="details">
+                                    <a href="">Đạt Trường Vũ</a>
+                                </span>
+                            </li>
+                            <li class="list-item">
+                                <i style="color: #b41712;" class="fa fa-map-marker"> </i>
+                                <span style=" padding-left: 6px;">Địa chỉ: </span>
+                                <span style="font-weight: bold;" class="details">
+                                </span>
+                            </li>
+                            <!--<br>-->
+                            <!--<li>
+                                <i style="color: #b41712;" class="fa fa-clipboard"> </i>
+                                <span>Mô tả: </span>
+                                <span style="font-weight: bold;" class="details">
+                                    C&#xF4;ng ty &#x111;&#x1EA5;u gi&#xE1; h&#x1EE3;p danh Ng&#xF4; Th&#x1ED1;ng Nh&#x1EA5;t
+                                </span>
+                            </li>-->
+                            <li class="clearfix" style="display:none">
+                                <span class="seller-rating">
+                                    <span title=" Rated 5.00 out of 5" class="star-rating">
+                                        <span class="width" style="width: 100%"></span>
+                                        <span><strong>5.00</strong></span>
+                                    </span>
+                                </span>
+                                <span class="text">5.00 rating from 1 review</span>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div id="Asset" class="tabcontent">
+                        <div class="container">
+                            <div class="product-slider owl-carousel owl-theme">
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div><a href="detail.html" class="invisible">
+                                            <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                 class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="detail.html">@Model.NameProduct</a></h3>
+                                            <p class="price">
+                                                <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.text-->
+                                        <!-- /.ribbon-->
+                                    </div>
+                                    <!-- /.product-->
+                                </div>
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div><a href="detail.html" class="invisible">
+                                            <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                 class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="detail.html">@Model.NameProduct</a></h3>
+                                            <p class="price">
+                                                <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.text-->
+                                        <!-- /.ribbon-->
+                                    </div>
+                                    <!-- /.product-->
+                                </div>
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div><a href="detail.html" class="invisible">
+                                            <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                 class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="detail.html">@Model.NameProduct</a></h3>
+                                            <p class="price">
+                                                <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.text-->
+                                        <!-- /.ribbon-->
+                                    </div>
+                                    <!-- /.product-->
+                                </div>
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div><a href="detail.html" class="invisible">
+                                            <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                 class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="detail.html">@Model.NameProduct</a></h3>
+                                            <p class="price">
+                                                <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.text-->
+                                        <!-- /.ribbon-->
+                                    </div>
+                                    <!-- /.product-->
+                                </div>
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div><a href="detail.html" class="invisible">
+                                            <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                 class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="detail.html">@Model.NameProduct</a></h3>
+                                            <p class="price">
+                                                <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.text-->
+                                        <!-- /.ribbon-->
+                                    </div>
+                                    <!-- /.product-->
+                                </div>
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div><a href="detail.html" class="invisible">
+                                            <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                 class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="detail.html">@Model.NameProduct</a></h3>
+                                            <p class="price">
+                                                <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.text-->
+                                        <!-- /.ribbon-->
+                                    </div>
+                                    <!-- /.product-->
+                                </div>
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div><a href="detail.html" class="invisible">
+                                            <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                 class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="detail.html">@Model.NameProduct</a></h3>
+                                            <p class="price">
+                                                <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.text-->
+                                        <!-- /.ribbon-->
+                                    </div>
+                                    <!-- /.product-->
+                                </div>
+                                <div class="item">
+                                    <div class="product">
+                                        <div class="flip-container">
+                                            <div class="flipper">
+                                                <div class="front">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                                <div class="back">
+                                                    <a href="detail.html">
+                                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                             class="img-fluid">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div><a href="detail.html" class="invisible">
+                                            <img src="~/Public/img/Capdongvienthong.jpg" alt=""
+                                                 class="img-fluid">
+                                        </a>
+                                        <div class="text">
+                                            <h3><a href="detail.html">@Model.NameProduct</a></h3>
+                                            <p class="price">
+                                                <span class="spanauctionproperty">Giá khởi điểm:</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </p>
+                                        </div>
+                                        <!-- /.text-->
+                                    </div>
+                                    <!-- /.product-->
+                                </div>
+                                <!-- /.product-slider-->
+                            </div>
+                            <!-- /.container-->
                         </div>
                     </div>
                     <div class="box py-4">
@@ -469,3 +813,82 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            LoadDSData();
+        });
+
+        function DateTime(id) {
+            var parts = document.querySelector(`#${id}`).innerText;
+            var dateArray = parts.split("/");
+            var newDate = dateArray[1] + '/' + dateArray[0] + '/' + dateArray[2];
+            var date = new Date(newDate);
+            var milliseconds = date.getTime();
+            return milliseconds;
+        }
+
+        function LoadDSData() {
+            const countdown = () => {
+                var notify = document.querySelector('#notify');
+                var milliseconds =   DateTime('StartingDate');
+                var now = new Date().getTime();
+                var gap = milliseconds - now;
+
+                if (gap == 0) {
+                    location.reload(true);
+                }
+
+                if (gap < 0) {
+                    notify.innerHTML = "<b style='color: green;'>Cuộc đấu giá đang diễn ra:</b>"
+                    var milliseconds = DateTime('EndingDate');
+                    var now = new Date().getTime();
+                    gap = milliseconds - now;
+
+                    if (gap == 0) {
+                        location.reload(true);
+                    }
+
+                    if (gap < 0) {
+                        document.getElementById('dangkydaugia').style.display = 'none';  
+                        notify.innerHTML = "<b style='color: red;'>Cuộc đấu giá đã kết thúc</b>"
+                        gap = 0;
+                    }
+                }
+                const second = 1000;
+                const minute = second * 60;
+                const hour = minute * 60;
+                const day = hour * 24;
+                const textDay = Math.floor(gap / day);
+
+                const textHour = Math.floor((gap % day) / hour);
+                const textMinute = Math.floor((gap % hour) / minute);
+                const textSecond = Math.floor((gap % minute) / second);
+
+                document.querySelector(".day").innerText = textDay;
+                document.querySelector(".hour").innerText = textHour;
+                document.querySelector(".minute").innerText = textMinute;
+                document.querySelector(".second").innerText = textSecond;
+
+            };
+            setInterval(countdown, 1000);
+        }
+        function openPage(evt, elmnt, pageName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(pageName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+}

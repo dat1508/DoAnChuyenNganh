@@ -1,11 +1,4 @@
-$(function () {
-
-
-
-
-
- 
-
+﻿$(function () {
 
     // productDetailGallery(4000);
 /*    utils();*/
@@ -229,6 +222,11 @@ $.fn.alignElementsSameHeight = function () {
     
 
 
+    // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+    window.onscroll = function () { scrollFunction() };
+
+   
+
 
 }
 
@@ -250,5 +248,4 @@ $(function () {
         $(this).parent().find('.input-group-text').css('border-color', '#ced4da');
     });
 });
-
 

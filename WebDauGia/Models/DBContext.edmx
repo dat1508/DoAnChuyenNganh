@@ -100,9 +100,9 @@
           <Property Name="LowestBid" Type="int" />
           <Property Name="StartPrice" Type="int" />
           <Property Name="PriceBuy" Type="int" />
-          <Property Name="DateCreate" Type="datetime" />
-          <Property Name="StartingDate" Type="datetime" />
-          <Property Name="EndingDate" Type="datetime" />
+          <Property Name="DateCreate" Type="datetime" Nullable="false" />
+          <Property Name="StartingDate" Type="datetime" Nullable="false" />
+          <Property Name="EndingDate" Type="datetime" Nullable="false" />
           <Property Name="BidTime" Type="int" />
           <Property Name="Location" Type="nvarchar" MaxLength="100" />
           <Property Name="IdOwner" Type="int" />
@@ -138,7 +138,7 @@
           <Property Name="Password" Type="nchar" MaxLength="40" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" />
           <Property Name="Phone" Type="nchar" MaxLength="20" />
-          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
           <Property Name="Email" Type="nchar" MaxLength="100" />
           <Property Name="Gender" Type="bit" />
           <Property Name="Admin" Type="bit" />
@@ -482,9 +482,9 @@
           <Property Name="LowestBid" Type="Int32" />
           <Property Name="StartPrice" Type="Int32" />
           <Property Name="PriceBuy" Type="Int32" />
-          <Property Name="DateCreate" Type="DateTime" Precision="3" />
-          <Property Name="StartingDate" Type="DateTime" Precision="3" />
-          <Property Name="EndingDate" Type="DateTime" Precision="3" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="StartingDate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="EndingDate" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="BidTime" Type="Int32" />
           <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IdOwner" Type="Int32" />
@@ -518,7 +518,7 @@
           <Property Name="Password" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="Gender" Type="Boolean" />
           <Property Name="Admin" Type="Boolean" />
@@ -960,7 +960,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
