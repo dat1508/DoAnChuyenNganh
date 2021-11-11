@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebDauGia.Models.PRODUCT>
+@using System.Globalization
+
+@Html.Raw(ViewBag.notify)
+@foreach (var i in Model)
+{
+    <div class="col-lg-4 col-md-6">
+        <div class="product">
+            @foreach (var img in i.IMG)
+            {
+                <div class="flip-container">
+                    <div class="flipper">
+                        <div class="front"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })"><img src="@Url.Content(img.LinkImg)" alt="@Url.Content(img.LinkImg)" class="img-fluid" style="height:145px"></a></div>
+                        <div class="back"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })"><img src="@Url.Content(img.LinkImg)" alt="@Url.Content(img.LinkImg)" class="img-fluid" style="height: 145px "></a></div>
+                    </div>
+                </div>
+                <a href="detail.html" class="invisible">
+                    <img src="@Url.Content(img.LinkImg)" alt="@Url.Content(img.LinkImg)" class="img-fluid" style="height:145px">
+                </a>
+            }
+            <div class="text">
+                <h3><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })">@i.NameProduct</a></h3>
+                <p class="price">
+                    @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)
+                </p>
+                <p class="buttons"><a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a></p>
+            </div>
+        </div>
+    </div>
+}

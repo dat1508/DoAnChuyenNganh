@@ -4,23 +4,31 @@
 @{
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "Get",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "products"
+    };
 }
 
 <div id="all">
     <div id="content">
         <div class="container">
             <div class="row my-3">
-                <div class="col-lg-3">
+                <div class="col-md-3">
                     <div class="card sidebar-menu mb-4">
                         <div class="card-header">
-                            <h3 class="h4 card-title">SẢN PHẨM</h3>
+                            <h3 class="h4 card-title">LOẠI TÀI SẢN</h3>
                         </div>
                         <div class="card-body">
                             <ul class="nav nav-pills flex-column category-menu">
                                 @foreach (var i in ViewBag.categoryList as List<CATEGORY>)
                                 {
-                                    <li>
-                                        <a href="@Url.Action("filterByCategory", "Product", new {id = i.IdCate })" class="nav-link">@i.Name<span class="badge badge-secondary">@i.PRODUCT.Count()</span></a>
+                                    <li class="cate-item" value="@i.IdCate">
+                                        @*@Ajax.ActionLink(i.Name, "filter", new { idcate = i.IdCate }, ajaxOptions, htmlAttributes: new { @class = "nav-link" })*@
+                                        @i.Name
                                     </li>
                                 }
                             </ul>
@@ -34,17 +42,17 @@
                             <ul class="nav nav-pills flex-column category-menu">
                                 @foreach (var i in ViewBag.brandList as List<BRAND>)
                                 {
-                                    <li>
-                                        <a href="@Url.Action("filterByBrand", "Product", new {id = i.IdBrand })" class="nav-link">@i.Name<span class="badge badge-secondary">@i.PRODUCT.Count()</span></a>
+                                    <li class="brand-item" value="@i.IdBrand">
+                                        @*@Ajax.ActionLink(i.Name, "filter", new { idbrand = i.IdBrand }, ajaxOptions, htmlAttributes: new { @class = "nav-link" })*@
+                                        @i.Name
                                     </li>
                                 }
                             </ul>
                         </div>
                     </div>
                     <!-- *** MENUS AND FILTERS END ***-->
-                    <div class="banner"><a href="#"><img src="~/Public/img/banner.jpg" alt="sales 2014" class="img-fluid"></a></div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-md-9">
                     <div class="box info-bar">
                         <div class="row">
                             <div class="col-md-12 col-lg-4 products-showing">Hiển thị <strong>12</strong> trong số <strong>25</strong> sản phẩm</div>
@@ -52,10 +60,12 @@
                                 <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row">
                                     <div class="products-number"><strong>Show</strong><a href="#" class="btn btn-sm btn-primary">12</a><a href="#" class="btn btn-outline-secondary btn-sm">24</a><a href="#" class="btn btn-outline-secondary btn-sm">All</a><span>products</span></div>
                                     <div class="products-sort-by mt-2 mt-lg-0">
-                                        <select name="sort-by" class="form-control">
-                                            <option>Sắp xếp theo</option>
+                                        <select id="sort-by" name="sort-by" class="form-control">
+                                            <option value="">Tất cả sản phẩm</option>
                                             <option>Mới nhất</option>
                                             <option>Cũ nhất</option>
+                                            <option value="low-to-high">Giá tăng dần</option>
+                                            <option value="high-to-low">Giá giảm dần</option>
                                         </select>
                                     </div>
                                 </form>
@@ -88,9 +98,10 @@
                             </div>
                         }
                         <!-- /.products-->
+                    <div id="products" class="row products">
+                        @Html.Partial("_Products")
                     </div>
                     <div class="pages">
-                        <p class="loadMore"><a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a></p>
                         <nav aria-label="Page navigation example" class="d-flex justify-content-center">
                             <ul class="pagination">
                                 <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
@@ -109,3 +120,46 @@
         </div>
     </div>
 </div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var idcate = null;
+            var idbrand = null;
+            var price = null;
+            $('.cate-item').click(function () {
+                if (idcate == $(this).val()) {
+                    idcate = null;
+                } else {
+                    idcate = $(this).val();
+                }
+                idbrand = null;
+                loadData(idcate, idbrand, price)
+            })
+            $('.brand-item').click(function () {
+                if (idbrand == $(this).val()) {
+                    idbrand = null;
+                } else {
+                    idbrand = $(this).val();
+                }
+                loadData(idcate, idbrand, price)
+            })
+            $('#sort-by').on('change', function () {
+                price = $(this).val();
+                loadData(idcate, idbrand, price)
+            })
+            function loadData(idcate, idbrand, price) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/Product/filter',
+                    data: { idcate: idcate, idbrand: idbrand, price: price },
+                    success: function (data) {
+                        $('#products').html(data);
+                    }
+                });
+            }
+        });
+    </script>
+}
+
+

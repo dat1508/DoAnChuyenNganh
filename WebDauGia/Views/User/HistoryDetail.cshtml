@@ -1,0 +1,57 @@
+﻿@model WebDauGia.Models.HISTORY
+
+@{
+    ViewBag.Title = "HistoryDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    <h4>HISTORY</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Stt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Stt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USER.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USER.Fullname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRODUCT.NameProduct)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRODUCT.NameProduct)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Time)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Time)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "HistoryBid")
+</p>
+
