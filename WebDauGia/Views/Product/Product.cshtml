@@ -12,42 +12,50 @@
         UpdateTargetId = "products"
     };
 }
-
+<style>
+    input:checked ~ span {
+        font-weight: bold;
+    }
+</style>
 <div id="all">
-    <div id="content">
+    <div id="content" >
         <div class="container">
             <div class="row my-3">
                 <div class="col-md-3">
                     <div class="card sidebar-menu mb-4">
                         <div class="card-header">
-                            <h3 class="h4 card-title">LOẠI TÀI SẢN</h3>
+                            <h3 class="h4 card-title">LOẠI TÀI SẢN <a id="clear-cate" class="btn btn-sm btn-danger float-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
                         </div>
                         <div class="card-body">
-                            <ul class="nav nav-pills flex-column category-menu">
+                            <div class="nav nav-pills flex-column category-menu">
                                 @foreach (var i in ViewBag.categoryList as List<CATEGORY>)
                                 {
-                                    <li class="cate-item" value="@i.IdCate">
-                                        @*@Ajax.ActionLink(i.Name, "filter", new { idcate = i.IdCate }, ajaxOptions, htmlAttributes: new { @class = "nav-link" })*@
-                                        @i.Name
-                                    </li>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="cate-item" type="radio" value="@i.IdCate" name="radio"> 
+                                            <span>@i.Name  (@i.PRODUCT.Count())</span>
+                                        </label>
+                                    </div>
                                 }
-                            </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="card sidebar-menu mb-4">
                         <div class="card-header">
-                            <h3 class="h4 card-title">Thương hiệu <a href="#" class="btn btn-sm btn-danger pull-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
+                            <h3 class="h4 card-title">Thương hiệu <a id="clear-brand" class="btn btn-sm btn-danger float-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
                         </div>
                         <div class="card-body">
-                            <ul class="nav nav-pills flex-column category-menu">
+                            <div class="nav nav-pills flex-column category-menu">
                                 @foreach (var i in ViewBag.brandList as List<BRAND>)
                                 {
-                                    <li class="brand-item" value="@i.IdBrand">
-                                        @*@Ajax.ActionLink(i.Name, "filter", new { idbrand = i.IdBrand }, ajaxOptions, htmlAttributes: new { @class = "nav-link" })*@
-                                        @i.Name
-                                    </li>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="brand-item" type="checkbox" value="@i.IdBrand">
+                                            <span>@i.Name (@i.PRODUCT.Count())</span> 
+                                        </label>
+                                    </div>
                                 }
-                            </ul>
+                            </div>
                         </div>
                     </div>
                     <!-- *** MENUS AND FILTERS END ***-->
@@ -55,26 +63,25 @@
                 <div class="col-md-9">
                     <div class="box info-bar">
                         <div class="row">
-                            <div class="col-md-12 col-lg-4 products-showing">Hiển thị <strong>12</strong> trong số <strong>25</strong> sản phẩm</div>
+                            <div class="col-md-12 col-lg-5 products-showing">Hiển thị <strong>12</strong> trong số <strong>25</strong> sản phẩm</div>
                             <div class="col-md-12 col-lg-7 products-number-sort">
-                                <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row">
-                                    <div class="products-number"><strong>Show</strong><a href="#" class="btn btn-sm btn-primary">12</a><a href="#" class="btn btn-outline-secondary btn-sm">24</a><a href="#" class="btn btn-outline-secondary btn-sm">All</a><span>products</span></div>
-                                    <div class="products-sort-by mt-2 mt-lg-0">
-                                        <select id="sort-by" name="sort-by" class="form-control">
-                                            <option value="">Tất cả sản phẩm</option>
-                                            <option>Mới nhất</option>
-                                            <option>Cũ nhất</option>
-                                            <option value="low-to-high">Giá tăng dần</option>
-                                            <option value="high-to-low">Giá giảm dần</option>
+                                <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row float-right">
+                                    @*<div class="products-number"><strong>Show</strong><a href="#" class="btn btn-sm btn-primary">12</a><a href="#" class="btn btn-outline-secondary btn-sm">24</a><a href="#" class="btn btn-outline-secondary btn-sm">All</a><span>products</span></div>*@                                    <div class="products-sort-by mt-2 mt-lg-0">
+                                        <select id="sort-by" name="sort-by" class="form-control border border-dark">
+                                            <option value="" hidden>Lọc sản phẩm</option>
+                                            <option value="old-to-new">Mới nhất</option>
+                                            <option value="new-to-old">Cũ nhất</option>
+                                            <option value="low-to-high">Giá(Thấp -> Cao)</option>
+                                            <option value="high-to-low">Giá(Cao -> Thấp)</option>
                                         </select>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                  
-                        <!-- /.products-->
-                    <div id="products" class="row products ">
+
+                    <!-- /.products-->
+                    <div id="products" class="row products">
                         @Html.Partial("_Products")
                     </div>
                     <div class="pages">
@@ -90,53 +97,78 @@
                             </ul>
                         </nav>
                     </div>
-             
-                <!-- /.col-lg-9-->
+
+                    <!-- /.col-lg-9-->
+                </div>
             </div>
         </div>
     </div>
 </div>
-    </div>
+    @section scripts {
+        <script>
+            $(document).ready(function () {
 
-@section scripts {
-    <script>
-        $(document).ready(function () {
-            var idcate = null;
-            var idbrand = null;
-            var price = null;
-            $('.cate-item').click(function () {
-                if (idcate == $(this).val()) {
-                    idcate = null;
-                } else {
-                    idcate = $(this).val();
-                }
-                idbrand = null;
-                loadData(idcate, idbrand, price)
-            })
-            $('.brand-item').click(function () {
-                if (idbrand == $(this).val()) {
-                    idbrand = null;
-                } else {
-                    idbrand = $(this).val();
-                }
-                loadData(idcate, idbrand, price)
-            })
-            $('#sort-by').on('change', function () {
-                price = $(this).val();
-                loadData(idcate, idbrand, price)
-            })
-            function loadData(idcate, idbrand, price) {
-                $.ajax({
-                    type: 'GET',
-                    url: '/Product/filter',
-                    data: { idcate: idcate, idbrand: idbrand, price: price },
-                    success: function (data) {
-                        $('#products').html(data);
+                var idcate = null;
+                var idbrand = new Array();
+                var price = null;
+                var date = null;
+
+                $('.cate-item').change(function () {
+                    if (idcate == $(this).val()) {
+                        idcate = null;
+                    } else {
+                        idcate = $(this).val();
                     }
-                });
-            }
-        });
-    </script>
-}
+                    loadData(idcate, idbrand, price, date)
+                })
+
+                $('.brand-item').change(function () {
+                    var value = $(this).val();
+                    if (idbrand.includes(value)) {
+                        var index = idbrand.indexOf(value);
+                        idbrand.splice(index, 1);
+                    } else {
+                        idbrand.push(value)
+                    }
+                    loadData(idcate, idbrand, price, date)
+                })
+
+                $('#sort-by').on('change', function () {
+                    if ($(this).val() == 'low-to-high' || $(this).val() == 'high-to-low') {
+                        price = $(this).val();
+                        date = null;
+                    } else {
+                        date = $(this).val();
+                        price = null;
+                    }
+                    loadData(idcate, idbrand, price, date)
+                })
+
+                $('#clear-cate').click(function () {
+                    $('input[type=radio]').prop('checked', false);
+                    idcate = null;
+                    loadData(idcate, idbrand, price, date)
+                })  
+
+                $('#clear-brand').click(function () {
+                    $('input[type=checkbox]').prop('checked', false);
+                    idbrand = [];
+                    loadData(idcate, idbrand, price, date)
+                })
+
+                function loadData(idcate, idbrand, price, date) {
+                    $.ajax({
+                        type: 'GET',
+                        url: '/Product/filter',
+                        traditional: true,
+                        data: { idcate: idcate, idbrand: idbrand, price: price, date: date },
+                        success: function (data) {
+                            $('#products').html(data);
+                        }
+                    });
+                }
+            });
+        </script>
+    }
 
 

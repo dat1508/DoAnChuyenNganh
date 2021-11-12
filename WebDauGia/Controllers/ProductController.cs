@@ -20,20 +20,8 @@ namespace WebDauGia.Controllers
             return View(products);
         }
 
-        /*public PartialViewResult filterByCategory(int id)
-        {
-            List<PRODUCT> products = db.PRODUCT.Where(p => p.CATEGORY.IdCate == id).ToList();
-            return PartialView("_Products", products);
-        }
-
-        public PartialViewResult filterByBrand(int id)
-        {
-            List<PRODUCT> products = db.PRODUCT.Where(p => p.BRAND.IdBrand == id).ToList();
-            return PartialView("_Products", products);
-        }*/
-
         [HttpGet]
-        public PartialViewResult filter(int? idcate, int? idbrand, string price)
+        public PartialViewResult filter(int? idcate, int[] idbrand, string price, string date)
         {
             List<PRODUCT> products = db.PRODUCT.ToList();
             if (idcate != null)
@@ -42,9 +30,9 @@ namespace WebDauGia.Controllers
             }
             if (idbrand != null)
             {
-                products = products.Where(p => p.BRAND.IdBrand == idbrand).ToList();
+                products = products.Where(p => idbrand.Contains(p.IdBrand)).ToList();
             }
-            if (price != null)
+            if (!String.IsNullOrEmpty(price))
             {
                 if (price.Equals("low-to-high"))
                 {
@@ -55,9 +43,20 @@ namespace WebDauGia.Controllers
                     products = products.OrderByDescending(p => p.PriceBuy).ToList();
                 }
             }
+            if (!String.IsNullOrEmpty(date))
+            {
+                if (date.Equals("old-to-new"))
+                {
+                    products = products.OrderByDescending(p => p.DateCreate).ToList();
+                }
+                if (date.Equals("new-to-old"))
+                {
+                    products = products.OrderBy(p => p.DateCreate).ToList();
+                }
+            }
             if (products.Count() == 0)
             {
-                ViewBag.notify = "<span style='padding:0px 15px; font-size:1rem;'>Không có sản phẩm</span>";
+                ViewBag.notify = "<span style='padding:0px 15px; font-size:1rem;'>Không có sản phẩm phù hợp</span>";
             }
             return PartialView("_Products", products);
         }

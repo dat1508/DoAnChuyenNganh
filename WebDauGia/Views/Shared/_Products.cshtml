@@ -5,21 +5,36 @@
 @foreach (var i in Model)
 {
     <div class="col-lg-4 col-md-6">
-        <a href="@Url.Action("Detail","Product", new { @id = i.IdProduct}, null)">
-            <div class="product">
-                <div class="flip-container">
-                    <div class="image">
-                        @foreach (var img in i.IMG)
-                        {
-                            <img src="@Url.Content(img.LinkImg)" alt="" class="img-fluid">
-                        }
+        <a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })">
+            <div class="product shadow" style="border-radius: 15px;">
+                @foreach (var img in i.IMG)
+                {
+                    <div class="flip-container">
+                        <div class="flipper">
+                            <div class="front">
+                                <img src="@Url.Content(img.LinkImg)"
+                                     alt="@Url.Content(img.LinkImg)"
+                                     style="width:100%;
+                                            height:133px;
+                                            border-top-left-radius: 15px;
+                                            border-top-right-radius: 15px;">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="invisible">
+                        <img src="@Url.Content(img.LinkImg)" alt="@Url.Content(img.LinkImg)" class="img-fluid" style="width: 100%; height: 133px; ">
+                    </div>
+                }
                 <div class="text">
                     <h3>@i.NameProduct</h3>
-                    <p class="price">
-                        @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)
-                    </p>
+                        <p class="price">
+                            <span style="color:#dc3545; font-weight:bold;">
+                                @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)
+                            </span>
+                           
+                        </p>
+                   
+
                 </div>
             </div>
         </a>
