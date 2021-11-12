@@ -782,6 +782,7 @@
     <Content Include="Public\img\product\kawasaki-z1000.jpg" />
     <Content Include="Public\img\product\xemayyamaha.jpg" />
     <Content Include="Public\img\search-solid.svg" />
+    <Content Include="Public\img\section-border.png" />
     <Content Include="Public\img\slider1.jpg" />
     <Content Include="Public\img\slider2.jpg" />
     <Content Include="Public\img\slider3.jpg" />
@@ -979,6 +980,7 @@
     <Content Include="Views\User\HistoryDetail.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Shared\_Products.cshtml" />
+    <Content Include="Views\Blog\Introduce.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

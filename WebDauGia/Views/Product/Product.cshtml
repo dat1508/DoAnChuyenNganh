@@ -74,7 +74,7 @@
                     </div>
                   
                         <!-- /.products-->
-                    <div id="products" class="row products">
+                    <div id="products" class="row products ">
                         @Html.Partial("_Products")
                     </div>
                     <div class="pages">
@@ -96,6 +96,7 @@
         </div>
     </div>
 </div>
+    </div>
 
 @section scripts {
     <script>
@@ -103,7 +104,6 @@
             var idcate = null;
             var idbrand = null;
             var price = null;
-
             $('.cate-item').click(function () {
                 if (idcate == $(this).val()) {
                     idcate = null;
@@ -113,7 +113,6 @@
                 idbrand = null;
                 loadData(idcate, idbrand, price)
             })
-
             $('.brand-item').click(function () {
                 if (idbrand == $(this).val()) {
                     idbrand = null;
@@ -122,12 +121,10 @@
                 }
                 loadData(idcate, idbrand, price)
             })
-
             $('#sort-by').on('change', function () {
                 price = $(this).val();
                 loadData(idcate, idbrand, price)
             })
-
             function loadData(idcate, idbrand, price) {
                 $.ajax({
                     type: 'GET',
