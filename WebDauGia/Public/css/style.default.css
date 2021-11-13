@@ -2870,7 +2870,9 @@ select.form-control-lg:not([size]):not([multiple]) {
 .custom-radio .custom-control-input:disabled:checked ~ .custom-control-label::before {
     background-color: rgba(79, 191, 168, 0.5);
 }
-
+input:checked ~ span {
+    font-weight: bold;
+}
 /*
 * 7.CODE
 */

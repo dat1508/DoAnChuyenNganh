@@ -1,5 +1,4 @@
-﻿@model IEnumerable<WebDauGia.Models.PRODUCT>
-@using System.Globalization
+﻿@model PagedList.PagedList<WebDauGia.Models.PRODUCT>
 
 @Html.Raw(ViewBag.notify)
 @foreach (var i in Model)
@@ -27,16 +26,14 @@
                 }
                 <div class="text">
                     <h3>@i.NameProduct</h3>
-                        <p class="price">
-                            <span style="color:#dc3545; font-weight:bold;">
-                                @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)
-                            </span>
-                           
-                        </p>
-                   
-
+                    <p class="price">
+                        <span style="color:#dc3545; font-weight:bold;">
+                            @string.Format("{0:#,##0}", i.PriceBuy) VNĐ
+                        </span>
+                    </p>
                 </div>
             </div>
         </a>
     </div>
 }
+

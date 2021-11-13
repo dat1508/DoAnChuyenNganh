@@ -979,7 +979,7 @@
     <Content Include="Views\User\HistoryBid.cshtml" />
     <Content Include="Views\User\HistoryDetail.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
-    <Content Include="Views\Shared\_Products.cshtml" />
+    <Content Include="Views\Shared\_ProductsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

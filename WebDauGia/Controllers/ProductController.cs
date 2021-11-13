@@ -5,24 +5,27 @@ using System.Web;
 using System.Web.Mvc;
 using WebDauGia.Models;
 using System.Diagnostics;
+using PagedList;
 namespace WebDauGia.Controllers
 {
     public class ProductController : Controller
     {
         // GET: Product
         DBContext db = new DBContext();
-
-        public ActionResult Product()
+        int pageSize = 3;
+        public ActionResult Product(int? pageNum)
         {
+            pageNum = pageNum ?? 1;
             List<PRODUCT> products = db.PRODUCT.ToList();
             ViewBag.categoryList = db.CATEGORY.ToList();
             ViewBag.brandList = db.BRAND.ToList();
-            return View(products);
+            return View(products.ToPagedList((int)pageNum, pageSize));
         }
 
         [HttpGet]
-        public PartialViewResult filter(int? idcate, int[] idbrand, string price, string date)
+        public ActionResult filter(int? idcate, int[] idbrand, string price, string date, int? pageNum)
         {
+            pageNum = pageNum ?? 1;
             List<PRODUCT> products = db.PRODUCT.ToList();
             if (idcate != null)
             {
@@ -58,7 +61,7 @@ namespace WebDauGia.Controllers
             {
                 ViewBag.notify = "<span style='padding:0px 15px; font-size:1rem;'>Không có sản phẩm phù hợp</span>";
             }
-            return PartialView("_Products", products);
+            return PartialView("_ProductsPartial", products.ToPagedList((int)pageNum, pageSize));
         }
 
         [Route("san-pham/{url}")]
