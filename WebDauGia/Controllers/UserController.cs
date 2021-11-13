@@ -60,5 +60,60 @@ namespace WebDauGia.Controllers
             }
             return View(history);
         }
+        public ActionResult UploadProduct()
+        {
+            ViewBag.IdBrand = new SelectList(db.BRAND.OrderBy(b => b.Name), "IdBrand", "Name");
+            ViewBag.IdCate = new SelectList(db.CATEGORY.OrderBy(b => b.Name), "IdCate", "Name");
+            ViewBag.IdBuyer = new SelectList(db.USER, "IdUser", "Fullname");
+            ViewBag.IdOwner = new SelectList(db.USER, "IdUser", "Fullname");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadProduct(FormCollection f, [Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,Status,Desc,StartPrice,PriceBuy,StartingDate,EndingDate,Location,StatusBid")] PRODUCT pRODUCT)
+        {
+            if (f["txt-new-cate"] != null) {
+                string namecate = f["txt-new-cate"].ToString().Trim();
+                List<CATEGORY> listcate = db.CATEGORY.Where(c => c.Name == namecate).ToList();
+                if (listcate.Count() == 0)
+                {
+                    CATEGORY category = new CATEGORY();
+                    category.Name = namecate;
+                    db.CATEGORY.Add(category);
+                    db.SaveChanges();
+                    pRODUCT.IdCate = category.IdCate;
+                }
+            }
+            if (f["txt-new-brand"] != null)
+            {
+                string namebrand = f["txt-new-brand"].ToString().Trim();
+                List<BRAND> listbrand = db.BRAND.Where(c => c.Name == namebrand).ToList();
+                if (listbrand.Count() == 0)
+                {
+                    BRAND brand = new BRAND();
+                    brand.Name = namebrand;
+                    db.BRAND.Add(brand);
+                    db.SaveChanges();
+                    pRODUCT.IdBrand = brand.IdBrand;
+                }
+            }
+            pRODUCT.BidTime = null;
+            pRODUCT.DateCreate = DateTime.Now;
+            pRODUCT.IdOwner = null;
+            pRODUCT.IdBuyer = null;
+            if (ModelState.IsValid)
+            {
+                db.PRODUCT.Add(pRODUCT);
+                db.SaveChanges();
+                ViewBag.IdBrand = new SelectList(db.BRAND.OrderBy(b => b.Name), "IdBrand", "Name", pRODUCT.IdBrand);
+                ViewBag.IdCate = new SelectList(db.CATEGORY.OrderBy(b => b.Name), "IdCate", "Name", pRODUCT.IdCate);
+                return View();
+            }
+
+            ViewBag.IdBrand = new SelectList(db.BRAND, "IdBrand", "Name", pRODUCT.IdBrand);
+            ViewBag.IdCate = new SelectList(db.CATEGORY, "IdCate", "Name", pRODUCT.IdCate);
+            return View(pRODUCT);
+        }
     }
 }
