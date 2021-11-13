@@ -1,0 +1,178 @@
+﻿@model WebDauGia.Models.PRODUCT
+@{
+    ViewBag.Title = "UploadProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Ajax.BeginForm("UploadProduct", "User", new AjaxOptions { }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <div id="id-cate">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdCate, "IdCate", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("IdCate", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <div id="id-brand">
+            <div class="form-group">
+                @Html.LabelFor(model => model.IdBrand, "IdBrand", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("IdBrand", null, htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NameProduct, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameProduct, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LowestBid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LowestBid, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartPrice, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PriceBuy, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PriceBuy, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control", @type= "datetime-local" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndingDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.StatusBid)
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+@section scripts {
+    <script>
+        $(document).ready(function () {
+
+            $('#IdCate').on('change', function (e) {
+                var optionSelected = $("option:selected", this).text();
+                if (optionSelected == "Khác") {
+                    var form = document.getElementById('id-cate');
+                    var div = document.createElement("div");
+                    div.className = 'form-group';
+                    div.id = 'new-id-cate';
+                    form.appendChild(div);
+                    var label = document.createElement('label');
+                    label.textContent = "Loại";
+                    label.className = "control-label col-md-2";
+                    label.id = "new-id-cate";
+                    div.appendChild(label);
+                    var divInput = document.createElement("div");
+                    divInput.className = "col-md-10";
+                    div.appendChild(divInput);
+                    var input = document.createElement("input");
+                    input.id = 'txt-new-cate';
+                    input.className = "form-control";
+                    input.type = 'text';
+                    input.name = 'txt-new-cate';
+                    input.placeholder = 'Nhập loại tại đây';
+                    divInput.appendChild(input);
+                }
+                else {
+                    if (document.getElementById("new-id-cate")) {
+                        $('#new-id-cate').remove();
+                    }
+                }
+            })
+            $("#myselect option:selected").text();
+            $('#IdBrand').on('change', function (e) {
+                var optionSelected = $("option:selected", this).text();
+                if (optionSelected == "Khác") {
+                    var form = document.getElementById('id-brand');
+                    var div = document.createElement("div");
+                    div.className = 'form-group';
+                    div.id = 'new-id-brand';
+                    form.appendChild(div);
+                    var label = document.createElement('label');
+                    label.textContent = "Hãng";
+                    label.className = "control-label col-md-2";
+                    label.id = "new-id-brand";
+                    div.appendChild(label);
+                    var divInput = document.createElement("div");
+                    divInput.className = "col-md-10";
+                    div.appendChild(divInput);
+                    var input = document.createElement("input");
+                    input.id = 'txt-new-brand';
+                    input.className = "form-control";
+                    input.type = 'text';
+                    input.name = 'txt-new-brand';
+                    input.placeholder = 'Nhập hãng tại đây';
+                    divInput.appendChild(input);
+                }
+                else {
+                    if (document.getElementById("new-id-brand")) {
+                        $('#new-id-brand').remove();
+                    }
+                }
+            })
+        });
+    </script>
+}

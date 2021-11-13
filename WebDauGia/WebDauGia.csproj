@@ -780,7 +780,6 @@
     <Content Include="Public\img\product3.jpg" />
     <Content Include="Public\img\product3_2.jpg" />
     <Content Include="Public\img\product\kawasaki-z1000.jpg" />
-    <Content Include="Public\img\product\nhadat1.jpg" />
     <Content Include="Public\img\product\xemayyamaha.jpg" />
     <Content Include="Public\img\search-solid.svg" />
     <Content Include="Public\img\slider1.jpg" />
@@ -980,6 +979,7 @@
     <Content Include="Views\User\HistoryDetail.cshtml" />
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Shared\_Products.cshtml" />
+    <Content Include="Views\User\UploadProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
