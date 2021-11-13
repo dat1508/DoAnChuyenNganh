@@ -57,7 +57,7 @@
                 <div class="col-md-9">
                     <div class="box info-bar">
                         <div class="row">
-                            <div class="col-md-12 col-lg-5 products-showing">Hiển thị <strong>12</strong> trong số <strong>25</strong> sản phẩm</div>
+                            <div class="col-md-12 col-lg-5 products-showing">Hiển thị <strong>@Model.Count()</strong> sản phẩm</div>
                             <div class="col-md-12 col-lg-7 products-number-sort">
                                 <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row float-right">
                                     @*<div class="products-number"><strong>Show</strong><a href="#" class="btn btn-sm btn-primary">12</a><a href="#" class="btn btn-outline-secondary btn-sm">24</a><a href="#" class="btn btn-outline-secondary btn-sm">All</a><span>products</span></div>*@                                    <div class="products-sort-by mt-2 mt-lg-0">
@@ -83,19 +83,19 @@
                             <ul class="pagination">
                                 <li class="page-item"><a href="#" aria-label="First" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
                                 <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><i class="fas fa-angle-left"></i></a></li>
-                                @for (int i = 1; i <= Model.PageCount; i++)
+                                @for (int i = 0; i < Model.PageCount; i++)
                                 {
-                                    if (i == Model.PageNumber)
+                                    if (i == Model.PageNumber - 1)
                                     {
-                                        <li class="page-item active"><a href="#" class="page-link">@i</a></li>
+                                        <li class="page-item page-item-number active"><a href="#" class="page-link">@(i+1)</a></li>
                                     }
                                     else
                                     {
-                                        <li class="page-item"><a href="#" class="page-link">@i</a></li>
+                                        <li class="page-item page-item-number"><a href="#" class="page-link">@(i+1)</a></li>
                                     }
                                 }
                                 <li class="page-item"><a href="#" aria-label="Next" class="page-link"><i class="fas fa-angle-right"></i></a></li>
-                                <li class="page-item"><a href="#" aria-label="Last" class="page-link" data-last-page-num="@Model.PageCount"><i class="fas fa-angle-double-right"></i></a></li>
+                                <li class="page-item"><a href="#" aria-label="Last" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>
                             </ul>
                         </nav>
                     </div>
@@ -109,14 +109,12 @@
 @section scripts {
     <script>
         $(document).ready(function () {
+            let idcate = null;
+            let idbrand = new Array();
+            let price = null;
+            let date = null;
+            let pageNum = 1;
 
-            var idcate = null;
-            var idbrand = new Array();
-            var price = null;
-            var date = null;
-            var pageNum = null;
-            var pageItemsCount = $('.page-link').length
-            console.log(pageItemsCount)
             $('.cate-item').change(function () {
                 if (idcate == $(this).val()) {
                     idcate = null;
@@ -160,36 +158,32 @@
                 loadData(idcate, idbrand, price, date, pageNum)
             })
 
-            $('.page-link').click(function () {
-                var aria_label = $(this).attr('aria-label');
-                if (aria_label == 'First') {
-                    pageNum = 1;
-                    $('li.page-item.active').removeClass('active');
-                    $('.page-item').eq(2).addClass('active');
+            $('.page-item').click(function () {
+                let aria_label = $(this).children().attr('aria-label');
+                let pageCount = $('li.page-item.page-item-number').length;
+                $('li.page-item.active').removeClass('active');
+                if (aria_label == 'Next') {
+                    pageNum++;
+                    pageNum = (pageNum >= pageCount) ? pageCount : pageNum;
+                    $('.page-item-number').eq(pageNum - 1).addClass('active')
                 }
                 else if (aria_label == 'Previous') {
                     pageNum--;
                     pageNum = pageNum <= 0 ? 1 : pageNum;
-                    $('li.page-item.active').removeClass('active');
-                    $('.page-item').eq(pageNum + 1).addClass('active');
+                    $('.page-item-number').eq(pageNum - 1).addClass('active')
                 }
-                else if (aria_label == 'Next') {
-                    pageNum++;
-                    pageNum = pageNum >= pageItemsCount - 5 ? pageItemsCount - 5 : pageNum;
-                    $('li.page-item.active').removeClass('active');
-                    $('.page-item').eq(pageNum + 2).addClass('active');
+                else if (aria_label == 'First') {
+                    pageNum = 1;
+                    $('.page-item-number').eq(0).addClass('active')
                 }
                 else if (aria_label == 'Last') {
-                    var pageLength = $('.page-item').length;
-                    pageNum = $(this).attr('data-last-page-num');
-                    $('li.page-item.active').removeClass('active');
-                    $('.page-item').eq(pageLength - 3).addClass('active');
+                    pageNum = pageCount;
+                    $('.page-item-number').eq(pageCount - 1).addClass('active')
                 } else {
-                    pageNum = $(this).text();
-                    $('li.page-item.active').removeClass('active');
-                    $(this).parent().addClass('active');
+                    pageNum = $(this).children().text();
+                    $(this).addClass('active');
                 }
-                    loadData(idcate, idbrand, price, date, pageNum)
+                loadData(idcate, idbrand, price, date, pageNum)
             })
 
             function loadData(idcate, idbrand, price, date, pageNum) {

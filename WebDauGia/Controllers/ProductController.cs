@@ -12,7 +12,7 @@ namespace WebDauGia.Controllers
     {
         // GET: Product
         DBContext db = new DBContext();
-        int pageSize = 3;
+        int pageSize = 6;
         public ActionResult Product(int? pageNum)
         {
             pageNum = pageNum ?? 1;
