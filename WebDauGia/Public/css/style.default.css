@@ -740,6 +740,7 @@ h1 {
     background: #fff;
     border: solid 1px #e6e6e6;
     margin-bottom: 30px;
+    box-shadow: 0 0 25px rgb(0 0 0 / 10%);
     /* entire container, keeps perspective */
     /* flip speed goes here */
     /* hide back of pane during swap */
@@ -747,40 +748,40 @@ h1 {
     /* back, initially hidden pane */
 }
 
-    #content .product .flip-container {
-        cursor: pointer;
-        -webkit-perspective: 1000;
-        perspective: 1000;
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-    }
+#content .product .flip-container {
+  cursor: pointer;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
 
-    #content .product .flip-container, #content .product .front, #content .product .back {
-        width: 100%;
-    }
+#content .product .flip-container, #content .product .front, #content .product .back {
+  width: 100%;
+}
 
-    #content .product .flipper {
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-        -webkit-transition: 0.6s;
-        transition: 0.6s;
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-        position: relative;
-    }
+#content .product .flipper {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  position: relative;
+}
 
-    #content .product .front, #content .product .back {
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-        -webkit-transition: 0.6s;
-        transition: 0.6s;
-        transform-style: preserve-3d;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
+#content .product .front, #content .product .back {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: 0.6s;
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
-    /* #content .product .front {
+/* #content .product .front {
   z-index: 2;
   -webkit-transform: rotateY(0deg);
   transform: rotateY(0deg);
@@ -2020,7 +2021,7 @@ body {
     font-weight: 400;
     line-height: 1.5;
     color: #212529;
-    background-color: #f0f0f0;
+    background-color: #fff;
 }
 
 a {

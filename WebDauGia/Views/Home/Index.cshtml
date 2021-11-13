@@ -1,5 +1,6 @@
-﻿@using WebDauGia.Models
-@model PRODUCT
+﻿
+@model IEnumerable<WebDauGia.Models.PRODUCT>
+@using System.Globalization
 @{
     ViewBag.Title = "Trang chu";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,49 +14,44 @@
                     <div class="row">
                         <div class="col-md-12">
                             <h2 class="mb-0">TÀI SẢN SẮP ĐƯỢC ĐẤU GIÁ</h2>
+
+                            <div class="section-border"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="container">
                 <div class="product-slider owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="product">
-                            <div class="flip-container">
-                                <div class="flipper">
-                                    <div class="front">
-                                        <a href="detail.html"><img src="~/Public/img/Capdongvienthong.jpg" alt="" class="img-fluid"></a>
+                    @foreach (var i in ViewBag.Product)
+                    {
+                        <a href="@Url.Action("Detail","Product", new { @id = i.IdProduct}, null)">
+                            <div class="item">
+                                <div class="product">
+                                    <div class="flip-container">
+                                        <div class="image">
+                                            @foreach (var img in i.IMG)
+                                            {
+                                                <img src="@Url.Content(img.LinkImg)" alt="" class="img-fluid">
+                                            }
+                                        </div>
                                     </div>
-                                    <div class="back">
-                                        <a href="detail.html"><img src="~/Public/img/Capdongvienthong.jpg" alt="" class="img-fluid"></a>
+                                    <div class="text">
+                                        <h3>@i.NameProduct</h3>
+                                        <p class="price">
+                                            <b>Giá khởi điểm:</b>
+                                            <span> @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)</span>
+                                        </p>
+                                        <p class="time">
+                                            <span>Thời gian:@i.StartingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                                        </p>
                                     </div>
                                 </div>
-                            </div><a href="detail.html" class="invisible"><img src="~/Public/img/Capdongvienthong.jpg" alt="" class="img-fluid"></a>
-                            <div class="text">
-                                <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
-                                <p class="price">
-                                    <del></del>$143.00
-                                </p>
+                                <!-- /.product-->
                             </div>
-                            <!-- /.text-->
-                            <div class="ribbon sale">
-                                <!-- <div class="theribbon">SALE</div>
-                                  <div class="ribbon-background"></div> -->
-                            </div>
-                            <!-- /.ribbon-->
-                            <div class="ribbon new">
-                                <!-- <div class="theribbon">NEW</div>
-                                  <div class="ribbon-background"></div> -->
-                            </div>
-                            <!-- /.ribbon-->
-                            <div class="ribbon gift">
-                                <!-- <div class="theribbon">GIFT</div> -->
-                                <!-- <div class="ribbon-background"></div> -->
-                            </div>
-                            <!-- /.ribbon-->
-                        </div>
-                        <!-- /.product-->
-                    </div>
+                        </a>
+
+                    }
+
                     <div class="item">
                         <div class="product">
                             <div class="flip-container">
@@ -77,17 +73,17 @@
                             <!-- /.text-->
                             <div class="ribbon sale">
                                 <!-- <div class="theribbon">SALE</div>
-                                  <div class="ribbon-background"></div> -->
+                            <div class="ribbon-background"></div> -->
                             </div>
                             <!-- /.ribbon-->
                             <div class="ribbon new">
                                 <!-- <div class="theribbon">NEW</div>
-                                  <div class="ribbon-background"></div> -->
+                            <div class="ribbon-background"></div> -->
                             </div>
                             <!-- /.ribbon-->
                             <div class="ribbon gift">
                                 <!-- <div class="theribbon">GIFT</div>
-                                  <div class="ribbon-background"></div> -->
+                            <div class="ribbon-background"></div> -->
                             </div>
                             <!-- /.ribbon-->
                         </div>
@@ -158,13 +154,13 @@
                             <!-- /.text-->
                             <div class="ribbon new">
                                 <!-- <div class="theribbon">NEW</div>
-                                  <div class="ribbon-background"></div> -->
+                            <div class="ribbon-background"></div> -->
                             </div>
                             <!-- /.ribbon-->
                         </div>
                         <!-- /.product-->
                     </div>
-                    <div class="item">
+                    <!--<div class="item">
                         <div class="product">
                             <div class="flip-container">
                                 <div class="flipper">
@@ -181,16 +177,16 @@
                                 <p class="price">
                                     <del></del>$143.00
                                 </p>
-                            </div>
+                            </div>-->
                             <!-- /.text-->
-                            <div class="ribbon gift">
+                            <!--<div class="ribbon gift">
                                 <div class="theribbon">GIFT</div>
                                 <div class="ribbon-background"></div>
-                            </div>
+                            </div>-->
                             <!-- /.ribbon-->
-                        </div>
+                        <!--</div>-->
                         <!-- /.product-->
-                    </div>
+                    <!--</div>
                     <div class="item">
                         <div class="product">
                             <div class="flip-container">
@@ -208,26 +204,26 @@
                                 <p class="price">
                                     <del>$280</del>$143.00
                                 </p>
-                            </div>
+                            </div>-->
                             <!-- /.text-->
-                            <div class="ribbon sale">
+                            <!--<div class="ribbon sale">
                                 <div class="theribbon">SALE</div>
                                 <div class="ribbon-background"></div>
-                            </div>
+                            </div>-->
                             <!-- /.ribbon-->
-                            <div class="ribbon new">
+                            <!--<div class="ribbon new">
                                 <div class="theribbon">NEW</div>
                                 <div class="ribbon-background"></div>
-                            </div>
+                            </div>-->
                             <!-- /.ribbon-->
-                            <div class="ribbon gift">
+                            <!--<div class="ribbon gift">
                                 <div class="theribbon">GIFT</div>
                                 <div class="ribbon-background"></div>
-                            </div>
+                            </div>-->
                             <!-- /.ribbon-->
-                        </div>
+                        <!--</div>-->
                         <!-- /.product-->
-                    </div>
+                    <!--</div>
                     <div class="item">
                         <div class="product">
                             <div class="flip-container">
@@ -245,11 +241,11 @@
                                 <p class="price">
                                     <del></del>$143.00
                                 </p>
-                            </div>
+                            </div>-->
                             <!-- /.text-->
-                        </div>
+                        <!--</div>-->
                         <!-- /.product-->
-                    </div>
+                    <!--</div>-->
                     <!-- /.product-slider-->
                 </div>
                 <!-- /.container-->
@@ -257,10 +253,8 @@
             <!-- /#hot-->
             <!-- *** HOT END ***-->
         </div>
-        <!--
-          *** GET INSPIRED ***
-          _________________________________________________________
-          -->
+
+
         <div class="container">
             <div class="col-md-12">
                 <div class="box slideshow">
@@ -268,7 +262,7 @@
                     <p class="lead">Get the inspiration from our world class designers</p>
                     <div id="get-inspired" class="owl-carousel owl-theme">
                         <div class="item">
-                            <a href="#"><img src="img/bat_dong_san.jpg" alt="Get inspired" class="img-fluid"></a>
+                            <a href="#"><img src="~/Public/img/bat_dong_san.jpg" alt="Get inspired" class="img-fluid"></a>
                         </div>
                         <div class="item">
                             <a href="#"><img src="img/getinspired2.jpg" alt="Get inspired" class="img-fluid"></a>
@@ -282,14 +276,16 @@
         </div>
         <!-- *** GET INSPIRED END ***-->
         <!--
-          *** BLOG HOMEPAGE ***
-          _________________________________________________________
-          -->
+    *** BLOG HOMEPAGE ***
+    _________________________________________________________
+    -->
+
+
         <div class="box text-center">
             <div class="container">
                 <div class="col-md-12">
                     <h3 class="text-uppercase">TIN TỨC ĐẤU GIÁ</h3>
-                    <p class="lead mb-0">What's new in the world of fashion? <a href="blog.html">Check our blog!</a></p>
+                    <div class="section-border"></div>
                 </div>
             </div>
         </div>
@@ -332,6 +328,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h2 class="mb-0">LIÊN HỆ VỚI CHÚNG TÔI</h2>
+                        <div class="section-border"></div>
                     </div>
                 </div>
 
