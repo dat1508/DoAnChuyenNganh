@@ -1,6 +1,5 @@
 #navbar {
     overflow: hidden;
-   
     transition: 0.4s;
     position: fixed;
     width: 100%;
@@ -12,38 +11,38 @@
     padding: 2rem 0;
     border-top: none !important;
     border-bottom: none !important;
-  }
-  
-  #heading-breadcrumbs .breadcrumb {
-    margin-bottom: 0;
-    background: none;
-    font-size: 0.9rem;
-  }
-  
-  #heading-breadcrumbs h1 {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 0;
-  }
-  
-  #heading-breadcrumbs li {
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
+}
 
-  .background-pentagon, #heading-breadcrumbs {
+    #heading-breadcrumbs .breadcrumb {
+        margin-bottom: 0;
+        background: none;
+        font-size: 0.9rem;
+    }
+
+    #heading-breadcrumbs h1 {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0;
+    }
+
+    #heading-breadcrumbs li {
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+    }
+
+.background-pentagon, #heading-breadcrumbs {
     background: url("../img/texture-bw.png") center center repeat;
     border-top: 1px solid #999;
     border-bottom: 1px solid #999;
-  }
+}
 
 
-  h4,
-  p,
-  .h4
-  .p{
-      color: #000 !important;
-  }
+h4,
+p,
+.h4
+.p {
+    color: #000 !important;
+}
 
 .countdown {
     display: flex;
@@ -110,13 +109,16 @@
     border: 1px solid #ccc;
     border-top: none;
 }
+
     .tabcontent:hover {
         color: #b41712;
     }
+
 .tab button.active {
     background-color: #FFF;
     color: #b41712;
 }
+
 .tabcontent {
     animation: fadeEffect 1s; /* Fading effect takes 1 second */
 }
@@ -132,7 +134,7 @@
     }
 }
 
-#Info .list-item{
+#Info .list-item {
     margin: 5px;
     color: #b41712;
 }
@@ -146,10 +148,35 @@
     padding: 2px;
     color: #555;
 }
-.body-content{
+
+.body-content {
     margin-top: 120px;
 }
 
+.page-item.active .page-link {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #b41712;
+    font-weight: bold;
+}
+
+.page-link {
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
+    color: black;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    font-weight: bold;
+}
+
+.page-link:hover {
+    padding: 0.5rem 0.75rem;
+    line-height: 1.25;
+    color: black;
+    background-color: #c9c4c4;
+    border: 1px solid #dee2e6;
+    font-weight: bold;
+}
 .section-border {
     width: 100%;
     height: 25px;
