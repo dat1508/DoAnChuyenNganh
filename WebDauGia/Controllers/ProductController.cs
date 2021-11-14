@@ -61,7 +61,7 @@ namespace WebDauGia.Controllers
             return PartialView("_Products", products);
         }
 
-        [Route("san-pham/{url}")]
+      
         public ActionResult Detail(int id)
         {
             PRODUCT product = new PRODUCT();

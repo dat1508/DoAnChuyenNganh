@@ -60,6 +60,7 @@ namespace WebDauGia.Controllers
             }
             return View(history);
         }
+
         public ActionResult UploadProduct()
         {
             ViewBag.IdBrand = new SelectList(db.BRAND.OrderBy(b => b.Name), "IdBrand", "Name");
@@ -71,7 +72,9 @@ namespace WebDauGia.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UploadProduct(FormCollection f, [Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,Status,Desc,StartPrice,PriceBuy,StartingDate,EndingDate,Location,StatusBid")] PRODUCT pRODUCT)
+        [ValidateInput(false)]
+      
+        public ActionResult UploadProduct(FormCollection f, [Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,LowestBid,Status,Desc,StartPrice,PriceBuy,StartingDate,EndingDate,Location,StatusBid")] PRODUCT pRODUCT)
         {
             if (f["txt-new-cate"] != null) {
                 string namecate = f["txt-new-cate"].ToString().Trim();
@@ -102,6 +105,12 @@ namespace WebDauGia.Controllers
             pRODUCT.DateCreate = DateTime.Now;
             pRODUCT.IdOwner = null;
             pRODUCT.IdBuyer = null;
+            var NameProduct = f["NameProduct"];
+            var Location = f["Location"];
+         
+            pRODUCT.NameProduct = NameProduct;
+            pRODUCT.Location = Location;
+        
             if (ModelState.IsValid)
             {
                 db.PRODUCT.Add(pRODUCT);
