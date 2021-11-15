@@ -15,15 +15,15 @@ namespace WebDauGia.Controllers
         UserDAO userDAO = new UserDAO();
         DBContext db = new DBContext();
         // GET: User
-        public ActionResult UserInfor()
+        public PartialViewResult UserInfor()
         {
-            if (Session["userID"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            //if (Session["userID"] == null)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
             int userID = Int32.Parse(Session["userID"].ToString());
             USER user = userDAO.getUserByID(userID);
-            return View(user);
+            return PartialView("_UserInforPartial", user);
         }
 
         [HttpPost]
@@ -68,6 +68,14 @@ namespace WebDauGia.Controllers
             ViewBag.IdBuyer = new SelectList(db.USER, "IdUser", "Fullname");
             ViewBag.IdOwner = new SelectList(db.USER, "IdUser", "Fullname");
             return View();
+        }
+        public ActionResult UploadProductPartial()
+        {
+            ViewBag.IdBrand = new SelectList(db.BRAND.OrderBy(b => b.Name), "IdBrand", "Name");
+            ViewBag.IdCate = new SelectList(db.CATEGORY.OrderBy(b => b.Name), "IdCate", "Name");
+            ViewBag.IdBuyer = new SelectList(db.USER, "IdUser", "Fullname");
+            ViewBag.IdOwner = new SelectList(db.USER, "IdUser", "Fullname");
+            return PartialView("_UploadProductPartial");
         }
 
         [HttpPost]
@@ -122,7 +130,7 @@ namespace WebDauGia.Controllers
 
             ViewBag.IdBrand = new SelectList(db.BRAND, "IdBrand", "Name", pRODUCT.IdBrand);
             ViewBag.IdCate = new SelectList(db.CATEGORY, "IdCate", "Name", pRODUCT.IdCate);
-            return View(pRODUCT);
+            return PartialView("_UploadProductPartial");
         }
     }
 }
