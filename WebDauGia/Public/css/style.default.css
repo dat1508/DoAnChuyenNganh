@@ -2922,11 +2922,12 @@ code {
 
 .nav-pills .nav-link {
     border-radius: 0;
+cursor:pointer;
 }
 
     .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
-        color: #fff;
+        color: #fff !important;
         background-color: #f02222;
     }
 

@@ -12,7 +12,7 @@ namespace WebDauGia.Controllers
         DBContext db = new DBContext();
         public ActionResult Index()
         {
-            ViewBag.Product = GetNewProduct(3);
+            ViewBag.Product = GetNewProduct(7);
             ViewBag.Blog = GetBlog(5);
             return View();
         }

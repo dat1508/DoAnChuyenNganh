@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <script src="/Areas/Admin/Helper/ckeditor/ckeditor.js"></script>
 @using (Ajax.BeginForm("UploadProduct", "User", new AjaxOptions { }))
 {
@@ -30,178 +31,24 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
-                        <!--
-    *** CUSTOMER MENU ***
-    _________________________________________________________
-    -->
                         <div class="card sidebar-menu">
                             <div class="card-header">
                                 <h3 class="h4 card-title" style="font-weight: bold;">Tài khoản</h3>
                             </div>
                             <div class="card-body">
                                 <ul class="nav nav-pills flex-column">
-                                    <a href="@Url.Action("UserInfor", "User")" class="nav-link "><i class="fa fa-list"></i> Thông tin cá nhân</a>
-                                    <a href="@Url.Action("UploadProduct", "User")" class="nav-link active"><i class="fa fa-heart"></i>Đăng bán tài sản</a>
-                                    <a href="customer-account.html" class="nav-link"><i class="fa fa-user"></i> Lịch sử đấu giá</a>
-                                    <a href="@Url.Action("Logout", "Account")" class="nav-link"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+                                    <li class="nav-link" data-link="@Url.Action("UserInfor","User")"><a ><i class="fa fa-list"></i> Thông tin cá nhân</a></li>
+                                    <li class="nav-link active" data-link="@Url.Action("UploadProductPartial","User")"><a ><i class="fa fa-heart"></i>Đăng bán tài sản</a></li>
+                                    <li class="nav-link"> <a ><i class="fa fa-user"></i> Lịch sử đấu giá</a></li>
+                                    <li><a href="@Url.Action("Logout", "Account")" class="nav-link"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
                                 </ul>
                             </div>
                         </div>
                         <!-- /.col-lg-3-->
                         <!-- *** CUSTOMER MENU END ***-->
                     </div>
-                    <div id="User_Info" class="col-lg-9">
-                        <div class="box">
-                            <h1 style="font-weight:bold;">Đăng bán tài sản</h1>
-                            <p class="lead">Hãy nhập đầy đủ thông tin chi tiết tài sản bạn muốn bán vào bên dưới:</p>
-                            <form>
-                                <div class="form-horizontal">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <input name="NameProduct" class="form-control mb-2" style="width:100%" placeholder="Tên tài sản..." required />
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="col-md-12">
-                                                    <input name="Location" class="form-control mb-2" style="width:100%" placeholder="Địa chỉ:" required />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 ">
-                                            <div id="id-cate">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(model => model.IdCate, "IdCate", htmlAttributes: new { @class = "control-label col-md-2" })
-                                                    <div class="col-md-12">
-                                                        @Html.DropDownList("IdCate", null, htmlAttributes: new { @class = "form-control" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 ">
-                                            <div id="id-brand">
-                                                <div class="form-group">
-                                                    @Html.LabelFor(model => model.IdBrand, "IdBrand", htmlAttributes: new { @class = "control-label col-md-2" })
-                                                    <div class="col-md-12">
-                                                        @Html.DropDownList("IdBrand", null, htmlAttributes: new { @class = "form-control" })
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-lg-3">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-3">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.LowestBid, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.LowestBid, new { htmlAttributes = new { @class = "form-control" } })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-3">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.StartPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.StartPrice, new { htmlAttributes = new { @class = "form-control" } })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-3">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.PriceBuy, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.PriceBuy, new { htmlAttributes = new { @class = "form-control" } })
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6 col-lg-3">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.StartingDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-3">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.EndingDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-3">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control " } })
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-lg-3">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    <div class="checkbox">
-                                                        @Html.EditorFor(model => model.StatusBid)
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    @*<div class="col-md-6 col-lg-3">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.StatusBid)
-                                </div>
-                            </div>
-                        </div>
-                    </div>*@   <div class="row">
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-12 text-center">
-                                            <div class="form-group">
-                                                @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label col-md-2" })
-                                                <div class="col-md-12">
-                                                    @Html.TextAreaFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" }, @id = "txtBodyBlog" })
-                                                    @Html.ValidationMessageFor(model => model.Desc, "", new { @class = "text-danger" })
-                                                    <script>CKEDITOR.replace("txtBodyBlog");</script>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.row-->
-                                    <div class="form-group">
-                                        <div class="col-md-12 text-center">
-                                            <input type="submit" value="Đăng bán" class="btn btn-success" />
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </form>
-
-                        </div>
+                    <div id="User_Infor" class="col-lg-9">
+                        @Html.Partial("_UploadProductPartial")
                     </div>
                 </div>
             </div>
@@ -312,7 +159,6 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-
             $('#IdCate').on('change', function (e) {
                 var optionSelected = $("option:selected", this).text();
                 if (optionSelected == "Khác") {
@@ -373,6 +219,17 @@
                         $('#new-id-brand').remove();
                     }
                 }
+            })
+            $('.nav-link').click(function () {
+                var link = $(this).attr('data-link')
+                $.ajax({
+                    type: 'GET',
+                    url: link,
+                    traditional: true,
+                    success: function (data) {
+                        $('#User_Infor').html(data);
+                    }
+                });
             })
         });
     </script>
