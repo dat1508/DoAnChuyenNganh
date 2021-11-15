@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input name="NameProduct" class="form-control mb-2" style="width:100%" placeholder="Tên tài sản..." required />
+                            <input name="NameProduct" class="form-control border border-dark mb-2" style="width:100%" placeholder="Tên tài sản..." required />
 
                         </div>
                     </div>
@@ -18,7 +18,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input name="Location" class="form-control mb-2" style="width:100%" placeholder="Địa chỉ:" required />
+                            <input name="Location" class="form-control border border-dark mb-2" style="width:100%" placeholder="Địa chỉ:" required />
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.IdCate, "IdCate", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-12">
-                                @Html.DropDownList("IdCate", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownList("IdCate", null, htmlAttributes: new { @class = "form-control border border-dark" })
                             </div>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.IdBrand, "IdBrand", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-12">
-                                @Html.DropDownList("IdBrand", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownList("IdBrand", null, htmlAttributes: new { @class = "form-control border border-dark" })
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control border border-dark" } })
                         </div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.LowestBid, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.LowestBid, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.LowestBid, new { htmlAttributes = new { @class = "form-control border border-dark" } })
                         </div>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.StartPrice, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.StartPrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.StartPrice, new { htmlAttributes = new { @class = "form-control border border-dark" } })
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.PriceBuy, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.PriceBuy, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.PriceBuy, new { htmlAttributes = new { @class = "form-control border border-dark" } })
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.StartingDate, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+                            @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime-local" } })
                         </div>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.EndingDate, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
+                            @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime-local" } })
                         </div>
                     </div>
                 </div>
@@ -101,13 +101,13 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control " } })
+                            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-dark " } })
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-2 " })
                         <div class="col-md-12">
                             <div class="checkbox">
                                 @Html.EditorFor(model => model.StatusBid)

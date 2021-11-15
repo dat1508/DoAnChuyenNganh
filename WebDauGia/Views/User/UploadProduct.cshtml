@@ -39,7 +39,7 @@
                                 <ul class="nav nav-pills flex-column">
                                     <li class="nav-link" data-link="@Url.Action("UserInfor","User")"><a ><i class="fa fa-list"></i> Thông tin cá nhân</a></li>
                                     <li class="nav-link active" data-link="@Url.Action("UploadProductPartial","User")"><a ><i class="fa fa-heart"></i>Đăng bán tài sản</a></li>
-                                    <li class="nav-link"> <a ><i class="fa fa-user"></i> Lịch sử đấu giá</a></li>
+                                    <li class="nav-link"> <a><i class="fa fa-user"></i> Lịch sử đấu giá</a></li>
                                     <li><a href="@Url.Action("Logout", "Account")" class="nav-link"><i class="fa fa-sign-out"></i> Đăng xuất</a></li>
                                 </ul>
                             </div>
@@ -222,6 +222,8 @@
             })
             $('.nav-link').click(function () {
                 var link = $(this).attr('data-link')
+                $('li.nav-link.active').removeClass('active')
+                $(this).addClass('active')
                 $.ajax({
                     type: 'GET',
                     url: link,
