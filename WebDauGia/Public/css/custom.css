@@ -184,4 +184,17 @@ p,
    
     margin: 5px 0 10px;
 }
-
+.form-control {
+    color:black;
+    height: 55px;
+    width: 100%;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 300;
+    border-top: 2px solid transparent;
+    transition: all 250ms ease;
+    -webkit-transition: all 250ms ease;
+    background: white;
+    border-radius: 8px;
+    margin-right: -1rem;
+}

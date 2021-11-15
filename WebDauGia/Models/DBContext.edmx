@@ -18,6 +18,16 @@
           <Property Name="BidTime" Type="datetime" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="BID_REGISTER">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="IdProduct" Type="int" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
         <EntityType Name="BLOG">
           <Key>
             <PropertyRef Name="IdBlog" />
@@ -263,6 +273,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BID_REGISTER_PRODUCT">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="BID_REGISTER" Type="Self.BID_REGISTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="BID_REGISTER">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BID_REGISTER_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="1" />
+          <End Role="BID_REGISTER" Type="Self.BID_REGISTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="BID_REGISTER">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_HISTORY_PRODUCT">
           <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="0..1" />
           <End Role="HISTORY" Type="Self.HISTORY" Multiplicity="*" />
@@ -313,6 +347,7 @@
         </Association>
         <EntityContainer Name="DBDauGiaModelStoreContainer">
           <EntitySet Name="BID" EntityType="Self.BID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BID_REGISTER" EntityType="Self.BID_REGISTER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BLOG" EntityType="Self.BLOG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BRAND" EntityType="Self.BRAND" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
@@ -365,6 +400,14 @@
             <End Role="RANK" EntitySet="RANK" />
             <End Role="USER" EntitySet="USER" />
           </AssociationSet>
+          <AssociationSet Name="FK_BID_REGISTER_PRODUCT" Association="Self.FK_BID_REGISTER_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="BID_REGISTER" EntitySet="BID_REGISTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BID_REGISTER_USER" Association="Self.FK_BID_REGISTER_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="BID_REGISTER" EntitySet="BID_REGISTER" />
+          </AssociationSet>
           <AssociationSet Name="FK_HISTORY_PRODUCT" Association="Self.FK_HISTORY_PRODUCT">
             <End Role="PRODUCT" EntitySet="PRODUCT" />
             <End Role="HISTORY" EntitySet="HISTORY" />
@@ -386,6 +429,86 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBDauGiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BID" EntityType="DBDauGiaModel.BID" />
+          <EntitySet Name="BID_REGISTER" EntityType="DBDauGiaModel.BID_REGISTER" />
+          <EntitySet Name="BLOG" EntityType="DBDauGiaModel.BLOG" />
+          <EntitySet Name="BRAND" EntityType="DBDauGiaModel.BRAND" />
+          <EntitySet Name="CATEGORY" EntityType="DBDauGiaModel.CATEGORY" />
+          <EntitySet Name="CATEGORY_BLOG" EntityType="DBDauGiaModel.CATEGORY_BLOG" />
+          <EntitySet Name="CONTACT" EntityType="DBDauGiaModel.CONTACT" />
+          <EntitySet Name="HISTORY" EntityType="DBDauGiaModel.HISTORY" />
+          <EntitySet Name="IMG" EntityType="DBDauGiaModel.IMG" />
+          <EntitySet Name="IMG_BLOG" EntityType="DBDauGiaModel.IMG_BLOG" />
+          <EntitySet Name="PRODUCT" EntityType="DBDauGiaModel.PRODUCT" />
+          <EntitySet Name="RANK" EntityType="DBDauGiaModel.RANK" />
+          <EntitySet Name="sysdiagrams" EntityType="DBDauGiaModel.sysdiagrams" />
+          <EntitySet Name="USER" EntityType="DBDauGiaModel.USER" />
+          <AssociationSet Name="FK__BID__IdProduct__3D5E1FD2" Association="DBDauGiaModel.FK__BID__IdProduct__3D5E1FD2">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="BID" EntitySet="BID" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BID__IdUser__37A5467C" Association="DBDauGiaModel.FK__BID__IdUser__37A5467C">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="BID" EntitySet="BID" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BID_REGISTER_PRODUCT" Association="DBDauGiaModel.FK_BID_REGISTER_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="BID_REGISTER" EntitySet="BID_REGISTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BID_REGISTER_USER" Association="DBDauGiaModel.FK_BID_REGISTER_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="BID_REGISTER" EntitySet="BID_REGISTER" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BLOG__IdCate__403A8C7D" Association="DBDauGiaModel.FK__BLOG__IdCate__403A8C7D">
+            <End Role="CATEGORY_BLOG" EntitySet="CATEGORY_BLOG" />
+            <End Role="BLOG" EntitySet="BLOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BLOG__IdUser__398D8EEE" Association="DBDauGiaModel.FK__BLOG__IdUser__398D8EEE">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="BLOG" EntitySet="BLOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMG_BLOG__IdBlog__3F466844" Association="DBDauGiaModel.FK__IMG_BLOG__IdBlog__3F466844">
+            <End Role="BLOG" EntitySet="BLOG" />
+            <End Role="IMG_BLOG" EntitySet="IMG_BLOG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCT__IdBrand__3C69FB99" Association="DBDauGiaModel.FK__PRODUCT__IdBrand__3C69FB99">
+            <End Role="BRAND" EntitySet="BRAND" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCT__IdCate__3B75D760" Association="DBDauGiaModel.FK__PRODUCT__IdCate__3B75D760">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONTACT__IdUser__38996AB5" Association="DBDauGiaModel.FK__CONTACT__IdUser__38996AB5">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="CONTACT" EntitySet="CONTACT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORY_PRODUCT" Association="DBDauGiaModel.FK_HISTORY_PRODUCT">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HISTORY_USER" Association="DBDauGiaModel.FK_HISTORY_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="HISTORY" EntitySet="HISTORY" />
+          </AssociationSet>
+          <AssociationSet Name="FK__IMG__IdProduct__3E52440B" Association="DBDauGiaModel.FK__IMG__IdProduct__3E52440B">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="IMG" EntitySet="IMG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_USER" Association="DBDauGiaModel.FK_PRODUCT_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_USER1" Association="DBDauGiaModel.FK_PRODUCT_USER1">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__USER__IdRank__3A81B327" Association="DBDauGiaModel.FK__USER__IdRank__3A81B327">
+            <End Role="RANK" EntitySet="RANK" />
+            <End Role="USER" EntitySet="USER" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="BID">
           <Key>
             <PropertyRef Name="Id" />
@@ -398,8 +521,20 @@
           <Property Name="BidPrice" Type="Int32" />
           <Property Name="BidTime" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__BID__IdProduct__3D5E1FD2" FromRole="BID" ToRole="PRODUCT" />
-          <NavigationProperty Name="USER" Relationship="Self.FK__BID__IdUser__37A5467C" FromRole="BID" ToRole="USER" />
+          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__BID__IdProduct__3D5E1FD2" FromRole="BID" ToRole="PRODUCT" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK__BID__IdUser__37A5467C" FromRole="BID" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="BID_REGISTER">
+          <Key>
+            <PropertyRef Name="IdUser" />
+            <PropertyRef Name="IdProduct" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="IdProduct" Type="Int32" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK_BID_REGISTER_PRODUCT" FromRole="BID_REGISTER" ToRole="PRODUCT" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_BID_REGISTER_USER" FromRole="BID_REGISTER" ToRole="USER" />
         </EntityType>
         <EntityType Name="BLOG">
           <Key>
@@ -410,9 +545,9 @@
           <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdCate" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CATEGORY_BLOG" Relationship="Self.FK__BLOG__IdCate__403A8C7D" FromRole="BLOG" ToRole="CATEGORY_BLOG" />
-          <NavigationProperty Name="USER" Relationship="Self.FK__BLOG__IdUser__398D8EEE" FromRole="BLOG" ToRole="USER" />
-          <NavigationProperty Name="IMG_BLOG" Relationship="Self.FK__IMG_BLOG__IdBlog__3F466844" FromRole="BLOG" ToRole="IMG_BLOG" />
+          <NavigationProperty Name="CATEGORY_BLOG" Relationship="DBDauGiaModel.FK__BLOG__IdCate__403A8C7D" FromRole="BLOG" ToRole="CATEGORY_BLOG" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK__BLOG__IdUser__398D8EEE" FromRole="BLOG" ToRole="USER" />
+          <NavigationProperty Name="IMG_BLOG" Relationship="DBDauGiaModel.FK__IMG_BLOG__IdBlog__3F466844" FromRole="BLOG" ToRole="IMG_BLOG" />
         </EntityType>
         <EntityType Name="BRAND">
           <Key>
@@ -420,7 +555,7 @@
           </Key>
           <Property Name="IdBrand" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__PRODUCT__IdBrand__3C69FB99" FromRole="BRAND" ToRole="PRODUCT" />
+          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__PRODUCT__IdBrand__3C69FB99" FromRole="BRAND" ToRole="PRODUCT" />
         </EntityType>
         <EntityType Name="CATEGORY">
           <Key>
@@ -428,7 +563,7 @@
           </Key>
           <Property Name="IdCate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__PRODUCT__IdCate__3B75D760" FromRole="CATEGORY" ToRole="PRODUCT" />
+          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__PRODUCT__IdCate__3B75D760" FromRole="CATEGORY" ToRole="PRODUCT" />
         </EntityType>
         <EntityType Name="CATEGORY_BLOG">
           <Key>
@@ -436,19 +571,31 @@
           </Key>
           <Property Name="IdCate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BLOG" Relationship="Self.FK__BLOG__IdCate__403A8C7D" FromRole="CATEGORY_BLOG" ToRole="BLOG" />
+          <NavigationProperty Name="BLOG" Relationship="DBDauGiaModel.FK__BLOG__IdCate__403A8C7D" FromRole="CATEGORY_BLOG" ToRole="BLOG" />
         </EntityType>
         <EntityType Name="CONTACT">
           <Key>
             <PropertyRef Name="IdContact" />
           </Key>
           <Property Name="IdContact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="IdUser" Type="Int32" />
           <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="USER" Relationship="Self.FK__CONTACT__IdUser__38996AB5" FromRole="CONTACT" ToRole="USER" />
           <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK__CONTACT__IdUser__38996AB5" FromRole="CONTACT" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="HISTORY">
+          <Key>
+            <PropertyRef Name="Stt" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="IdProduct" Type="Int32" />
+          <Property Name="Price" Type="Int32" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+          <Property Name="Stt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK_HISTORY_PRODUCT" FromRole="HISTORY" ToRole="PRODUCT" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_HISTORY_USER" FromRole="HISTORY" ToRole="USER" />
         </EntityType>
         <EntityType Name="IMG">
           <Key>
@@ -457,7 +604,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LinkImg" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="IdProduct" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PRODUCT" Relationship="Self.FK__IMG__IdProduct__3E52440B" FromRole="IMG" ToRole="PRODUCT" />
+          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" FromRole="IMG" ToRole="PRODUCT" />
         </EntityType>
         <EntityType Name="IMG_BLOG">
           <Key>
@@ -466,7 +613,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LinkImg" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="IdBlog" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BLOG" Relationship="Self.FK__IMG_BLOG__IdBlog__3F466844" FromRole="IMG_BLOG" ToRole="BLOG" />
+          <NavigationProperty Name="BLOG" Relationship="DBDauGiaModel.FK__IMG_BLOG__IdBlog__3F466844" FromRole="IMG_BLOG" ToRole="BLOG" />
         </EntityType>
         <EntityType Name="PRODUCT">
           <Key>
@@ -490,13 +637,14 @@
           <Property Name="IdOwner" Type="Int32" />
           <Property Name="IdBuyer" Type="Int32" />
           <Property Name="StatusBid" Type="Boolean" />
-          <NavigationProperty Name="BID" Relationship="Self.FK__BID__IdProduct__3D5E1FD2" FromRole="PRODUCT" ToRole="BID" />
-          <NavigationProperty Name="BRAND" Relationship="Self.FK__PRODUCT__IdBrand__3C69FB99" FromRole="PRODUCT" ToRole="BRAND" />
-          <NavigationProperty Name="CATEGORY" Relationship="Self.FK__PRODUCT__IdCate__3B75D760" FromRole="PRODUCT" ToRole="CATEGORY" />
-          <NavigationProperty Name="IMG" Relationship="Self.FK__IMG__IdProduct__3E52440B" FromRole="PRODUCT" ToRole="IMG" />
-          <NavigationProperty Name="USER" Relationship="Self.FK_PRODUCT_USER" FromRole="PRODUCT" ToRole="USER" />
-          <NavigationProperty Name="USER1" Relationship="Self.FK_PRODUCT_USER1" FromRole="PRODUCT" ToRole="USER" />
+          <NavigationProperty Name="BID" Relationship="DBDauGiaModel.FK__BID__IdProduct__3D5E1FD2" FromRole="PRODUCT" ToRole="BID" />
+          <NavigationProperty Name="BID_REGISTER" Relationship="DBDauGiaModel.FK_BID_REGISTER_PRODUCT" FromRole="PRODUCT" ToRole="BID_REGISTER" />
+          <NavigationProperty Name="BRAND" Relationship="DBDauGiaModel.FK__PRODUCT__IdBrand__3C69FB99" FromRole="PRODUCT" ToRole="BRAND" />
+          <NavigationProperty Name="CATEGORY" Relationship="DBDauGiaModel.FK__PRODUCT__IdCate__3B75D760" FromRole="PRODUCT" ToRole="CATEGORY" />
           <NavigationProperty Name="HISTORY" Relationship="DBDauGiaModel.FK_HISTORY_PRODUCT" FromRole="PRODUCT" ToRole="HISTORY" />
+          <NavigationProperty Name="IMG" Relationship="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" FromRole="PRODUCT" ToRole="IMG" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_PRODUCT_USER" FromRole="PRODUCT" ToRole="USER" />
+          <NavigationProperty Name="USER1" Relationship="DBDauGiaModel.FK_PRODUCT_USER1" FromRole="PRODUCT" ToRole="USER" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -505,7 +653,17 @@
           <Property Name="IdRank" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NameRank" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="Value" Type="Int32" />
-          <NavigationProperty Name="USER" Relationship="Self.FK__USER__IdRank__3A81B327" FromRole="RANK" ToRole="USER" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK__USER__IdRank__3A81B327" FromRole="RANK" ToRole="USER" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -518,21 +676,22 @@
           <Property Name="Password" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="DateOfBirth" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="Gender" Type="Boolean" />
           <Property Name="Admin" Type="Boolean" />
-          <NavigationProperty Name="BID" Relationship="Self.FK__BID__IdUser__37A5467C" FromRole="USER" ToRole="BID" />
-          <NavigationProperty Name="BLOG" Relationship="Self.FK__BLOG__IdUser__398D8EEE" FromRole="USER" ToRole="BLOG" />
-          <NavigationProperty Name="CONTACT" Relationship="Self.FK__CONTACT__IdUser__38996AB5" FromRole="USER" ToRole="CONTACT" />
-          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_PRODUCT_USER" FromRole="USER" ToRole="PRODUCT" />
-          <NavigationProperty Name="PRODUCT1" Relationship="Self.FK_PRODUCT_USER1" FromRole="USER" ToRole="PRODUCT" />
-          <NavigationProperty Name="RANK" Relationship="Self.FK__USER__IdRank__3A81B327" FromRole="USER" ToRole="RANK" />
+          <NavigationProperty Name="BID" Relationship="DBDauGiaModel.FK__BID__IdUser__37A5467C" FromRole="USER" ToRole="BID" />
+          <NavigationProperty Name="BID_REGISTER" Relationship="DBDauGiaModel.FK_BID_REGISTER_USER" FromRole="USER" ToRole="BID_REGISTER" />
+          <NavigationProperty Name="BLOG" Relationship="DBDauGiaModel.FK__BLOG__IdUser__398D8EEE" FromRole="USER" ToRole="BLOG" />
+          <NavigationProperty Name="CONTACT" Relationship="DBDauGiaModel.FK__CONTACT__IdUser__38996AB5" FromRole="USER" ToRole="CONTACT" />
           <NavigationProperty Name="HISTORY" Relationship="DBDauGiaModel.FK_HISTORY_USER" FromRole="USER" ToRole="HISTORY" />
+          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK_PRODUCT_USER" FromRole="USER" ToRole="PRODUCT" />
+          <NavigationProperty Name="PRODUCT1" Relationship="DBDauGiaModel.FK_PRODUCT_USER1" FromRole="USER" ToRole="PRODUCT" />
+          <NavigationProperty Name="RANK" Relationship="DBDauGiaModel.FK__USER__IdRank__3A81B327" FromRole="USER" ToRole="RANK" />
         </EntityType>
         <Association Name="FK__BID__IdProduct__3D5E1FD2">
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
-          <End Role="BID" Type="Self.BID" Multiplicity="*" />
+          <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="DBDauGiaModel.BID" Role="BID" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PRODUCT">
               <PropertyRef Name="IdProduct" />
@@ -543,8 +702,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__BID__IdUser__37A5467C">
-          <End Role="USER" Type="Self.USER" Multiplicity="1" />
-          <End Role="BID" Type="Self.BID" Multiplicity="*" />
+          <End Type="DBDauGiaModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="DBDauGiaModel.BID" Role="BID" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USER">
               <PropertyRef Name="IdUser" />
@@ -554,9 +713,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_BID_REGISTER_PRODUCT">
+          <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="DBDauGiaModel.BID_REGISTER" Role="BID_REGISTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="BID_REGISTER">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BID_REGISTER_USER">
+          <End Type="DBDauGiaModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="DBDauGiaModel.BID_REGISTER" Role="BID_REGISTER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="BID_REGISTER">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__BLOG__IdCate__403A8C7D">
-          <End Role="CATEGORY_BLOG" Type="Self.CATEGORY_BLOG" Multiplicity="1" />
-          <End Role="BLOG" Type="Self.BLOG" Multiplicity="*" />
+          <End Type="DBDauGiaModel.CATEGORY_BLOG" Role="CATEGORY_BLOG" Multiplicity="1" />
+          <End Type="DBDauGiaModel.BLOG" Role="BLOG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CATEGORY_BLOG">
               <PropertyRef Name="IdCate" />
@@ -567,8 +750,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__BLOG__IdUser__398D8EEE">
-          <End Role="USER" Type="Self.USER" Multiplicity="1" />
-          <End Role="BLOG" Type="Self.BLOG" Multiplicity="*" />
+          <End Type="DBDauGiaModel.USER" Role="USER" Multiplicity="1" />
+          <End Type="DBDauGiaModel.BLOG" Role="BLOG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USER">
               <PropertyRef Name="IdUser" />
@@ -579,8 +762,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__IMG_BLOG__IdBlog__3F466844">
-          <End Role="BLOG" Type="Self.BLOG" Multiplicity="1" />
-          <End Role="IMG_BLOG" Type="Self.IMG_BLOG" Multiplicity="*" />
+          <End Type="DBDauGiaModel.BLOG" Role="BLOG" Multiplicity="1" />
+          <End Type="DBDauGiaModel.IMG_BLOG" Role="IMG_BLOG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BLOG">
               <PropertyRef Name="IdBlog" />
@@ -591,8 +774,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__PRODUCT__IdBrand__3C69FB99">
-          <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <End Type="DBDauGiaModel.BRAND" Role="BRAND" Multiplicity="1" />
+          <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BRAND">
               <PropertyRef Name="IdBrand" />
@@ -603,8 +786,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__PRODUCT__IdCate__3B75D760">
-          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <End Type="DBDauGiaModel.CATEGORY" Role="CATEGORY" Multiplicity="1" />
+          <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CATEGORY">
               <PropertyRef Name="IdCate" />
@@ -615,8 +798,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__CONTACT__IdUser__38996AB5">
-          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
-          <End Role="CONTACT" Type="Self.CONTACT" Multiplicity="*" />
+          <End Type="DBDauGiaModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="DBDauGiaModel.CONTACT" Role="CONTACT" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="USER">
               <PropertyRef Name="IdUser" />
@@ -626,147 +809,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__IMG__IdProduct__3E52440B">
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
-          <End Role="IMG" Type="Self.IMG" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PRODUCT">
-              <PropertyRef Name="IdProduct" />
-            </Principal>
-            <Dependent Role="IMG">
-              <PropertyRef Name="IdProduct" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PRODUCT_USER">
-          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="PRODUCT">
-              <PropertyRef Name="IdBuyer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PRODUCT_USER1">
-          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="PRODUCT">
-              <PropertyRef Name="IdOwner" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__USER__IdRank__3A81B327">
-          <End Role="RANK" Type="Self.RANK" Multiplicity="0..1" />
-          <End Role="USER" Type="Self.USER" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RANK">
-              <PropertyRef Name="IdRank" />
-            </Principal>
-            <Dependent Role="USER">
-              <PropertyRef Name="IdRank" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BID" EntityType="Self.BID" />
-          <EntitySet Name="BLOG" EntityType="Self.BLOG" />
-          <EntitySet Name="BRAND" EntityType="Self.BRAND" />
-          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" />
-          <EntitySet Name="CATEGORY_BLOG" EntityType="Self.CATEGORY_BLOG" />
-          <EntitySet Name="CONTACT" EntityType="Self.CONTACT" />
-          <EntitySet Name="IMG" EntityType="Self.IMG" />
-          <EntitySet Name="IMG_BLOG" EntityType="Self.IMG_BLOG" />
-          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" />
-          <EntitySet Name="RANK" EntityType="Self.RANK" />
-          <EntitySet Name="USER" EntityType="Self.USER" />
-          <AssociationSet Name="FK__BID__IdProduct__3D5E1FD2" Association="Self.FK__BID__IdProduct__3D5E1FD2">
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-            <End Role="BID" EntitySet="BID" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BID__IdUser__37A5467C" Association="Self.FK__BID__IdUser__37A5467C">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="BID" EntitySet="BID" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BLOG__IdCate__403A8C7D" Association="Self.FK__BLOG__IdCate__403A8C7D">
-            <End Role="CATEGORY_BLOG" EntitySet="CATEGORY_BLOG" />
-            <End Role="BLOG" EntitySet="BLOG" />
-          </AssociationSet>
-          <AssociationSet Name="FK__BLOG__IdUser__398D8EEE" Association="Self.FK__BLOG__IdUser__398D8EEE">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="BLOG" EntitySet="BLOG" />
-          </AssociationSet>
-          <AssociationSet Name="FK__IMG_BLOG__IdBlog__3F466844" Association="Self.FK__IMG_BLOG__IdBlog__3F466844">
-            <End Role="BLOG" EntitySet="BLOG" />
-            <End Role="IMG_BLOG" EntitySet="IMG_BLOG" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PRODUCT__IdBrand__3C69FB99" Association="Self.FK__PRODUCT__IdBrand__3C69FB99">
-            <End Role="BRAND" EntitySet="BRAND" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PRODUCT__IdCate__3B75D760" Association="Self.FK__PRODUCT__IdCate__3B75D760">
-            <End Role="CATEGORY" EntitySet="CATEGORY" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-          </AssociationSet>
-          <AssociationSet Name="FK__CONTACT__IdUser__38996AB5" Association="Self.FK__CONTACT__IdUser__38996AB5">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="CONTACT" EntitySet="CONTACT" />
-          </AssociationSet>
-          <AssociationSet Name="FK__IMG__IdProduct__3E52440B" Association="Self.FK__IMG__IdProduct__3E52440B">
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-            <End Role="IMG" EntitySet="IMG" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCT_USER" Association="Self.FK_PRODUCT_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCT_USER1" Association="Self.FK_PRODUCT_USER1">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-          </AssociationSet>
-          <AssociationSet Name="FK__USER__IdRank__3A81B327" Association="Self.FK__USER__IdRank__3A81B327">
-            <End Role="RANK" EntitySet="RANK" />
-            <End Role="USER" EntitySet="USER" />
-          </AssociationSet>
-          <EntitySet Name="sysdiagrams" EntityType="DBDauGiaModel.sysdiagrams" />
-          <EntitySet Name="HISTORY" EntityType="DBDauGiaModel.HISTORY" />
-          <AssociationSet Name="FK_HISTORY_PRODUCT" Association="DBDauGiaModel.FK_HISTORY_PRODUCT">
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-            <End Role="HISTORY" EntitySet="HISTORY" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HISTORY_USER" Association="DBDauGiaModel.FK_HISTORY_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="HISTORY" EntitySet="HISTORY" />
-          </AssociationSet>
-        </EntityContainer>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="HISTORY">
-          <Key>
-            <PropertyRef Name="Stt" />
-          </Key>
-          <Property Name="IdUser" Type="Int32" />
-          <Property Name="IdProduct" Type="Int32" />
-          <Property Name="Price" Type="Int32" />
-          <Property Name="Time" Type="DateTime" Precision="3" />
-          <Property Name="Stt" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK_HISTORY_PRODUCT" FromRole="HISTORY" ToRole="PRODUCT" />
-          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_HISTORY_USER" FromRole="HISTORY" ToRole="USER" />
-        </EntityType>
         <Association Name="FK_HISTORY_PRODUCT">
           <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="0..1" />
           <End Type="DBDauGiaModel.HISTORY" Role="HISTORY" Multiplicity="*" />
@@ -791,162 +833,220 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK__IMG__IdProduct__3E52440B">
+          <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="1" />
+          <End Type="DBDauGiaModel.IMG" Role="IMG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="IdProduct" />
+            </Principal>
+            <Dependent Role="IMG">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_USER">
+          <End Type="DBDauGiaModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="IdBuyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_USER1">
+          <End Type="DBDauGiaModel.USER" Role="USER" Multiplicity="0..1" />
+          <End Type="DBDauGiaModel.PRODUCT" Role="PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="IdOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__USER__IdRank__3A81B327">
+          <End Type="DBDauGiaModel.RANK" Role="RANK" Multiplicity="0..1" />
+          <End Type="DBDauGiaModel.USER" Role="USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RANK">
+              <PropertyRef Name="IdRank" />
+            </Principal>
+            <Dependent Role="USER">
+              <PropertyRef Name="IdRank" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DBDauGiaModelStoreContainer" CdmEntityContainer="DBContext">
-    <EntitySetMapping Name="BID">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.BID)">
-        <MappingFragment StoreEntitySet="BID">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
-          <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
-          <ScalarProperty Name="BidTime" ColumnName="BidTime" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="BLOG">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.BLOG)">
-        <MappingFragment StoreEntitySet="BLOG">
-          <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Body" ColumnName="Body" />
-          <ScalarProperty Name="IdCate" ColumnName="IdCate" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="BRAND">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.BRAND)">
-        <MappingFragment StoreEntitySet="BRAND">
-          <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CATEGORY">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.CATEGORY)">
-        <MappingFragment StoreEntitySet="CATEGORY">
-          <ScalarProperty Name="IdCate" ColumnName="IdCate" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CATEGORY_BLOG">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.CATEGORY_BLOG)">
-        <MappingFragment StoreEntitySet="CATEGORY_BLOG">
-          <ScalarProperty Name="IdCate" ColumnName="IdCate" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CONTACT">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.CONTACT)">
-        <MappingFragment StoreEntitySet="CONTACT">
-          <ScalarProperty Name="IdContact" ColumnName="IdContact" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="Title" ColumnName="Title" />
-          <ScalarProperty Name="Body" ColumnName="Body" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="IMG">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.IMG)">
-        <MappingFragment StoreEntitySet="IMG">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="LinkImg" ColumnName="LinkImg" />
-          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="IMG_BLOG">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.IMG_BLOG)">
-        <MappingFragment StoreEntitySet="IMG_BLOG">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="LinkImg" ColumnName="LinkImg" />
-          <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="PRODUCT">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.PRODUCT)">
-        <MappingFragment StoreEntitySet="PRODUCT">
-          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
-          <ScalarProperty Name="IdCate" ColumnName="IdCate" />
-          <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
-          <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
-          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Desc" ColumnName="Desc" />
-          <ScalarProperty Name="LowestBid" ColumnName="LowestBid" />
-          <ScalarProperty Name="StartPrice" ColumnName="StartPrice" />
-          <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
-          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
-          <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
-          <ScalarProperty Name="EndingDate" ColumnName="EndingDate" />
-          <ScalarProperty Name="BidTime" ColumnName="BidTime" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
-          <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />
-          <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
-          <ScalarProperty Name="StatusBid" ColumnName="StatusBid" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="RANK">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.RANK)">
-        <MappingFragment StoreEntitySet="RANK">
-          <ScalarProperty Name="IdRank" ColumnName="IdRank" />
-          <ScalarProperty Name="NameRank" ColumnName="NameRank" />
-          <ScalarProperty Name="Value" ColumnName="Value" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="USER">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.USER)">
-        <MappingFragment StoreEntitySet="USER">
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="IdRank" ColumnName="IdRank" />
-          <ScalarProperty Name="Fullname" ColumnName="Fullname" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="Admin" ColumnName="Admin" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.sysdiagrams)">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HISTORY">
-      <EntityTypeMapping TypeName="IsTypeOf(DBDauGiaModel.HISTORY)">
-        <MappingFragment StoreEntitySet="HISTORY">
-          <ScalarProperty Name="Stt" ColumnName="Stt" />
-          <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
-          <ScalarProperty Name="Price" ColumnName="Price" />
-          <ScalarProperty Name="Time" ColumnName="Time" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-  </EntityContainerMapping>
+          <EntitySetMapping Name="BID">
+            <EntityTypeMapping TypeName="DBDauGiaModel.BID">
+              <MappingFragment StoreEntitySet="BID">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="BidTime" ColumnName="BidTime" />
+                <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BID_REGISTER">
+            <EntityTypeMapping TypeName="DBDauGiaModel.BID_REGISTER">
+              <MappingFragment StoreEntitySet="BID_REGISTER">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BLOG">
+            <EntityTypeMapping TypeName="DBDauGiaModel.BLOG">
+              <MappingFragment StoreEntitySet="BLOG">
+                <ScalarProperty Name="IdCate" ColumnName="IdCate" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BRAND">
+            <EntityTypeMapping TypeName="DBDauGiaModel.BRAND">
+              <MappingFragment StoreEntitySet="BRAND">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORY">
+            <EntityTypeMapping TypeName="DBDauGiaModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdCate" ColumnName="IdCate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CATEGORY_BLOG">
+            <EntityTypeMapping TypeName="DBDauGiaModel.CATEGORY_BLOG">
+              <MappingFragment StoreEntitySet="CATEGORY_BLOG">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IdCate" ColumnName="IdCate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACT">
+            <EntityTypeMapping TypeName="DBDauGiaModel.CONTACT">
+              <MappingFragment StoreEntitySet="CONTACT">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdContact" ColumnName="IdContact" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HISTORY">
+            <EntityTypeMapping TypeName="DBDauGiaModel.HISTORY">
+              <MappingFragment StoreEntitySet="HISTORY">
+                <ScalarProperty Name="Stt" ColumnName="Stt" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMG">
+            <EntityTypeMapping TypeName="DBDauGiaModel.IMG">
+              <MappingFragment StoreEntitySet="IMG">
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="LinkImg" ColumnName="LinkImg" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMG_BLOG">
+            <EntityTypeMapping TypeName="DBDauGiaModel.IMG_BLOG">
+              <MappingFragment StoreEntitySet="IMG_BLOG">
+                <ScalarProperty Name="IdBlog" ColumnName="IdBlog" />
+                <ScalarProperty Name="LinkImg" ColumnName="LinkImg" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCT">
+            <EntityTypeMapping TypeName="DBDauGiaModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="StatusBid" ColumnName="StatusBid" />
+                <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
+                <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="BidTime" ColumnName="BidTime" />
+                <ScalarProperty Name="EndingDate" ColumnName="EndingDate" />
+                <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="PriceBuy" ColumnName="PriceBuy" />
+                <ScalarProperty Name="StartPrice" ColumnName="StartPrice" />
+                <ScalarProperty Name="LowestBid" ColumnName="LowestBid" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="NameProduct" ColumnName="NameProduct" />
+                <ScalarProperty Name="IdBrand" ColumnName="IdBrand" />
+                <ScalarProperty Name="IdCate" ColumnName="IdCate" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RANK">
+            <EntityTypeMapping TypeName="DBDauGiaModel.RANK">
+              <MappingFragment StoreEntitySet="RANK">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="NameRank" ColumnName="NameRank" />
+                <ScalarProperty Name="IdRank" ColumnName="IdRank" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DBDauGiaModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER">
+            <EntityTypeMapping TypeName="DBDauGiaModel.USER">
+              <MappingFragment StoreEntitySet="USER">
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="IdRank" ColumnName="IdRank" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
@@ -959,7 +1059,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

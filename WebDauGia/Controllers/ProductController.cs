@@ -65,14 +65,18 @@ namespace WebDauGia.Controllers
         }
 
       
-        public ActionResult Detail(int id)
+        public ActionResult Detail(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Product", "Product");
+            }
+            Debug.WriteLine(id);
             PRODUCT product = new PRODUCT();
             product = db.PRODUCT.Where(p => p.IdProduct == id).SingleOrDefault();
             ViewBag.ImageList = db.IMG.Where(i => i.IdProduct == product.IdProduct).ToList();
             return View(product);
         }
-
 
         //[HttpGet]
         //public JsonResult LoadData()

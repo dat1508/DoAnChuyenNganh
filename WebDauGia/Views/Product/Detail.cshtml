@@ -255,9 +255,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <p id="dangkydaugia"  class="text-center buttons"><a href="#" class="btn btn-primary"> XÁC NHẬN ĐĂNG KÝ</a></p>
-
-
+                                        <p id="dangkydaugia"  class="text-center buttons"><a href="@Url.Action("Register", "Bid", new { @idProduct = Model.IdProduct })" class="btn btn-primary"> XÁC NHẬN ĐĂNG KÝ</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -969,6 +967,7 @@
             document.getElementById(pageName).style.display = "block";
             evt.currentTarget.className += " active";
         }
+
 
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();

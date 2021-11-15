@@ -53,20 +53,26 @@ namespace WebDauGia.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignUp(USER user)
+        public ActionResult SignUp(USER user, FormCollection form)
         {
+            var ConfirmPassword = form["ConfirmPassword"];
+            if (ModelState.IsValid == false)
+            {
+                return View(user);
+            }
             if (userDAO.isUserAlreadyExisted(user.Username))
             {
                 ViewBag.alert = "<span style='color: red; font - size:medium'>Tài khoản đã tồn tại</span>";
                 return View(user);
             }
-            else if (ModelState.IsValid  == false)
+            if (user.Password != ConfirmPassword)
             {
+                ViewBag.PasswordAlert = "<span style='color: red; font - size:medium'>Vui lòng nhập xác nhận mật khẩu trùng với mật khẩu</span>";
                 return View(user);
             }
+
             user.Admin = false;
             user.Password = MD5.MD5Hash(user.Password);
-            //user.ConfirmPassword = MD5.MD5Hash(user.ConfirmPassword);
             db.USER.Add(user);
             db.SaveChanges();
             return RedirectToAction("Index", "Home");
