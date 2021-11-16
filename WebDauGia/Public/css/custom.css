@@ -1,3 +1,8 @@
+
+::selection{
+    background-color: #b41712;
+    color:#fff;
+}
 #navbar {
     overflow: hidden;
     transition: 0.4s;
@@ -93,8 +98,8 @@ p,
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
-    font-size: 17px;
     width: 25%;
+    font-size: 17px;
     font-weight: bold;
 }
 
@@ -102,7 +107,23 @@ p,
         background-color: #FFF;
         color: #b41712;
     }
+.infor_tablink {
+    background-color: #b41712;
+    color: white;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    font-size: 17px;
+    width: 50%;
+    font-weight: bold;
+}
 
+    .infor_tablink:hover {
+        background-color: #FFF;
+        color: #b41712;
+    }
 /* Style the tab content (and add height:100% for full page content) */
 .tabcontent {
     display: none;
@@ -199,4 +220,8 @@ p,
     background: white;
     border-radius: 8px;
     margin-right: -1rem;
+}
+.spanauctionproperty {
+    font-weight: bold;
+    color: #000;
 }

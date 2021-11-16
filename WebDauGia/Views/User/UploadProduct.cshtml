@@ -44,8 +44,6 @@
                                 </ul>
                             </div>
                         </div>
-                        <!-- /.col-lg-3-->
-                        <!-- *** CUSTOMER MENU END ***-->
                     </div>
                     <div id="User_Infor" class="col-lg-9">
                         @Html.Partial("_UploadProductPartial")
@@ -54,107 +52,6 @@
             </div>
         </div>
     </div>
-    @*<div class="form-horizontal">
-            <div id="id-cate">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IdCate, "IdCate", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("IdCate", null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <div id="id-brand">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.IdBrand, "IdBrand", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("IdBrand", null, htmlAttributes: new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.NameProduct, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.NameProduct, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Desc, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Desc, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LowestBid, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LowestBid, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.StartPrice, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.StartPrice, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.PriceBuy, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PriceBuy, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.StartingDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.EndingDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control", @type = "datetime-local" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.StatusBid)
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-            </div>
-        </div>*@
 }
 @section scripts {
     <script>
@@ -177,7 +74,7 @@
                     div.appendChild(divInput);
                     var input = document.createElement("input");
                     input.id = 'txt-new-cate';
-                    input.className = "form-control";
+                    input.className = "form-control border border-dark";
                     input.type = 'text';
                     input.name = 'txt-new-cate';
                     input.placeholder = 'Nhập loại tại đây';
@@ -208,7 +105,7 @@
                     div.appendChild(divInput);
                     var input = document.createElement("input");
                     input.id = 'txt-new-brand';
-                    input.className = "form-control";
+                    input.className = "form-control border border-dark";
                     input.type = 'text';
                     input.name = 'txt-new-brand';
                     input.placeholder = 'Nhập hãng tại đây';
