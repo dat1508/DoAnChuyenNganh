@@ -1,10 +1,10 @@
 ﻿@using WebDauGia.Models
-
 @model PRODUCT
 
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    DBContext db = new DBContext();
 }
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
@@ -37,12 +37,6 @@
                                     <div class="item"> <img src="@Url.Content(item.LinkImg)" alt="" class="img-fluid"></div>
                                 }
                             </div>
-                            @*<div data-slider-id="1" class="owl-thumbs">
-                                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                                </div>*@
-                            <!-- /.ribbon-->
                         </div>
                         <div class="col-md-7">
                             <div id="notify" style="color: blue;"><b>Thời gian đếm ngược bắt đầu trả giá:</b></div>
@@ -113,7 +107,7 @@
                                             <span class="spanauctionproperty">Bước giá:</span>
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
-                                            <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                            <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">@string.Format("{0:#,##0}", Model.LowestBid) VNĐ</span>
                                         </div>
                                     </div>
                                     <div class="row novaticDivAuctionProperty">
@@ -124,7 +118,6 @@
                                             <span id="stepPrice" class="spanColorAuctionproperty">XXX bước giá</span>
                                         </div>
                                     </div>
-
 
                                     <div class="row novaticDivAuctionProperty">
                                         <div class="col-sm-5 col-xs-6">
@@ -152,7 +145,8 @@
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
                                             <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty"> XXX.XXX VNĐ</span>
+                                                <span class="spanColorAuctionproperty lastest-price">
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
@@ -173,34 +167,32 @@
                                         </div>
                                         <div id="set_price" class="col-sm-7 col-xs-6">
                                             <input class="minus is-form" type="button" value="-">
-                                            <input class="input-qty" type="number" max="" min="0" step="@(Model.StartPrice * 10 / 100)">
+                                            <input class="input-qty" type="number" max="" min="0" step="@Model.LowestBid">
                                             <input class="plus is-form" type="button" value="+">
                                         </div>
 
                                     </div>
                                     <div class="row novaticDivAuctionProperty">
                                         <div class="col-sm-5 col-xs-6">
-
+                                            <p class="text-left buttons"><a id="datgia" class="btn btn-primary">ĐẶT GIÁ</a></p>
                                         </div>
                                         <div id="set_price" class="col-sm-7 col-xs-6">
                                             @if (Session["userID"] == null)
                                             {
-                                                <p class="text-left buttons"><a href="@Url.Action("Login", "Account")" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a></p>
+                                                <p id="dangkydaugia" class="text-left buttons"><a href="@Url.Action("Login", "Account")" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a></p>
 
                                             }
                                             else
                                             {
                                                 <p id="dangkydaugia" data-toggle="modal" data-target="#detail-modal" class="text-left buttons"><a href="#" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a></p>
                                             }
-                                            <p class="text-left buttons"><a id="datgia" class="btn btn-primary">ĐẶT GIÁ</a></p>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div id="InforProduct" class="infor_tabcontent">
-
-
                                 <div class="row novaticDivAuctionProperty">
                                     <div class="col-sm-5 col-xs-6">
                                         <span class="text-center">Mã tài sản:</span>
@@ -247,7 +239,7 @@
                                         <span class="spanauctionproperty">Bước giá:</span>
                                     </div>
                                     <div class="col-sm-7 col-xs-6">
-                                        <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                        <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">@string.Format("{0:#,##0}", Model.LowestBid) VNĐ</span>
                                     </div>
                                 </div>
                                 <div class="row novaticDivAuctionProperty">
@@ -1015,10 +1007,86 @@
         let idProduct = @Model.IdProduct;
         let startPrice = @Model.StartPrice;
         let inputPrice = document.querySelector('input.input-qty');
+        let stepPrice = @Model.LowestBid;
+        let lastestPrice = '';
+
         $(document).ready(function () {
+            setInterval(reloadPage, 1000);
+            checkHistory();
             LoadDSData();
             checkRegister();
+
         });
+
+        $('#btn-confirm-register').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/bid/register/',
+                data: { idProduct: idProduct},
+                success: function () {
+                    checkRegister()
+                },
+                error: function () {
+                    alert('đăng ký thất bại')
+                }
+            });
+        })
+
+        $('input.is-form').on('click', function () {
+            if ($(this).val() == '+') {
+                inputPrice.stepUp();
+            } else {
+                inputPrice.stepDown();
+            }
+        })
+
+        $('#datgia').click(function () {
+            $.ajax({
+                method: 'POST',
+                url: '@Url.Action("Bid", "Bid")',
+                data: { idProduct: idProduct, price: inputPrice.value },
+                success: function () {
+                },
+                error: function () {
+                    alert('Vui lòng nhập giá tiền')
+                }
+            })
+        })
+
+        function checkHistory() {
+            $.ajax({
+                method: 'POST',
+                url: '@Url.Action("getLastestPrice", "Bid")',
+                data: { idProduct: idProduct },
+                success: function (data) {
+                    if (data != 0) {
+                        inputPrice.value = data;
+                    } else {
+                        inputPrice.value = startPrice;
+                    }
+                },
+                error: function () {
+
+                }
+            })
+        }
+
+        function reloadPage() {
+            getLastestPrice();
+        }
+
+        function getLastestPrice() {
+            $.ajax({
+                method: 'GET',
+                url: '@Url.Action("getLastestPrice", "Bid")',
+                data: { idProduct: idProduct},
+                success: function (data) {
+                    $('span.spanColorAuctionproperty.lastest-price').text(data)
+                },
+                error: function () {
+                }
+            })
+        }
 
         function DateTime(id) {
             var parts = document.querySelector(`#${id}`).innerText;
@@ -1063,6 +1131,7 @@
                         gap = 0;
                     }
                 }
+
                 const second = 1000;
                 const minute = second * 60;
                 const hour = minute * 60;
@@ -1081,6 +1150,7 @@
             };
             setInterval(countdown, 1000);
         }
+
         function openPage(evt, elmnt, pageName) {
             var i, tabcontent, tablinks, infor_tabcontent, infor_tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
@@ -1097,43 +1167,6 @@
             evt.currentTarget.className += " active";
         }
 
-        $('#btn-confirm-register').click(function () {
-            $.ajax({
-                type: 'GET',
-                url: '/bid/register/',
-                data: { idProduct: idProduct},
-                success: function () {
-                    checkRegister()
-                },
-                error: function () {
-                    alert('đăng ký thất bại')
-                }
-            });
-        })
-
-        $('input.is-form').on('click', function () {
-
-
-            if ($(this).val() == '-') {
-                inputPrice.stepDown()
-            } else {
-                inputPrice.stepUp()
-            }
-        })
-
-        $('#datgia').click(function () {
-            $.ajax({
-                method: 'POST',
-                url: '@Url.Action("Bid", "Bid")',
-                data: { idProduct: idProduct, price: inputPrice.value },
-                success: function () {
-                    alert('đặt giá thành công')
-                },
-                error: function () {
-                    alert('Vui lòng nhập giá tiền')
-                }
-            })
-        })
         function checkRegister() {
             let idProduct = @Model.IdProduct;
             let btnRegister = $('#dangkydaugia');
@@ -1182,10 +1215,6 @@
             document.getElementById(pageName).style.display = "block";
             evt.currentTarget.className += " active";
         }
-
-
-
         document.getElementById("defaultOpen").click();
-
     </script>
 }

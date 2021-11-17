@@ -772,6 +772,7 @@
     <Content Include="Public\img\logo-small.png" />
     <Content Include="Public\img\logo.png" />
     <Content Include="Public\img\logoDHCV.png" />
+    <Content Include="Public\img\logo\LOGOCHINH.svg" />
     <Content Include="Public\img\main-slider1.jpg" />
     <Content Include="Public\img\main-slider2.jpg" />
     <Content Include="Public\img\main-slider3.jpg" />

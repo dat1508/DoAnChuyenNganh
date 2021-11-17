@@ -46,6 +46,8 @@ namespace WebDauGia.Controllers
             return result;
         }
 
+        
+
         public void bid(int idProduct, int price)
         {
             if (Session["userID"] != null)
@@ -59,6 +61,16 @@ namespace WebDauGia.Controllers
                 db.HISTORY.Add(history);
                 db.SaveChanges();
             }
+        }
+
+        public int getLastestPrice(int? idProduct)
+        {
+            if (db.HISTORY.FirstOrDefault(h => h.IdProduct == idProduct) != null)
+            {
+                int price = (int)db.HISTORY.Where(h => h.IdProduct == idProduct).Max(m => m.Price);
+                return price;
+            }
+            return 0;
         }
     }
 }
