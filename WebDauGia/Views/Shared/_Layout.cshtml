@@ -41,7 +41,7 @@
 </head>
 <body onLoad="renderTime();">
 
-    <header id="navbar">
+    <header id="navbar" class=" navbar-b navbar-trans navbar-expand-md fixed-top">
         <!--
         *** TOPBAR ***
         _________________________________________________________
@@ -124,7 +124,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a href="@Url.Action("Index", "Home")" class="navbar-brand home">
-                    <img src="~/Public/img/logoDHCV.png" alt="Obaju logo"
+                    <img src="~/Public/img/dtvlogochinh.png" alt="Obaju logo"
                          class="d-none d-md-inline-block">@*<img src="img/logo-small.png" alt="Obaju logo"
                         class="d-inline-block d-md-none"><span class="sr-only">Obaju - go to homepage</span>*@
                     </a>
@@ -143,7 +143,7 @@
                     <div id="navigation" class="collapse navbar-collapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link ">Trang chủ</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Giới thiệu</a></li>
+                            <li class="nav-item"><a href="@Url.Action("Introduce", "Introduce")" class="nav-link">Giới thiệu</a></li>
                             <li class="nav-item dropdown menu-large">
                                 <a href="@Url.Action("Product","Product")" @*data-toggle="dropdown" data-hover="dropdown"*@
                                    data-delay="200" class="@*dropdown-toggle*@ nav-link">Cuộc đấu giá<b class="caret"></b></a>

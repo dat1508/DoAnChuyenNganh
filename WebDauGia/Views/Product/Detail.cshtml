@@ -5,9 +5,7 @@
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    DBContext db = new DBContext();
-    int IdUser = Int32.Parse(Session["userID"].ToString());
-    var bID_REGISTER = db.BID_REGISTER.FirstOrDefault(x => x.IdProduct == Model.IdProduct && x.IdUser == IdUser & x.Status == true);
+
 }
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
@@ -41,37 +39,36 @@
                                 }
                             </div>
                             @*<div data-slider-id="1" class="owl-thumbs">
-                                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                                </div>*@
+                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
+                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
+                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
+                </div>*@
                             <!-- /.ribbon-->
                         </div>
                         <div class="col-md-7">
-                            <div id="notify" style="color: blue;"><b>Thời gian đếm ngược bắt đầu trả giá:</b></div>
+                            <div id="notify" class="container" style="color: blue;"><b></b></div>
                             <div class="container">
                                 <div class="countdown">
                                     <div class="container-day">
-                                        <h3 class="day">Time</h3>
-                                        <h3>Ngày</h3>
+                                        <h3 class="day"></h3>
+                                        <h3 id="text-day"></h3>
                                     </div>
                                     <div class="container-day">
-                                        <h3 class="hour">Time</h3>
-                                        <h3>Giờ</h3>
+                                        <h3 class="hour"></h3>
+                                        <h3 id="text-hour" ></h3>
                                     </div>
                                     <div class="container-day">
-                                        <h3 class="minute">Time</h3>
-                                        <h3>Phút</h3>
+                                        <h3 class="minute"></h3>
+                                        <h3 id="text-minute"></h3>
                                     </div>
                                     <div class="container-day">
-                                        <h3 class="second">Time</h3>
-                                        <h3>Giây</h3>
+                                        <h3 class="second"></h3>
+                                        <h3 id="text-second"></h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="container">
                                 <div class="tab">
-
                                     <button class="infor_tablink" onclick="openInfo(event,this,'InforProduct')">THÔNG TIN TÀI SẢN</button>
                                     <button class="infor_tablink active" onclick="openInfo(event,this,'Auction')" id="defaultOpen">ĐẤU GIÁ</button>
                                 </div>
@@ -135,44 +132,44 @@
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
                                             <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty" > @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="row novaticDivAuctionProperty">
                                         <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty" >Giá mua:</span>
+                                            <span class="spanauctionproperty">Giá mua:</span>
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
                                             <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty" >  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
+                                                <span class="spanColorAuctionproperty">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="row novaticDivAuctionProperty">
                                         <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty" >Giá hiện tại:</span>
+                                            <span class="spanauctionproperty">Giá hiện tại:</span>
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
                                             <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty" > XXX.XXX VNĐ</span>
+                                                <span class="spanColorAuctionproperty"> XXX.XXX VNĐ</span>
                                             </span>
                                         </div>
                                     </div>
                                     <div class="row novaticDivAuctionProperty">
                                         <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty" >Giá thấp nhất tiếp theo:</span>
+                                            <span class="spanauctionproperty">Giá thấp nhất tiếp theo:</span>
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
                                             <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty" > XXX.XXX VNĐ</span>
+                                                <span class="spanColorAuctionproperty"> XXX.XXX VNĐ</span>
                                             </span>
                                         </div>
                                     </div>
 
                                     <div class="row novaticDivAuctionProperty">
                                         <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty" >Giá của bạn:</span>
+                                            <span class="spanauctionproperty">Giá của bạn:</span>
                                         </div>
                                         <div id="set_price" class="col-sm-7 col-xs-6">
                                             <input class="minus is-form" type="button" value="-">
@@ -193,115 +190,115 @@
                                 </div>
 
 
-                                    <div id="InforProduct" class="infor_tabcontent">
+                                <div id="InforProduct" class="infor_tabcontent">
 
 
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="text-center">Mã tài sản:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty">@Model.IdProduct</span>
-                                            </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Mã tài sản:</span>
                                         </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="text-center">Số lượng:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty">@Model.Quantity</span>
-                                            </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span class="spanColorAuctionproperty">@Model.IdProduct</span>
                                         </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty">Thời gian mở đăng ký:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span id="StartingDate" class="spanColorAuctionproperty">@Model.StartingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
-
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty">Thời gian kết thúc đăng ký:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span id="EndingDate" class="spanColorAuctionproperty">@Model.EndingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty">Phí đăng ký tham gia đấu giá:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty">Bước giá:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty">Số bước giá tối đa/ lần trả:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span id="stepPrice" class="spanColorAuctionproperty">XXX bước giá</span>
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty">Tiền đặt trước:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty novaticPrice"> XX.XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty">Tên chủ tài sản:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty">@Model.USER.Fullname</span>
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty">Nơi xem tài sản:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty">
-                                                    @Model.Location
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty" style="font-size:20px;">Giá khởi điểm:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty">
-                                                    <span class="spanColorAuctionproperty" style="font-size:20px;"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="row novaticDivAuctionProperty">
-                                            <div class="col-sm-5 col-xs-6">
-                                                <span class="spanauctionproperty" style="font-size:20px;">Giá mua:</span>
-                                            </div>
-                                            <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty">
-                                                    <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
-                                                </span>
-                                            </div>
-                                        </div>
-
                                     </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Số lượng:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span class="spanColorAuctionproperty">@Model.Quantity</span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Thời gian mở đăng ký:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span id="StartingDate" class="spanColorAuctionproperty">@Model.StartingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
+
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Thời gian kết thúc đăng ký:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span id="EndingDate" class="spanColorAuctionproperty">@Model.EndingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Phí đăng ký tham gia đấu giá:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Bước giá:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Số bước giá tối đa/ lần trả:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span id="stepPrice" class="spanColorAuctionproperty">XXX bước giá</span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Tiền đặt trước:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span class="spanColorAuctionproperty novaticPrice"> XX.XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Tên chủ tài sản:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span class="spanColorAuctionproperty">@Model.USER.Fullname</span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty">Nơi xem tài sản:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span class="spanColorAuctionproperty">
+                                                @Model.Location
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty" style="font-size:20px;">Giá khởi điểm:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span class="spanColorAuctionproperty">
+                                                <span class="spanColorAuctionproperty" style="font-size:20px;"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="row novaticDivAuctionProperty">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <span class="spanauctionproperty" style="font-size:20px;">Giá mua:</span>
+                                        </div>
+                                        <div class="col-sm-7 col-xs-6">
+                                            <span class="spanColorAuctionproperty">
+                                                <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
+                                            </span>
+                                        </div>
+                                    </div>
+
                                 </div>
+                            </div>
 
 
                         </div>
@@ -373,10 +370,10 @@
                         </div>
                     </div>
                     <div class="tab">
-                        <button class="tablink" onclick="openPage(event,this,'Description')" id="defaultOpen" >THÔNG TIN TÀI SẢN</button>
-                        <button class="tablink" onclick="openPage(event,this,'Document')"  >TÀI LIỆU LIÊN QUAN</button>
-                        <button class="tablink" onclick="openPage(event,this,'Info')" >THÔNG TIN ĐẤU GIÁ</button>
-                        <button class="tablink" onclick="openPage(event,this,'Asset')" >TÀI SẢN LIÊN QUAN</button>
+                        <button class="tablink" onclick="openPage(event,this,'Description')" id="defaultOpen">THÔNG TIN TÀI SẢN</button>
+                        <button class="tablink" onclick="openPage(event,this,'Document')">TÀI LIỆU LIÊN QUAN</button>
+                        <button class="tablink" onclick="openPage(event,this,'Info')">THÔNG TIN ĐẤU GIÁ</button>
+                        <button class="tablink" onclick="openPage(event,this,'Asset')">TÀI SẢN SẮP ĐƯỢC ĐẤU GIÁ</button>
                     </div>
                     <div id="Description" class="tabcontent">
                         @if (Session["userID"] != null)
@@ -423,12 +420,12 @@
                             </li>
                             <!--<br>-->
                             <!--<li>
-                                <i style="color: #b41712;" class="fa fa-clipboard"> </i>
-                                <span>Mô tả: </span>
-                                <span style="font-weight: bold;" class="details">
-                                    C&#xF4;ng ty &#x111;&#x1EA5;u gi&#xE1; h&#x1EE3;p danh Ng&#xF4; Th&#x1ED1;ng Nh&#x1EA5;t
-                                </span>
-                            </li>-->
+                <i style="color: #b41712;" class="fa fa-clipboard"> </i>
+                <span>Mô tả: </span>
+                <span style="font-weight: bold;" class="details">
+                    C&#xF4;ng ty &#x111;&#x1EA5;u gi&#xE1; h&#x1EE3;p danh Ng&#xF4; Th&#x1ED1;ng Nh&#x1EA5;t
+                </span>
+            </li>-->
                             <li class="clearfix" style="display:none">
                                 <span class="seller-rating">
                                     <span title=" Rated 5.00 out of 5" class="star-rating">
@@ -712,11 +709,12 @@
                             <!-- /.container-->
                         </div>
                     </div>
+                    <hr />
                     <div class="box py-4">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h2 class="mb-0">TÀI SẢN SẮP ĐƯỢC ĐẤU GIÁ</h2>
+                                    <h2 class="mb-0 text-center">TÀI SẢN LIÊN QUAN</h2>
                                 </div>
                             </div>
                         </div>
@@ -1015,7 +1013,7 @@
 
         function LoadDSData() {
             const countdown = () => {
-                var notify = document.querySelector('#notify');
+                notify.innerHTML = "<b style='color: green;'>Thời gian bắt đầu đăng ký đấu giá:</b>"
                 document.getElementById('datgia').style.display = 'none';
                 document.getElementById('set_price').style.display = 'none';
                 var milliseconds = DateTime('StartingDate');
@@ -1057,11 +1055,15 @@
                 const textMinute = Math.floor((gap % hour) / minute);
                 const textSecond = Math.floor((gap % minute) / second);
 
+
                 document.querySelector(".day").innerText = textDay;
                 document.querySelector(".hour").innerText = textHour;
                 document.querySelector(".minute").innerText = textMinute;
                 document.querySelector(".second").innerText = textSecond;
-
+                document.getElementById('text-day').innerText = "Ngày";
+                document.getElementById('text-hour').innerText = "Giờ";
+                document.getElementById('text-minute').innerText = "Phút";
+                document.getElementById('text-second').innerText = "Giây";
             };
             setInterval(countdown, 1000);
         }
