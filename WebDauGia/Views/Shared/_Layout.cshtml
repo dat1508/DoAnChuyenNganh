@@ -41,7 +41,7 @@
 </head>
 <body onLoad="renderTime();">
 
-    <header id="navbar">
+    <header id="navbar" class=" navbar-b navbar-trans navbar-expand-md fixed-top">
         <!--
         *** TOPBAR ***
         _________________________________________________________
@@ -143,7 +143,7 @@
                     <div id="navigation" class="collapse navbar-collapse">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item"><a href="@Url.Action("Index", "Home")" class="nav-link ">Trang chủ</a></li>
-                            <li class="nav-item"><a href="#" class="nav-link">Giới thiệu</a></li>
+                            <li class="nav-item"><a href="@Url.Action("Introduce", "Introduce")" class="nav-link">Giới thiệu</a></li>
                             <li class="nav-item dropdown menu-large">
                                 <a href="@Url.Action("Product","Product")" @*data-toggle="dropdown" data-hover="dropdown"*@
                                    data-delay="200" class="@*dropdown-toggle*@ nav-link">Cuộc đấu giá<b class="caret"></b></a>

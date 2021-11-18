@@ -1,13 +1,19 @@
 ﻿@using WebDauGia.Models
-
+@model PagedList.PagedList<WebDauGia.Models.BLOG>
 
 @{
-    ViewBag.Title = "Tạp chí xe";
+    ViewBag.Title = "Tạp chí";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "Get",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "blogs"
+    };
 }
 
-@using PagedList;
-@using PagedList.Mvc;
+  
+
 
 <div id="heading-breadcrumbs">
     <div class="container">
@@ -28,48 +34,11 @@
 <div id="all">
     <div id="content">
         <div class="container">
-            <div class="row">
+            <div  class="row">
                 <div class="col-lg-9">
-                    <div class="row">
-
-
-
-                        @foreach (var blog in Model)
-                        {
-
-
-                            <div id="blog-listing" class="col-md-4 my-2">
-                                <a href="@Url.Action("Detail", "Blog", new { id = blog.IdBlog }, null)">
-                                    @foreach (var item in blog.IMG_BLOG)
-                                    {
-
-                                        if (blog.IdBlog == item.IdBlog)
-                                        {
-                                            <img src="@item.LinkImg" alt="Example blog post alt" class="img-fluid shadow">
-                                        }
-
-
-                                    }
-                                </a>
-                            </div>
-                            <div class="col-md-8 my-2">
-                                <a href="@Url.Action("Detail", "Blog", new { id = blog.IdBlog }, null)"><h2 class="h3 mt-0"> @blog.Title</h2></a>
-                                <div class="d-flex flex-wrap justify-content-between text-xs">
-                                    <p class="author-category">
-                                        <span>in</span> XEMAYDHCV
-                                    </p>
-
-                                </div>
-                                <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></p>
-                                <p class="read-more"><a href="@Url.Action("Detail", "Blog", new { id = blog.IdBlog }, null)" class="btn btn-primary">Đọc thêm</a></p>
-                            </div>
-                        }
-
-
+                    <div id="blogs" class="row">
+                        @Html.Partial("_BlogsPartial")
                     </div>
-
-
-
                 </div>
                 <div class="col-lg-3">
                     <div class="card sidebar-menu mb-4">
@@ -77,20 +46,100 @@
                             <h3 class="h4 panel-title">Blog</h3>
                         </div>
                         <div class="card-body">
-                            <ul class="nav flex-column nav-pills">
-                            
-                            </ul>
+                            <div class="nav nav-pills flex-column category-menu">
+                                @foreach (var i in ViewBag.CategoryBlog as List<CATEGORY_BLOG>)
+                                {
+                                    <div class="checkbox">
+                                        <label>
+                                            <input class="cate-item" type="radio" value="@i.IdCate" name="radio">
+                                            <span>@i.Name  (@i.BLOG.Count())</span>
+                                        </label>
+                                    </div>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-    </div>
+                    <div class="pages">
+                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                            <ul class="pagination">
+                                <li class="page-item"><a href="#" aria-label="First" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
+                                <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                                @for (int i = 0; i < Model.PageCount; i++)
+                                {
+                                    if (i == Model.PageNumber - 1)
+                                    {
+                                        <li class="page-item page-item-number active"><a href="#" class="page-link">@(i+1)</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="page-item page-item-number"><a href="#" class="page-link">@(i+1)</a></li>
+                                    }
+                                }
+                                <li class="page-item"><a href="#" aria-label="Next" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                                <li class="page-item"><a href="#" aria-label="Last" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
 </div>
 
 
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            let idcate = null;
+            let pageNum = 1;
 
+            $('.cate-item').change(function () {
+                if (idcate == $(this).val()) {
+                    idcate = null;
+                } else {
+                    idcate = $(this).val();
+                }
+                loadData(idcate, pageNum)
+            })
+            $('.page-item').click(function () {
+                let aria_label = $(this).children().attr('aria-label');
+                let pageCount = $('li.page-item.page-item-number').length;
+                $('li.page-item.active').removeClass('active');
+                if (aria_label == 'Next') {
+                    pageNum++;
+                    pageNum = (pageNum >= pageCount) ? pageCount : pageNum;
+                    $('.page-item-number').eq(pageNum - 1).addClass('active')
+                }
+                else if (aria_label == 'Previous') {
+                    pageNum--;
+                    pageNum = pageNum <= 0 ? 1 : pageNum;
+                    $('.page-item-number').eq(pageNum - 1).addClass('active')
+                }
+                else if (aria_label == 'First') {
+                    pageNum = 1;
+                    $('.page-item-number').eq(0).addClass('active')
+                }
+                else if (aria_label == 'Last') {
+                    pageNum = pageCount;
+                    $('.page-item-number').eq(pageCount - 1).addClass('active')
+                } else {
+                    pageNum = $(this).children().text();
+                    $(this).addClass('active');
+                }
+                loadData(idcate, pageNum)
+            })
 
-
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@
+            function loadData(idcate, pageNum) {
+                $.ajax({
+                    type: 'GET',
+                    url:'blog/filter',
+                    traditional: true,
+                    data: { idcate: idcate, pageNum: pageNum },
+                    success: function (data) {
+                        $('#blogs').html(data);
+                    }
+                });
+            }
+        });
+    </script>
+}

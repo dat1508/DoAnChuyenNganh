@@ -151,6 +151,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IntroduceController.cs" />
     <Compile Include="Controllers\JsonNetResult.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -765,10 +766,13 @@
     <Content Include="Public\img\detailsquare.jpg" />
     <Content Include="Public\img\detailsquare2.jpg" />
     <Content Include="Public\img\detailsquare3.jpg" />
+    <Content Include="Public\img\dtvlogo.png" />
+    <Content Include="Public\img\dtvlogochinh.png" />
     <Content Include="Public\img\getinspired1.jpg" />
     <Content Include="Public\img\getinspired2.jpg" />
     <Content Include="Public\img\getinspired3.jpg" />
     <Content Include="Public\img\grabbing.png" />
+    <Content Include="Public\img\introduce.jpg" />
     <Content Include="Public\img\logo-small.png" />
     <Content Include="Public\img\logo.png" />
     <Content Include="Public\img\logoDHCV.png" />
@@ -795,10 +799,12 @@
     <Content Include="Public\img\support.png" />
     <Content Include="Public\img\template-mac.png" />
     <Content Include="Public\img\texture-bw.png" />
+    <Content Include="Public\img\logochinh.svg" />
     <Content Include="Public\js\front.js" />
     <Content Include="Public\js\login.js" />
     <Content Include="Public\js\map.js" />
     <Content Include="Public\js\Time.js" />
+    <Content Include="Public\js\typed.js" />
     <Content Include="Public\vendor\bootstrap\css\bootstrap.min.css" />
     <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.js" />
     <Content Include="Public\vendor\bootstrap\js\bootstrap.bundle.min.js" />
@@ -986,10 +992,11 @@
     <Content Include="Views\Product\Detail.cshtml" />
     <Content Include="Views\Shared\_ProductsPartial.cshtml" />
     <Content Include="Views\User\UploadProduct.cshtml" />
-    <Content Include="Views\Blog\Introduce.cshtml" />
     <Content Include="Views\Shared\_UploadProductPartial.cshtml" />
     <Content Include="Views\Shared\_UserInforPartial.cshtml" />
     <Content Include="Views\Shared\_HistoryBidPartial.cshtml" />
+    <Content Include="Views\Introduce\Introduce.cshtml" />
+    <Content Include="Views\Shared\_BlogsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -37,32 +37,37 @@
                                     <div class="item"> <img src="@Url.Content(item.LinkImg)" alt="" class="img-fluid"></div>
                                 }
                             </div>
+                            @*<div data-slider-id="1" class="owl-thumbs">
+                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
+                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
+                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
+                </div>*@
+                            <!-- /.ribbon-->
                         </div>
                         <div class="col-md-7">
-                            <div id="notify" style="color: blue;"><b>Thời gian đếm ngược bắt đầu trả giá:</b></div>
+                            <div id="notify" class="container" style="color: blue;"><b></b></div>
                             <div class="container">
                                 <div class="countdown">
                                     <div class="container-day">
-                                        <h3 class="day">Time</h3>
-                                        <h3>Ngày</h3>
+                                        <h3 class="day"></h3>
+                                        <h3 id="text-day"></h3>
                                     </div>
                                     <div class="container-day">
-                                        <h3 class="hour">Time</h3>
-                                        <h3>Giờ</h3>
+                                        <h3 class="hour"></h3>
+                                        <h3 id="text-hour" ></h3>
                                     </div>
                                     <div class="container-day">
-                                        <h3 class="minute">Time</h3>
-                                        <h3>Phút</h3>
+                                        <h3 class="minute"></h3>
+                                        <h3 id="text-minute"></h3>
                                     </div>
                                     <div class="container-day">
-                                        <h3 class="second">Time</h3>
-                                        <h3>Giây</h3>
+                                        <h3 class="second"></h3>
+                                        <h3 id="text-second"></h3>
                                     </div>
                                 </div>
                             </div>
                             <div class="container">
                                 <div class="tab">
-
                                     <button class="infor_tablink" onclick="openInfo(event,this,'InforProduct')">THÔNG TIN TÀI SẢN</button>
                                     <button class="infor_tablink active" onclick="openInfo(event,this,'Auction')" id="defaultOpen">ĐẤU GIÁ</button>
                                 </div>
@@ -427,12 +432,12 @@
                             </li>
                             <!--<br>-->
                             <!--<li>
-                                <i style="color: #b41712;" class="fa fa-clipboard"> </i>
-                                <span>Mô tả: </span>
-                                <span style="font-weight: bold;" class="details">
-                                    C&#xF4;ng ty &#x111;&#x1EA5;u gi&#xE1; h&#x1EE3;p danh Ng&#xF4; Th&#x1ED1;ng Nh&#x1EA5;t
-                                </span>
-                            </li>-->
+                <i style="color: #b41712;" class="fa fa-clipboard"> </i>
+                <span>Mô tả: </span>
+                <span style="font-weight: bold;" class="details">
+                    C&#xF4;ng ty &#x111;&#x1EA5;u gi&#xE1; h&#x1EE3;p danh Ng&#xF4; Th&#x1ED1;ng Nh&#x1EA5;t
+                </span>
+            </li>-->
                             <li class="clearfix" style="display:none">
                                 <span class="seller-rating">
                                     <span title=" Rated 5.00 out of 5" class="star-rating">
@@ -450,11 +455,12 @@
                             
                         </div>
                     </div>
+                    <hr />
                     <div class="box py-4">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h2 class="mb-0">TÀI SẢN SẮP ĐƯỢC ĐẤU GIÁ</h2>
+                                    <h2 class="mb-0 text-center">TÀI SẢN LIÊN QUAN</h2>
                                 </div>
                             </div>
                         </div>
@@ -847,7 +853,7 @@
 
         function LoadDSData() {
             const countdown = () => {
-                var notify = document.querySelector('#notify');
+                notify.innerHTML = "<b style='color: green;'>Thời gian bắt đầu đăng ký đấu giá:</b>"
                 document.getElementById('datgia').style.display = 'none';
                 document.getElementById('set_price').style.display = 'none';
                 var milliseconds = DateTime('StartingDate');
@@ -890,11 +896,15 @@
                 const textMinute = Math.floor((gap % hour) / minute);
                 const textSecond = Math.floor((gap % minute) / second);
 
+
                 document.querySelector(".day").innerText = textDay;
                 document.querySelector(".hour").innerText = textHour;
                 document.querySelector(".minute").innerText = textMinute;
                 document.querySelector(".second").innerText = textSecond;
-
+                document.getElementById('text-day').innerText = "Ngày";
+                document.getElementById('text-hour').innerText = "Giờ";
+                document.getElementById('text-minute').innerText = "Phút";
+                document.getElementById('text-second').innerText = "Giây";
             };
             setInterval(countdown, 1000);
         }

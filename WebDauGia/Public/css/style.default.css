@@ -3064,13 +3064,13 @@ cursor:pointer;
 }
 
     .dropdown-item:hover, .dropdown-item:focus {
-        color: #16181b;
-        background-color: #f8f9fa;
+        color: #fff;
+        background-color: #b41712;
     }
 
     .dropdown-item.active, .dropdown-item:active {
         color: #fff;
-        background-color: #4fbfa8;
+        background-color: #b41712;
     }
 
     .dropdown-item.disabled, .dropdown-item:disabled {
