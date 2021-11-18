@@ -3,62 +3,69 @@
     ViewBag.Title = "HistoryBid";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<table class="table" id="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Stt)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.USER.Fullname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PRODUCT.NameProduct)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Time)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="container">
+    <table class="table" id="table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Stt)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.USER.Fullname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PRODUCT.NameProduct)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Time)
-                </td>
-                <td>
-                    @Html.ActionLink("Details", "HistoryDetail", new { id = item.Stt })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Stt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.USER.Fullname)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PRODUCT.NameProduct)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Time)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
 
-<script>
-    jQuery(document).ready(function () {
-        $('#table').DataTable({
-            "language": {
-                "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Vietnamese.json"
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.USER.Fullname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PRODUCT.NameProduct)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Time)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Details", "HistoryDetail", new { id = item.Stt })
+                    </td>
+                </tr>
             }
+        </tbody>
+    </table>
+</div>
+
+
+
+
+@section scripts {
+    <script>
+        jQuery(document).ready(function () {
+            $('#table').DataTable({
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Vietnamese.json"
+                }
+            });
         });
-    });</script>
+    </script>
+}
 

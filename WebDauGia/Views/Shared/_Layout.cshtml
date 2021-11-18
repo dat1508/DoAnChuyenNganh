@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="~/Public/css/style.default.css" id="theme-stylesheet">
     <!-- Custom stylesheet - for your changes-->
     <link rel="stylesheet" href="~/Public/css/custom.css">
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
     <!-- Favicon-->
     @*<link rel="shortcut icon" href="favicon.png">*@
     @*@Styles.Render("~/Content/css")
@@ -73,7 +73,7 @@
                                     <ul class="dropdown-menu">
                                         <li class="dropdown-item"><a href="@Url.Action("UserInfor", "User")">Thông tin cá nhân</a></li>
                                         <li class="dropdown-item"><a href="@Url.Action("UploadProduct", "User")">Đăng bán tài sản</a></li>
-                                        <li class="dropdown-item"><a href="@Url.Action("", "")">Lịch sử mua hàng</a></li>
+                                        <li class="dropdown-item"><a href="@Url.Action("HistoryBid", "User")">Lịch sử mua hàng</a></li>
                                         <li class="dropdown-item"><a href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
                                     </ul>
                                 </li>
@@ -301,8 +301,7 @@
         </div>
         <!--OnLoading-->
         <!-- JavaScript files-->
-
-        <script src="~/Public/vendor/jquery/jquery.js"></script>
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
         <script src="~/Public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="~/Public/vendor/jquery.cookie/jquery.cookie.js"></script>
         <script src="~/Public/vendor/owl.carousel/owl.carousel.min.js"></script>
@@ -310,8 +309,10 @@
         <script src="~/Public/js/Time.js"></script>
         <script src="~/Public/js/front.js"></script>
         <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")
         @RenderSection("scripts", required: false)
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
     </body>
 </html>

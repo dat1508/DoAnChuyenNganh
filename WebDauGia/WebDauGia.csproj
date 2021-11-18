@@ -989,6 +989,7 @@
     <Content Include="Views\Blog\Introduce.cshtml" />
     <Content Include="Views\Shared\_UploadProductPartial.cshtml" />
     <Content Include="Views\Shared\_UserInforPartial.cshtml" />
+    <Content Include="Views\Shared\_HistoryBidPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

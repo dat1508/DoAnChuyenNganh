@@ -44,7 +44,12 @@ namespace WebDauGia.Controllers
 
         public ActionResult HistoryBid()
         {
-            var history = db.HISTORY.Where(h => h.IdUser == Int32.Parse(Session["userID"].ToString())).ToList();
+            List<HISTORY> history = new List<HISTORY>();
+            if (Session["userID"] != null)
+            {
+                int id = Int32.Parse(Session["userID"].ToString());
+                history = db.HISTORY.Where(h => h.IdUser == id).ToList();
+            }
             return View(history);
         }
         public ActionResult HistoryDetail(int? id)
