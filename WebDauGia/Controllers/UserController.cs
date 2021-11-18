@@ -37,9 +37,9 @@ namespace WebDauGia.Controllers
                 db.Entry(uSER).State = EntityState.Modified;
                 Session["fullName"] = uSER.Fullname;
                 db.SaveChanges();
-                RedirectToAction("UserInfor", "User");
+                return PartialView("_UserInforPartial", uSER);
             }
-            return RedirectToAction("UserInfor", "User");
+            return PartialView("_UserInforPartial", uSER);
         }
 
         public ActionResult HistoryBid()

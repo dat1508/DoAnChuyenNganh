@@ -1,11 +1,10 @@
 ﻿@using WebDauGia.Models
-
 @model PRODUCT
 
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
+    DBContext db = new DBContext();
 }
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
@@ -113,7 +112,7 @@
                                             <span class="spanauctionproperty">Bước giá:</span>
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
-                                            <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                            <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">@string.Format("{0:#,##0}", Model.LowestBid) VNĐ</span>
                                         </div>
                                     </div>
                                     <div class="row novaticDivAuctionProperty">
@@ -124,7 +123,6 @@
                                             <span id="stepPrice" class="spanColorAuctionproperty">XXX bước giá</span>
                                         </div>
                                     </div>
-
 
                                     <div class="row novaticDivAuctionProperty">
                                         <div class="col-sm-5 col-xs-6">
@@ -152,7 +150,8 @@
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
                                             <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty"> XXX.XXX VNĐ</span>
+                                                <span class="spanColorAuctionproperty lastest-price">
+                                                </span>
                                             </span>
                                         </div>
                                     </div>
@@ -173,129 +172,142 @@
                                         </div>
                                         <div id="set_price" class="col-sm-7 col-xs-6">
                                             <input class="minus is-form" type="button" value="-">
-                                            <input aria-label="quantity" class="input-qty" max="Số tối đa" min="Số tối thiểu" name="" type="number" value="">
+                                            <input class="input-qty" type="number" max="" min="0" step="@Model.LowestBid">
                                             <input class="plus is-form" type="button" value="+">
                                         </div>
 
                                     </div>
                                     <div class="row novaticDivAuctionProperty">
                                         <div class="col-sm-5 col-xs-6">
-
+                                            <p class="text-left buttons"><a id="datgia" class="btn btn-primary">ĐẶT GIÁ</a></p>
                                         </div>
                                         <div id="set_price" class="col-sm-7 col-xs-6">
-                                            <p id="dangkydaugia" data-toggle="modal" data-target="#detail-modal" class="text-left buttons"><a href="#" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a></p>
-                                            <p id="datgia" class="text-left buttons"><a href="basket.html" class="btn btn-primary">  ĐẶT GIÁ</a></p>
+                                            @if (Session["userID"] == null)
+                                            {
+                                                <p id="dangkydaugia" class="text-left buttons"><a href="@Url.Action("Login", "Account")" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a></p>
+
+                                            }
+                                            else
+                                            {
+                                                <p id="dangkydaugia" data-toggle="modal" data-target="#detail-modal" class="text-left buttons"><a href="#" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a></p>
+                                            }
+
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
+                            <div id="InforProduct" class="infor_tabcontent">
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="text-center">Mã tài sản:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">@Model.IdProduct</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="text-center">Số lượng:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">@Model.Quantity</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Thời gian mở đăng ký:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span id="StartingDate" class="spanColorAuctionproperty">@Model.StartingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
 
-                                <div id="InforProduct" class="infor_tabcontent">
-
-
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Mã tài sản:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty">@Model.IdProduct</span>
-                                        </div>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Số lượng:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty">@Model.Quantity</span>
-                                        </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Thời gian kết thúc đăng ký:</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Thời gian mở đăng ký:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span id="StartingDate" class="spanColorAuctionproperty">@Model.StartingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
-
-                                        </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span id="EndingDate" class="spanColorAuctionproperty">@Model.EndingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Thời gian kết thúc đăng ký:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span id="EndingDate" class="spanColorAuctionproperty">@Model.EndingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
-                                        </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Phí đăng ký tham gia đấu giá:</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Phí đăng ký tham gia đấu giá:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
-                                        </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Bước giá:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
-                                        </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Bước giá:</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Số bước giá tối đa/ lần trả:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span id="stepPrice" class="spanColorAuctionproperty">XXX bước giá</span>
-                                        </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">@string.Format("{0:#,##0}", Model.LowestBid) VNĐ</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Tiền đặt trước:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty novaticPrice"> XX.XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
-                                        </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Số bước giá tối đa/ lần trả:</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Tên chủ tài sản:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty">@Model.USER.Fullname</span>
-                                        </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span id="stepPrice" class="spanColorAuctionproperty">XXX bước giá</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Nơi xem tài sản:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty">
-                                                @Model.Location
-                                            </span>
-                                        </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Tiền đặt trước:</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty" style="font-size:20px;">Giá khởi điểm:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty" style="font-size:20px;"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
-                                            </span>
-                                        </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty novaticPrice"> XX.XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
                                     </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty" style="font-size:20px;">Giá mua:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
-                                            </span>
-                                        </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Tên chủ tài sản:</span>
                                     </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">@Model.USER.Fullname</span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty">Nơi xem tài sản:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">
+                                            @Model.Location
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty" style="font-size:20px;">Giá khởi điểm:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">
+                                            <span class="spanColorAuctionproperty" style="font-size:20px;"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    <div class="col-sm-5 col-xs-6">
+                                        <span class="spanauctionproperty" style="font-size:20px;">Giá mua:</span>
+                                    </div>
+                                    <div class="col-sm-7 col-xs-6">
+                                        <span class="spanColorAuctionproperty">
+                                            <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row novaticDivAuctionProperty">
+                                    @*<div class="col-sm-12 col-xs-12">
+                                            <span class="spanauctionproperty" style="font-size:24px;">Giá khởi điểm: <span class="spanColorAuctionproperty">@Model.StartPrice</span></span>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12">
+                                            <span class="spanauctionproperty" style="font-size:24px;">Giá mua: <span class="spanColorAuctionproperty">@Model.PriceBuy</span></span>
+                                        </div>*@
 
                                 </div>
                             </div>
@@ -363,7 +375,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <p id="dangkydaugia" class="text-center buttons"><a href="@Url.Action("Register", "Bid", new { @idProduct = Model.IdProduct })" class="btn btn-primary"> XÁC NHẬN ĐĂNG KÝ</a></p>
+                                        <p class="text-center buttons"><a id="btn-confirm-register" data-dismiss="modal" class="btn btn-primary">XÁC NHẬN ĐĂNG KÝ</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -373,7 +385,7 @@
                         <button class="tablink" onclick="openPage(event,this,'Description')" id="defaultOpen">THÔNG TIN TÀI SẢN</button>
                         <button class="tablink" onclick="openPage(event,this,'Document')">TÀI LIỆU LIÊN QUAN</button>
                         <button class="tablink" onclick="openPage(event,this,'Info')">THÔNG TIN ĐẤU GIÁ</button>
-                        <button class="tablink" onclick="openPage(event,this,'Asset')">TÀI SẢN SẮP ĐƯỢC ĐẤU GIÁ</button>
+                        <button class="tablink" onclick="openPage(event,this,'Asset')">TÀI SẢN LIÊN QUAN</button>
                     </div>
                     <div id="Description" class="tabcontent">
                         @if (Session["userID"] != null)
@@ -998,9 +1010,89 @@
 
 @section scripts{
     <script>
+        let idProduct = @Model.IdProduct;
+        let startPrice = @Model.StartPrice;
+        let inputPrice = document.querySelector('input.input-qty');
+        let stepPrice = @Model.LowestBid;
+        let lastestPrice = '';
+
         $(document).ready(function () {
+            setInterval(reloadPage, 1000);
+            checkHistory();
             LoadDSData();
+            checkRegister();
+
         });
+
+        $('#btn-confirm-register').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/bid/register/',
+                data: { idProduct: idProduct},
+                success: function () {
+                    checkRegister()
+                },
+                error: function () {
+                    alert('đăng ký thất bại')
+                }
+            });
+        })
+
+        $('input.is-form').on('click', function () {
+            if ($(this).val() == '+') {
+                inputPrice.stepUp();
+            } else {
+                inputPrice.stepDown();
+            }
+        })
+
+        $('#datgia').click(function () {
+            $.ajax({
+                method: 'POST',
+                url: '@Url.Action("Bid", "Bid")',
+                data: { idProduct: idProduct, price: inputPrice.value },
+                success: function () {
+                },
+                error: function () {
+                    alert('Vui lòng nhập giá tiền')
+                }
+            })
+        })
+
+        function checkHistory() {
+            $.ajax({
+                method: 'POST',
+                url: '@Url.Action("getLastestPrice", "Bid")',
+                data: { idProduct: idProduct },
+                success: function (data) {
+                    if (data != 0) {
+                        inputPrice.value = data;
+                    } else {
+                        inputPrice.value = startPrice;
+                    }
+                },
+                error: function () {
+
+                }
+            })
+        }
+
+        function reloadPage() {
+            getLastestPrice();
+        }
+
+        function getLastestPrice() {
+            $.ajax({
+                method: 'GET',
+                url: '@Url.Action("getLastestPrice", "Bid")',
+                data: { idProduct: idProduct},
+                success: function (data) {
+                    $('span.spanColorAuctionproperty.lastest-price').text(data)
+                },
+                error: function () {
+                }
+            })
+        }
 
         function DateTime(id) {
             var parts = document.querySelector(`#${id}`).innerText;
@@ -1045,6 +1137,7 @@
                         gap = 0;
                     }
                 }
+
                 const second = 1000;
                 const minute = second * 60;
                 const hour = minute * 60;
@@ -1067,30 +1160,64 @@
             };
             setInterval(countdown, 1000);
         }
+
         function openPage(evt, elmnt, pageName) {
             var i, tabcontent, tablinks, infor_tabcontent, infor_tablinks;
             tabcontent = document.getElementsByClassName("tabcontent");
             for (i = 0; i < tabcontent.length; i++) {
                 tabcontent[i].style.display = "none";
             }
-         
+
             tablinks = document.getElementsByClassName("tablink");
             for (i = 0; i < tablinks.length; i++) {
                 tablinks[i].className = tablinks[i].className.replace(" active", "");
             }
-          
+
             document.getElementById(pageName).style.display = "block";
             evt.currentTarget.className += " active";
         }
+
+        function checkRegister() {
+            let idProduct = @Model.IdProduct;
+            let btnRegister = $('#dangkydaugia');
+            let btnConfirm = $('#btn-confirm-register');
+            $.ajax({
+                type: 'GET',
+                url: '/bid/checkRegister/',
+                data: { idProduct: idProduct},
+                success: function (data) {
+                    if (data == 'True') {
+                        btnRegister.children().removeClass('btn-primary')
+                        btnRegister.children().addClass('btn-secondary')
+                        btnRegister.children().text('HỦY ĐĂNG KÝ')
+                        btnConfirm.removeClass('btn-primary')
+                        btnConfirm.addClass('btn-secondary')
+                        btnConfirm.text('XÁC NHẬN HỦY ĐĂNG KÝ')
+                    } else {
+                        btnRegister.children().removeClass('btn-secondary')
+                        btnRegister.children().addClass('btn-primary')
+                        btnRegister.children().text('ĐĂNG KÝ ĐẤU GIÁ')
+                        btnConfirm.removeClass('btn-secondary')
+                        btnConfirm.addClass('btn-primary')
+                        btnConfirm.text('XÁC NHẬN ĐĂNG KÝ')
+                    }
+                },
+                error: function () {
+                    console.log('chưa đăng ký')
+                }
+            });
+        }
+
+        // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
         function openInfo(evt, elmnt, pageName) {
             var i,  infor_tabcontent, infor_tablinks;
-           
+
             infor_tabcontent = document.getElementsByClassName("infor_tabcontent");
             for (i = 0; i < infor_tabcontent.length; i++) {
                 infor_tabcontent[i].style.display = "none";
             }
-           
+
             infor_tablinks = document.getElementsByClassName("infor_tablink");
             for (i = 0; i < infor_tablinks.length; i++) {
                 infor_tablinks[i].className = infor_tablinks[i].className.replace(" active", "");
@@ -1099,6 +1226,5 @@
             evt.currentTarget.className += " active";
         }
         document.getElementById("defaultOpen").click();
-
     </script>
 }
