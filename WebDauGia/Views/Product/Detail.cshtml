@@ -755,7 +755,6 @@
             checkHistory();
             LoadDSData();
             checkRegister();
-            loadHistory();
         });
 
         $('#btn-confirm-register').click(function () {
@@ -812,18 +811,7 @@
             })
         }
 
-        function loadHistory() {
-            $.ajax({
-                method: 'GET',
-                url: '@Url.Action("HistoryBid", "User")',
-                success: function (data) {
-                    $('#bid-history').html(data)
-                },
-                error: function () {
-
-                }
-            })
-        }
+    
 
         function reloadPage() {
             getLastestPrice();

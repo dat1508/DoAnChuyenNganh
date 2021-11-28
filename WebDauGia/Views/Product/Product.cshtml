@@ -12,101 +12,99 @@
     };
 }
 
-<div id="all">
-    <div id="content">
-        <div class="container">
-            <div class="row my-3">
-                <div class="col-md-3">
-                    <div class="card sidebar-menu mb-4">
-                        <div class="card-header">
-                            <h3 class="h4 card-title">LOẠI TÀI SẢN <a id="clear-cate" class="btn btn-sm btn-danger float-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="nav nav-pills flex-column category-menu">
-                                @foreach (var i in ViewBag.categoryList as List<CATEGORY>)
-                                {
-                                    <div class="checkbox">
-                                        <label>
-                                            <input class="cate-item" type="radio" value="@i.IdCate" name="radio">
-                                            <span>@i.Name  (@i.PRODUCT.Count())</span>
-                                        </label>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card sidebar-menu mb-4">
-                        <div class="card-header">
-                            <h3 class="h4 card-title">Thương hiệu <a id="clear-brand" class="btn btn-sm btn-danger float-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="nav nav-pills flex-column category-menu">
-                                @foreach (var i in ViewBag.brandList as List<BRAND>)
-                                {
-                                    <div class="checkbox">
-                                        <label>
-                                            <input class="brand-item" type="checkbox" value="@i.IdBrand">
-                                            <span>@i.Name (@i.PRODUCT.Count())</span>
-                                        </label>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                    <!-- *** MENUS AND FILTERS END ***-->
+
+<div class="container">
+    <div class="row my-3">
+        <div class="col-md-3">
+            <div class="card sidebar-menu mb-4">
+                <div class="card-header">
+                    <h3 class="h4 card-title">LOẠI TÀI SẢN <a id="clear-cate" class="btn btn-sm btn-danger float-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
                 </div>
-                <div class="col-md-9">
-                    <div class="box info-bar">
-                        <div class="row">
-                            <div class="col-md-12 col-lg-5 products-showing">Hiển thị <strong>@Model.Count()</strong> sản phẩm</div>
-                            <div class="col-md-12 col-lg-7 products-number-sort">
-                                <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row float-right">
-                                    @*<div class="products-number"><strong>Show</strong><a href="#" class="btn btn-sm btn-primary">12</a><a href="#" class="btn btn-outline-secondary btn-sm">24</a><a href="#" class="btn btn-outline-secondary btn-sm">All</a><span>products</span></div>*@                                    <div class="products-sort-by mt-2 mt-lg-0">
-                                        <select id="sort-by" name="sort-by" class="form-control border border-dark">
-                                            <option value="" hidden>Lọc sản phẩm</option>
-                                            <option value="old-to-new">Mới nhất</option>
-                                            <option value="new-to-old">Cũ nhất</option>
-                                            <option value="low-to-high">Giá(Thấp -> Cao)</option>
-                                            <option value="high-to-low">Giá(Cao -> Thấp)</option>
-                                        </select>
-                                    </div>
-                                </form>
+                <div class="card-body">
+                    <div class="nav nav-pills flex-column category-menu">
+                        @foreach (var i in ViewBag.categoryList as List<CATEGORY>)
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input class="cate-item" type="radio" value="@i.IdCate" name="radio">
+                                    <span>@i.Name  (@i.PRODUCT.Count())</span>
+                                </label>
                             </div>
-                        </div>
+                        }
                     </div>
-
-                    <!-- /.products-->
-                    <div id="products" class="row products">
-                        @Html.Partial("_ProductsPartial")
-                    </div>
-                    <div class="pages">
-                        <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-                            <ul class="pagination">
-                                <li class="page-item"><a href="#" aria-label="First" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
-                                <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><i class="fas fa-angle-left"></i></a></li>
-                                @for (int i = 0; i < Model.PageCount; i++)
-                                {
-                                    if (i == Model.PageNumber - 1)
-                                    {
-                                        <li class="page-item page-item-number active"><a href="#" class="page-link">@(i+1)</a></li>
-                                    }
-                                    else
-                                    {
-                                        <li class="page-item page-item-number"><a href="#" class="page-link">@(i+1)</a></li>
-                                    }
-                                }
-                                <li class="page-item"><a href="#" aria-label="Next" class="page-link"><i class="fas fa-angle-right"></i></a></li>
-                                <li class="page-item"><a href="#" aria-label="Last" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>
-                            </ul>
-                        </nav>
-                    </div>
-
-                    <!-- /.col-lg-9-->
                 </div>
             </div>
+            <div class="card sidebar-menu mb-4">
+                <div class="card-header">
+                    <h3 class="h4 card-title">Thương hiệu <a id="clear-brand" class="btn btn-sm btn-danger float-right"><i class="fa fa-times-circle"></i> Clear</a></h3>
+                </div>
+                <div class="card-body">
+                    <div class="nav nav-pills flex-column category-menu">
+                        @foreach (var i in ViewBag.brandList as List<BRAND>)
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input class="brand-item" type="checkbox" value="@i.IdBrand">
+                                    <span>@i.Name (@i.PRODUCT.Count())</span>
+                                </label>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+            <!-- *** MENUS AND FILTERS END ***-->
+        </div>
+        <div class="col-md-9">
+            <div class="box info-bar">
+                <div class="row">
+                    <div class="col-md-12 col-lg-5 products-showing">Hiển thị <strong>@Model.Count()</strong> sản phẩm</div>
+                    <div class="col-md-12 col-lg-7 products-number-sort">
+                        <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row float-right">
+                            @*<div class="products-number"><strong>Show</strong><a href="#" class="btn btn-sm btn-primary">12</a><a href="#" class="btn btn-outline-secondary btn-sm">24</a><a href="#" class="btn btn-outline-secondary btn-sm">All</a><span>products</span></div>*@                                    <div class="products-sort-by mt-2 mt-lg-0">
+                                <select id="sort-by" name="sort-by" class="form-control border border-dark">
+                                    <option value="" hidden>Lọc sản phẩm</option>
+                                    <option value="old-to-new">Mới nhất</option>
+                                    <option value="new-to-old">Cũ nhất</option>
+                                    <option value="low-to-high">Giá(Thấp -> Cao)</option>
+                                    <option value="high-to-low">Giá(Cao -> Thấp)</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- /.products-->
+            <div id="products" class="row products">
+                @Html.Partial("_ProductsPartial")
+            </div>
+            <div class="pages">
+                <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item"><a href="#" aria-label="First" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
+                        <li class="page-item"><a href="#" aria-label="Previous" class="page-link"><i class="fas fa-angle-left"></i></a></li>
+                        @for (int i = 0; i < Model.PageCount; i++)
+                        {
+                            if (i == Model.PageNumber - 1)
+                            {
+                                <li class="page-item page-item-number active"><a href="#" class="page-link">@(i+1)</a></li>
+                            }
+                            else
+                            {
+                                <li class="page-item page-item-number"><a href="#" class="page-link">@(i+1)</a></li>
+                            }
+                        }
+                        <li class="page-item"><a href="#" aria-label="Next" class="page-link"><i class="fas fa-angle-right"></i></a></li>
+                        <li class="page-item"><a href="#" aria-label="Last" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- /.col-lg-9-->
         </div>
     </div>
 </div>
+
 @section scripts {
     <script>
         $(document).ready(function () {

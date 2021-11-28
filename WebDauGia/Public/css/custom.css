@@ -64,6 +64,20 @@ p,
     border-top-right-radius: 15px;
 }
 
+.product-infor-item {
+    display: block;
+    justify-content: left;
+    text-align: left;
+    padding: 5px 5px 5px 5px;
+    font-weight: bold;
+    font-size: larger;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
 .day,
 .hour,
 .minute,

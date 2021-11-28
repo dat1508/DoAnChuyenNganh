@@ -211,6 +211,7 @@
     <Compile Include="Models\PRODUCT.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PRODUCTDB.cs" />
     <Compile Include="Models\RANK.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
@@ -997,11 +998,11 @@
     <Content Include="Views\Shared\_HistoryBidPartial.cshtml" />
     <Content Include="Views\Introduce\Introduce.cshtml" />
     <Content Include="Views\Shared\_BlogsPartial.cshtml" />
+    <Content Include="Views\Bid\Bid.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\Bid\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

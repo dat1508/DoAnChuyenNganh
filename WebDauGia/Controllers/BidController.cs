@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,12 @@ namespace WebDauGia.Controllers
     public class BidController : Controller
     {
         DBContext db = new DBContext();
+
+        public ActionResult Bid()
+        {
+            return View(db.PRODUCT.Find(2));
+        }
+
         public void Register(int? idProduct)
         {
             if (Session["userID"] != null)
@@ -46,13 +53,13 @@ namespace WebDauGia.Controllers
             return result;
         }
 
-        
-
+        [HttpPost]
         public void bid(int idProduct, int price)
         {
             if (Session["userID"] != null)
             {
                 int idUser = Int32.Parse(Session["userID"].ToString());
+                updateTime(idProduct);
                 HISTORY history = new HISTORY();
                 history.IdProduct = idProduct;
                 history.IdUser = idUser;
@@ -63,6 +70,13 @@ namespace WebDauGia.Controllers
             }
         }
 
+        private void updateTime(int idProduct)
+        {
+            PRODUCT pd = db.PRODUCT.Find(idProduct);
+            pd.BidTimeCountDown = pd.BidTime;
+            db.SaveChanges();
+        }
+
         public int getLastestPrice(int? idProduct)
         {
             if (db.HISTORY.FirstOrDefault(h => h.IdProduct == idProduct) != null)
@@ -71,6 +85,12 @@ namespace WebDauGia.Controllers
                 return price;
             }
             return 0;
+        }
+
+        public void CountDownBidTime(int idProduct, int time)
+        {
+            db.PRODUCT.Find(idProduct).BidTimeCountDown = time;
+            db.SaveChanges();
         }
     }
 }

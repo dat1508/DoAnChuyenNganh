@@ -15,15 +15,15 @@ namespace WebDauGia.Controllers
         UserDAO userDAO = new UserDAO();
         DBContext db = new DBContext();
         // GET: User
-        public PartialViewResult UserInfor()
+        public ActionResult UserInfor()
         {
-            //if (Session["userID"] == null)
-            //{
-            //    return RedirectToAction("Index", "Home");
-            //}
+            if (Session["userID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             int userID = Int32.Parse(Session["userID"].ToString());
             USER user = userDAO.getUserByID(userID);
-            return PartialView("_UserInforPartial", user);
+            return PartialView("_UserInforPartial",user);
         }
 
         [HttpPost]
@@ -86,10 +86,11 @@ namespace WebDauGia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-      
+
         public ActionResult UploadProduct(FormCollection f, [Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,LowestBid,Status,Desc,StartPrice,PriceBuy,StartingDate,EndingDate,Location,StatusBid")] PRODUCT pRODUCT)
         {
-            if (f["txt-new-cate"] != null) {
+            if (f["txt-new-cate"] != null)
+            {
                 string namecate = f["txt-new-cate"].ToString().Trim();
                 List<CATEGORY> listcate = db.CATEGORY.Where(c => c.Name == namecate).ToList();
                 if (listcate.Count() == 0)
@@ -120,10 +121,10 @@ namespace WebDauGia.Controllers
             pRODUCT.IdBuyer = null;
             var NameProduct = f["NameProduct"];
             var Location = f["Location"];
-         
+
             pRODUCT.NameProduct = NameProduct;
             pRODUCT.Location = Location;
-        
+
             if (ModelState.IsValid)
             {
                 db.PRODUCT.Add(pRODUCT);

@@ -78,7 +78,7 @@
           <Property Name="IdProduct" Type="int" />
           <Property Name="Price" Type="int" />
           <Property Name="Time" Type="datetime" />
-          <Property Name="Stt" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="IMG">
           <Key>
@@ -114,6 +114,7 @@
           <Property Name="StartingDate" Type="datetime" Nullable="false" />
           <Property Name="EndingDate" Type="datetime" Nullable="false" />
           <Property Name="BidTime" Type="int" />
+          <Property Name="BidTimeCountDown" Type="int" />
           <Property Name="Location" Type="nvarchar" MaxLength="100" />
           <Property Name="IdOwner" Type="int" />
           <Property Name="IdBuyer" Type="int" />
@@ -645,6 +646,7 @@
           <NavigationProperty Name="IMG" Relationship="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" FromRole="PRODUCT" ToRole="IMG" />
           <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_PRODUCT_USER" FromRole="PRODUCT" ToRole="USER" />
           <NavigationProperty Name="USER1" Relationship="DBDauGiaModel.FK_PRODUCT_USER1" FromRole="PRODUCT" ToRole="USER" />
+          <Property Name="BidTimeCountDown" Type="Int32" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -988,6 +990,7 @@
           <EntitySetMapping Name="PRODUCT">
             <EntityTypeMapping TypeName="DBDauGiaModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="BidTimeCountDown" ColumnName="BidTimeCountDown" />
                 <ScalarProperty Name="StatusBid" ColumnName="StatusBid" />
                 <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
                 <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />

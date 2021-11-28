@@ -4,7 +4,7 @@
 @foreach (var i in Model)
 {
     <div class="col-lg-4 col-md-6">
-        <a href="@Url.Action("Detail", "Product", new { @id = i.IdProduct })">
+        <a href="@Url.Action("Detail", "Product", new { url = i.ToURL() }, null)">
             <div class="product shadow" style="border-radius: 15px;">
                 @foreach (var img in i.IMG)
                 {
