@@ -73,7 +73,8 @@ namespace WebDauGia.Controllers
         private void updateTime(int idProduct)
         {
             PRODUCT pd = db.PRODUCT.Find(idProduct);
-            pd.BidTimeCountDown = pd.BidTime;
+            pd.StartBID = DateTime.Now;
+            pd.EndBID = pd.StartBID.AddMinutes((double)pd.BidTime);
             db.SaveChanges();
         }
 

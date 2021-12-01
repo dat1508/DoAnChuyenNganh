@@ -78,6 +78,8 @@
                                 <input class="plus is-form page-item page-link border-dark" type="button" value="+" style="display:inline-block">
                             </div>
                             <a id="datgia" class="btn btn-primary text-center w-75">ĐẶT GIÁ</a>
+                            <div id="start-bid">@Model.StartBID.ToString("dd/MM/yyyy HH:mm:ss")</div>
+                            <div id="end-bid">@Model.EndBID.ToString("dd/MM/yyyy HH:mm:ss")</div>
                         </div>
                     </div>
                 </div>
@@ -118,7 +120,8 @@
                 url: '@Url.Action("Bid", "Bid")',
                 data: { idProduct: idProduct, price: inputPrice.value },
                 success: function () {
-                    loadHistory()
+                    location.reload(true);
+                    loadHistory();
                 },
                 error: function () {
                     alert('Vui lòng nhập giá tiền')
@@ -161,7 +164,20 @@
             })
         }
 
-        var gap = @Model.BidTimeCountDown * 1000;
+
+
+        function toMilisecond(id) {
+            var parts = document.querySelector(`#${id}`).innerText;
+            var dateArray = parts.split("/");
+            var newDate = dateArray[1] + '/' + dateArray[0] + '/' + dateArray[2];
+            var date = new Date(newDate);
+            var milliseconds = date.getTime();
+            return milliseconds;
+        }
+
+        var startBid = toMilisecond("start-bid");
+        var endBid = toMilisecond("end-bid");
+        var gap = endBid - startBid;
 
         function LoadDSData() {
             const countdown = () => {
@@ -174,11 +190,16 @@
                     gap = 0;
                 }
 
-                var minutes = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((gap % (1000 * 60)) / 1000);
+                const second = 1000;
+                const minute = second * 60;
+                const hour = minute * 60;
+                const day = hour * 24;
 
-                document.querySelector(".minute").innerText = minutes;
-                document.querySelector(".second").innerText = seconds;
+                const textMinute = Math.floor((gap % hour) / minute);
+                const textSecond = Math.floor((gap % minute) / second);
+
+                document.querySelector(".minute").innerText = textMinute;
+                document.querySelector(".second").innerText = textSecond;
 
                 document.querySelector('.text-minute').innerText = "Phút";
                 document.querySelector('.text-second').innerText = "Giây";

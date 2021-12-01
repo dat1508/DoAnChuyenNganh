@@ -119,6 +119,8 @@
           <Property Name="IdOwner" Type="int" />
           <Property Name="IdBuyer" Type="int" />
           <Property Name="StatusBid" Type="bit" />
+          <Property Name="StartBID" Type="datetime" Nullable="false" />
+          <Property Name="EndBID" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -647,6 +649,8 @@
           <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_PRODUCT_USER" FromRole="PRODUCT" ToRole="USER" />
           <NavigationProperty Name="USER1" Relationship="DBDauGiaModel.FK_PRODUCT_USER1" FromRole="PRODUCT" ToRole="USER" />
           <Property Name="BidTimeCountDown" Type="Int32" />
+          <Property Name="StartBID" Type="DateTime" Precision="3" Nullable="false" />
+          <Property Name="EndBID" Type="DateTime" Precision="3" Nullable="false" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -990,6 +994,8 @@
           <EntitySetMapping Name="PRODUCT">
             <EntityTypeMapping TypeName="DBDauGiaModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="EndBID" ColumnName="EndBID" />
+                <ScalarProperty Name="StartBID" ColumnName="StartBID" />
                 <ScalarProperty Name="BidTimeCountDown" ColumnName="BidTimeCountDown" />
                 <ScalarProperty Name="StatusBid" ColumnName="StatusBid" />
                 <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
