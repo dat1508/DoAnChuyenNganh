@@ -31,6 +31,7 @@ namespace WebDauGia.Controllers
             contact.Title = title;
             contact.Email = email;
             contact.Body = body;
+            contact.Status = false;
             var user = new USER();
             if (Session["userID"] != null)
             {

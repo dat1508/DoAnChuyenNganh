@@ -4,7 +4,6 @@
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    DBContext db = new DBContext();
 }
 
 <script src="~/Scripts/jquery-3.4.1.js"></script>
@@ -37,12 +36,6 @@
                                     <div class="item"> <img src="@Url.Content(item.LinkImg)" alt="" class="img-fluid"></div>
                                 }
                             </div>
-                            @*<div data-slider-id="1" class="owl-thumbs">
-                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                    <button class="owl-thumb-item"><img src="img/Capdongvienthong.jpg" alt="" class="img-fluid"></button>
-                </div>*@
-                            <!-- /.ribbon-->
                         </div>
                         <div class="col-md-7">
                             <div id="notify" class="container" style="color: blue;"><b></b></div>
@@ -54,7 +47,7 @@
                                     </div>
                                     <div class="container-day">
                                         <h3 class="hour"></h3>
-                                        <h3 id="text-hour" ></h3>
+                                        <h3 id="text-hour"></h3>
                                     </div>
                                     <div class="container-day">
                                         <h3 class="minute"></h3>
@@ -112,15 +105,7 @@
                                             <span class="spanauctionproperty">Bước giá:</span>
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
-                                            <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">@string.Format("{0:#,##0}", Model.LowestBid) VNĐ</span>
-                                        </div>
-                                    </div>
-                                    <div class="row novaticDivAuctionProperty">
-                                        <div class="col-sm-5 col-xs-6">
-                                            <span class="spanauctionproperty">Số bước giá tối đa/ lần trả:</span>
-                                        </div>
-                                        <div class="col-sm-7 col-xs-6">
-                                            <span id="stepPrice" class="spanColorAuctionproperty">XXX bước giá</span>
+                                            <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">@string.Format("{0:#,##0}", Model.LowestBid) ₫</span>
                                         </div>
                                     </div>
 
@@ -130,7 +115,7 @@
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
                                             <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                                <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                             </span>
                                         </div>
                                     </div>
@@ -140,7 +125,7 @@
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
                                             <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
+                                                <span class="spanColorAuctionproperty">  @string.Format("{0:#,##0}", Model.PriceBuy) ₫</span>
                                             </span>
                                         </div>
                                     </div>
@@ -160,8 +145,7 @@
                                             <span class="spanauctionproperty">Giá thấp nhất tiếp theo:</span>
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
-                                            <span class="spanColorAuctionproperty">
-                                                <span class="spanColorAuctionproperty"> XXX.XXX VNĐ</span>
+                                            <span class="spanColorAuctionproperty next-price">
                                             </span>
                                         </div>
                                     </div>
@@ -233,34 +217,10 @@
                                 </div>
                                 <div class="row novaticDivAuctionProperty">
                                     <div class="col-sm-5 col-xs-6">
-                                        <span class="spanauctionproperty">Phí đăng ký tham gia đấu giá:</span>
-                                    </div>
-                                    <div class="col-sm-7 col-xs-6">
-                                        <span class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
-                                    </div>
-                                </div>
-                                <div class="row novaticDivAuctionProperty">
-                                    <div class="col-sm-5 col-xs-6">
                                         <span class="spanauctionproperty">Bước giá:</span>
                                     </div>
                                     <div class="col-sm-7 col-xs-6">
-                                        <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">@string.Format("{0:#,##0}", Model.LowestBid) VNĐ</span>
-                                    </div>
-                                </div>
-                                <div class="row novaticDivAuctionProperty">
-                                    <div class="col-sm-5 col-xs-6">
-                                        <span class="spanauctionproperty">Số bước giá tối đa/ lần trả:</span>
-                                    </div>
-                                    <div class="col-sm-7 col-xs-6">
-                                        <span id="stepPrice" class="spanColorAuctionproperty">XXX bước giá</span>
-                                    </div>
-                                </div>
-                                <div class="row novaticDivAuctionProperty">
-                                    <div class="col-sm-5 col-xs-6">
-                                        <span class="spanauctionproperty">Tiền đặt trước:</span>
-                                    </div>
-                                    <div class="col-sm-7 col-xs-6">
-                                        <span class="spanColorAuctionproperty novaticPrice"> XX.XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                        <span id="stepPrice" class="spanColorAuctionproperty novaticPrice">@string.Format("{0:#,##0}", Model.LowestBid) ₫</span>
                                     </div>
                                 </div>
                                 <div class="row novaticDivAuctionProperty">
@@ -287,7 +247,7 @@
                                     </div>
                                     <div class="col-sm-7 col-xs-6">
                                         <span class="spanColorAuctionproperty">
-                                            <span class="spanColorAuctionproperty" style="font-size:20px;"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty" style="font-size:20px;"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </span>
                                     </div>
                                 </div>
@@ -297,18 +257,11 @@
                                     </div>
                                     <div class="col-sm-7 col-xs-6">
                                         <span class="spanColorAuctionproperty">
-                                            <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
+                                            <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) ₫</span>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="row novaticDivAuctionProperty">
-                                    @*<div class="col-sm-12 col-xs-12">
-                                            <span class="spanauctionproperty" style="font-size:24px;">Giá khởi điểm: <span class="spanColorAuctionproperty">@Model.StartPrice</span></span>
-                                        </div>
-                                        <div class="col-sm-12 col-xs-12">
-                                            <span class="spanauctionproperty" style="font-size:24px;">Giá mua: <span class="spanColorAuctionproperty">@Model.PriceBuy</span></span>
-                                        </div>*@
-
                                 </div>
                             </div>
 
@@ -361,7 +314,7 @@
                                                 <span class="spanauctionproperty">Phí đăng ký tham gia đấu giá:</span>
                                             </div>
                                             <div class="col-sm-7 col-xs-6">
-                                                <span class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> VNĐ</span>
+                                                <span class="spanColorAuctionproperty novaticPrice">XXX.XXX</span><span class="spanColorAuctionproperty"> ₫</span>
                                             </div>
                                         </div>
 
@@ -371,7 +324,7 @@
                                             </div>
                                             <div class="col-sm-7 col-xs-6">
                                                 <span class="spanColorAuctionproperty">
-                                                    <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) VNĐ</span>
+                                                    <span class="spanColorAuctionproperty" style="font-size:20px;">  @string.Format("{0:#,##0}", Model.PriceBuy) ₫</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -430,14 +383,6 @@
                                 <span style="font-weight: bold;" class="details">
                                 </span>
                             </li>
-                            <!--<br>-->
-                            <!--<li>
-                <i style="color: #b41712;" class="fa fa-clipboard"> </i>
-                <span>Mô tả: </span>
-                <span style="font-weight: bold;" class="details">
-                    C&#xF4;ng ty &#x111;&#x1EA5;u gi&#xE1; h&#x1EE3;p danh Ng&#xF4; Th&#x1ED1;ng Nh&#x1EA5;t
-                </span>
-            </li>-->
                             <li class="clearfix" style="display:none">
                                 <span class="seller-rating">
                                     <span title=" Rated 5.00 out of 5" class="star-rating">
@@ -452,7 +397,7 @@
                     </div>
                     <div id="Asset" class="tabcontent">
                         <div id="bid-history" class="container">
-                            
+
                         </div>
                     </div>
                     <hr />
@@ -492,7 +437,7 @@
                                         <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
                                             <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -525,7 +470,7 @@
                                         <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
                                             <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -558,7 +503,7 @@
                                         <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
                                             <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -591,7 +536,7 @@
                                         <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
                                             <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -624,7 +569,7 @@
                                         <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
                                             <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -657,7 +602,7 @@
                                         <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
                                             <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -690,7 +635,7 @@
                                         <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
                                             <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -723,7 +668,7 @@
                                         <h3><a href="detail.html">@Model.NameProduct</a></h3>
                                         <p class="price">
                                             <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) VNĐ</span>
+                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
                                         </p>
                                     </div>
                                     <!-- /.text-->
@@ -748,16 +693,30 @@
         let startPrice = @Model.StartPrice;
         let inputPrice = document.querySelector('input.input-qty');
         let stepPrice = @Model.LowestBid;
-        let lastestPrice = '';
+        let lastestPrice = 0;
+        let checkTime = true;
+        let idCount = 0;
 
         $(document).ready(function () {
-            setInterval(reloadPage, 1000);
             checkHistory();
-            LoadDSData();
+            idCount = setInterval(countdown, 1000);
             checkRegister();
-            loadHistory();
+            connect();
+            setInterval(stopCountdown, 1000)
         });
 
+        function connect() {
+            var hub = $.connection.myHub;
+
+            hub.client.UpdateData = function () {
+                getLastestPrice();
+            };
+
+            $.connection.hub.start().done(function () {
+                console.log('Kết nối thành công')
+                getLastestPrice();
+            });
+        }
         $('#btn-confirm-register').click(function () {
             $.ajax({
                 type: 'GET',
@@ -781,6 +740,9 @@
         })
 
         $('#datgia').click(function () {
+            if (inputPrice.value <= lastestPrice) {
+                alert('Vui lòng nhập giá cao hơn')
+            }
             $.ajax({
                 method: 'POST',
                 url: '@Url.Action("Bid", "Bid")',
@@ -812,34 +774,36 @@
             })
         }
 
-        function loadHistory() {
-            $.ajax({
-                method: 'GET',
-                url: '@Url.Action("HistoryBid", "User")',
-                success: function (data) {
-                    $('#bid-history').html(data)
-                },
-                error: function () {
-
-                }
-            })
-        }
-
-        function reloadPage() {
-            getLastestPrice();
-        }
-
         function getLastestPrice() {
             $.ajax({
                 method: 'GET',
                 url: '@Url.Action("getLastestPrice", "Bid")',
                 data: { idProduct: idProduct},
                 success: function (data) {
-                    $('span.spanColorAuctionproperty.lastest-price').text(data)
+                    $('span.spanColorAuctionproperty.lastest-price').text(currenyFormat(data))
+                    var nextprice = Number.parseInt(data) + stepPrice;
+                    $('span.spanColorAuctionproperty.next-price').text(currenyFormat(nextprice))
+                    lastestPrice = data;
                 },
                 error: function () {
                 }
             })
+        }
+
+        function finishBid() {
+            $.ajax({
+                method: 'POST',
+                url: '@Url.Action("finishBid", "Bid")',
+                data: { idProduct: idProduct },
+                success: function (data) {
+                    $("#notify").empty();
+                    $("#notify").append(data);
+                }
+            })
+        }
+
+        function currenyFormat(number) {
+            return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(number)
         }
 
         function DateTime(id) {
@@ -851,62 +815,66 @@
             return milliseconds;
         }
 
-        function LoadDSData() {
-            const countdown = () => {
-                notify.innerHTML = "<b style='color: green;'>Thời gian bắt đầu đăng ký đấu giá:</b>"
-                document.getElementById('datgia').style.display = 'none';
-                document.getElementById('set_price').style.display = 'none';
-                var milliseconds = DateTime('StartingDate');
+        function countdown () {
+            notify.innerHTML = "<b style='color: green;'>Thời gian bắt đầu đăng ký đấu giá:</b>"
+            document.getElementById('datgia').style.display = 'none';
+            document.getElementById('set_price').style.display = 'none';
+            var milliseconds = DateTime('StartingDate');
+            var now = new Date().getTime();
+            var gap = milliseconds - now;
+
+            if (gap == 0) {
+                location.reload(true);
+            }
+
+            if (gap < 0) {
+                notify.innerHTML = "<b style='color: green;'>Cuộc đấu giá đang diễn ra:</b>"
+                document.getElementById('dangkydaugia').style.display = 'none';
+                document.getElementById('datgia').style.display = 'block';
+                document.getElementById('set_price').style.display = 'block';
+                var milliseconds = DateTime('EndingDate');
                 var now = new Date().getTime();
-                var gap = milliseconds - now;
+                gap = milliseconds - now;
 
                 if (gap == 0) {
                     location.reload(true);
                 }
 
                 if (gap < 0) {
-                    notify.innerHTML = "<b style='color: green;'>Cuộc đấu giá đang diễn ra:</b>"
                     document.getElementById('dangkydaugia').style.display = 'none';
-                    document.getElementById('datgia').style.display = 'block';
-                    document.getElementById('set_price').style.display = 'block';
-                    var milliseconds = DateTime('EndingDate');
-                    var now = new Date().getTime();
-                    gap = milliseconds - now;
-
-                    if (gap == 0) {
-                        location.reload(true);
-                    }
-
-                    if (gap < 0) {
-                        document.getElementById('dangkydaugia').style.display = 'none';
-                        document.getElementById('datgia').style.display = 'none';
-                        document.getElementById('set_price').style.display = 'none';
-                        notify.innerHTML = "<b style='color: red;'>Cuộc đấu giá đã kết thúc</b>"
-                        gap = 0;
-                    }
+                    document.getElementById('datgia').style.display = 'none';
+                    document.getElementById('set_price').style.display = 'none';
+                    notify.innerHTML = "<b style='color: red;'>Cuộc đấu giá đã kết thúc</b>"
+                    finishBid();
+                    checkTime = false;
+                    gap = 0;
                 }
+            }
 
-                const second = 1000;
-                const minute = second * 60;
-                const hour = minute * 60;
-                const day = hour * 24;
-                const textDay = Math.floor(gap / day);
+            const second = 1000;
+            const minute = second * 60;
+            const hour = minute * 60;
+            const day = hour * 24;
+            const textDay = Math.floor(gap / day);
 
-                const textHour = Math.floor((gap % day) / hour);
-                const textMinute = Math.floor((gap % hour) / minute);
-                const textSecond = Math.floor((gap % minute) / second);
+            const textHour = Math.floor((gap % day) / hour);
+            const textMinute = Math.floor((gap % hour) / minute);
+            const textSecond = Math.floor((gap % minute) / second);
 
+            document.querySelector(".day").innerText = textDay;
+            document.querySelector(".hour").innerText = textHour;
+            document.querySelector(".minute").innerText = textMinute;
+            document.querySelector(".second").innerText = textSecond;
+            document.getElementById('text-day').innerText = "Ngày";
+            document.getElementById('text-hour').innerText = "Giờ";
+            document.getElementById('text-minute').innerText = "Phút";
+            document.getElementById('text-second').innerText = "Giây";
+        }
 
-                document.querySelector(".day").innerText = textDay;
-                document.querySelector(".hour").innerText = textHour;
-                document.querySelector(".minute").innerText = textMinute;
-                document.querySelector(".second").innerText = textSecond;
-                document.getElementById('text-day').innerText = "Ngày";
-                document.getElementById('text-hour').innerText = "Giờ";
-                document.getElementById('text-minute').innerText = "Phút";
-                document.getElementById('text-second').innerText = "Giây";
-            };
-            setInterval(countdown, 1000);
+        function stopCountdown() {
+            if (checkTime == false) {
+                clearInterval(idCount)
+            }
         }
 
         function openPage(evt, elmnt, pageName) {
@@ -951,7 +919,6 @@
                     }
                 },
                 error: function () {
-                    console.log('chưa đăng ký')
                 }
             });
         }

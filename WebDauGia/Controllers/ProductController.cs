@@ -13,6 +13,7 @@ namespace WebDauGia.Controllers
         // GET: Product
         DBContext db = new DBContext();
         int pageSize = 6;
+        [Route("san-pham")]
         public ActionResult Product(int? pageNum)
         {
             pageNum = pageNum ?? 1;
@@ -25,6 +26,7 @@ namespace WebDauGia.Controllers
         [HttpGet]
         public ActionResult filter(int? idcate, int[] idbrand, string price, string date, int? pageNum)
         {
+            Debug.WriteLine(idbrand);
             pageNum = pageNum ?? 1;
             List<PRODUCT> products = db.PRODUCT.ToList();
             if (idcate != null)
@@ -64,9 +66,11 @@ namespace WebDauGia.Controllers
             return PartialView("_ProductsPartial", products.ToPagedList((int)pageNum, pageSize));
         }
 
-      
-        public ActionResult Detail(int? id)
+        [Route("san-pham/{url}")]
+        public ActionResult Detail(string url)
         {
+            int id = PRODUCT.GetIDFromURL(url) ?? 0;
+       
             if (id == null)
             {
                 return RedirectToAction("Product", "Product");
