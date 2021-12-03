@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebDauGia.Helper.Service;
 using WebDauGia.Models;
 
 namespace WebDauGia.Controllers
@@ -12,6 +13,7 @@ namespace WebDauGia.Controllers
     {
         DBContext db = new DBContext();
         MyHub hub = new MyHub();
+        EmailService emailService = new EmailService();
         public ActionResult Bid()
         {
             return View(db.PRODUCT.Find(2));
@@ -95,6 +97,7 @@ namespace WebDauGia.Controllers
         {
             HISTORY history = db.HISTORY.Where(h => h.IdProduct == idProduct).OrderByDescending(d => d.Price).FirstOrDefault();
             BID bid = new BID();
+            USER uSER = db.USER.Find(history.IdUser);
             PRODUCT product = db.PRODUCT.Find(idProduct);
             string noti = "";
             if (history != null && product.StatusBid == true)
@@ -109,6 +112,11 @@ namespace WebDauGia.Controllers
                 product.IdBuyer = bid.IdUser;
                 db.SaveChanges();
                 noti = "<b style='color: red;'>Đấu giá đã kết thúc, sản phẩm thuộc về " + history.USER.Fullname + "</b>";
+
+                string Address = uSER.Email;
+                string Title = "DTV Auction, xin thông báo đến " + uSER.Fullname ;
+                string Message = "<b style='color: red;'>Đấu giá đã kết thúc, sản phẩm " + product.NameProduct + " đã thuộc về bạn</b> ";
+                emailService.sendEmail(Address, Title, Message);
             }
             else if (history == null && product.StatusBid == true)
             {
