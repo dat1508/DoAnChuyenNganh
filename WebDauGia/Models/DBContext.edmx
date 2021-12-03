@@ -119,8 +119,6 @@
           <Property Name="IdOwner" Type="int" />
           <Property Name="IdBuyer" Type="int" />
           <Property Name="StatusBid" Type="bit" />
-          <Property Name="StartBID" Type="datetime" />
-          <Property Name="EndBID" Type="datetime" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -240,30 +238,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PRODUCT__IdBrand__3C69FB99">
-          <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BRAND">
-              <PropertyRef Name="IdBrand" />
-            </Principal>
-            <Dependent Role="PRODUCT">
-              <PropertyRef Name="IdBrand" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PRODUCT__IdCate__3B75D760">
-          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CATEGORY">
-              <PropertyRef Name="IdCate" />
-            </Principal>
-            <Dependent Role="PRODUCT">
-              <PropertyRef Name="IdCate" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__USER__IdRank__3A81B327">
           <End Role="RANK" Type="Self.RANK" Multiplicity="0..1" />
           <End Role="USER" Type="Self.USER" Multiplicity="*" />
@@ -324,30 +298,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PRODUCT_USER">
-          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="PRODUCT">
-              <PropertyRef Name="IdBuyer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PRODUCT_USER1">
-          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
-          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="USER">
-              <PropertyRef Name="IdUser" />
-            </Principal>
-            <Dependent Role="PRODUCT">
-              <PropertyRef Name="IdOwner" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="DBDauGiaModelStoreContainer">
           <EntitySet Name="BID" EntityType="Self.BID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BID_REGISTER" EntityType="Self.BID_REGISTER" Schema="dbo" store:Type="Tables" />
@@ -391,14 +341,6 @@
             <End Role="BLOG" EntitySet="BLOG" />
             <End Role="IMG_BLOG" EntitySet="IMG_BLOG" />
           </AssociationSet>
-          <AssociationSet Name="FK__PRODUCT__IdBrand__3C69FB99" Association="Self.FK__PRODUCT__IdBrand__3C69FB99">
-            <End Role="BRAND" EntitySet="BRAND" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PRODUCT__IdCate__3B75D760" Association="Self.FK__PRODUCT__IdCate__3B75D760">
-            <End Role="CATEGORY" EntitySet="CATEGORY" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-          </AssociationSet>
           <AssociationSet Name="FK__USER__IdRank__3A81B327" Association="Self.FK__USER__IdRank__3A81B327">
             <End Role="RANK" EntitySet="RANK" />
             <End Role="USER" EntitySet="USER" />
@@ -418,14 +360,6 @@
           <AssociationSet Name="FK_HISTORY_USER" Association="Self.FK_HISTORY_USER">
             <End Role="USER" EntitySet="USER" />
             <End Role="HISTORY" EntitySet="HISTORY" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCT_USER" Association="Self.FK_PRODUCT_USER">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PRODUCT_USER1" Association="Self.FK_PRODUCT_USER1">
-            <End Role="USER" EntitySet="USER" />
-            <End Role="PRODUCT" EntitySet="PRODUCT" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -649,8 +583,6 @@
           <NavigationProperty Name="IMG" Relationship="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" FromRole="PRODUCT" ToRole="IMG" />
           <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_PRODUCT_USER" FromRole="PRODUCT" ToRole="USER" />
           <NavigationProperty Name="USER1" Relationship="DBDauGiaModel.FK_PRODUCT_USER1" FromRole="PRODUCT" ToRole="USER" />
-          <Property Name="StartBID" Type="DateTime" Precision="3" />
-          <Property Name="EndBID" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -995,8 +927,6 @@
           <EntitySetMapping Name="PRODUCT">
             <EntityTypeMapping TypeName="DBDauGiaModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
-                <ScalarProperty Name="EndBID" ColumnName="EndBID" />
-                <ScalarProperty Name="StartBID" ColumnName="StartBID" />
                 <ScalarProperty Name="StatusBid" ColumnName="StatusBid" />
                 <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
                 <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />

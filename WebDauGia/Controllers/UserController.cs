@@ -90,7 +90,7 @@ namespace WebDauGia.Controllers
         [ValidateInput(false)]
       
         public ActionResult UploadProduct(FormCollection f, [Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,LowestBid,Status,Desc,StartPrice,PriceBuy," +
-            "StartingDate,EndingDate,Location,StatusBid,StartBID,EndBID")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
+            "StartingDate,EndingDate,Location,StatusBid")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {
             if (f["txt-new-cate"] != null)
             {
@@ -120,7 +120,7 @@ namespace WebDauGia.Controllers
             }
             pRODUCT.BidTime = null;
             pRODUCT.DateCreate = DateTime.Now;
-            pRODUCT.IdOwner = null;
+            pRODUCT.IdOwner = Int32.Parse(Session["userID"].ToString());
             pRODUCT.IdBuyer = null;
             var NameProduct = f["NameProduct"];
             var Location = f["Location"];

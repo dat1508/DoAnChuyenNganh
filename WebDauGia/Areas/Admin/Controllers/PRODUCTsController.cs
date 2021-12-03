@@ -55,7 +55,7 @@ namespace WebDauGia.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public ActionResult Create([Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,Status,Desc,LowestBid," +
-            "StartPrice,PriceBuy,DateCreate,StartingDate,EndingDate,BidTime,Location,IdOwner,IdBuyer,StatusBid, StartBID, EndBID")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
+            "StartPrice,PriceBuy,DateCreate,StartingDate,EndingDate,BidTime,Location,IdOwner,IdBuyer,StatusBid")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {
             pRODUCT.DateCreate = DateTime.Now;
             if (ModelState.IsValid)
@@ -120,7 +120,7 @@ namespace WebDauGia.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
         public ActionResult Edit([Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,Status,Desc,LowestBid,StartPrice," +
-            "PriceBuy,DateCreate,StartingDate,EndingDate,BidTime,Location,IdOwner,IdBuyer,StatusBid, StartBID, EndBID")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
+            "PriceBuy,DateCreate,StartingDate,EndingDate,BidTime,Location,IdOwner,IdBuyer,StatusBid")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {
             var pathold = Path.Combine(Server.MapPath("~/Public/img/product/"), Path.GetFileName(RemoveVietnamse.convertToSlug(pRODUCT.NameProduct.ToLower()) + "-anh-bia.png"));
             if (ModelState.IsValid)
