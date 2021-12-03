@@ -41,6 +41,8 @@ namespace WebDauGia.Models
         public Nullable<int> IdOwner { get; set; }
         public Nullable<int> IdBuyer { get; set; }
         public Nullable<bool> StatusBid { get; set; }
+        public Nullable<System.DateTime> StartBID { get; set; }
+        public Nullable<System.DateTime> EndBID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BID> BID { get; set; }

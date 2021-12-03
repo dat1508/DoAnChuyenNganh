@@ -3,100 +3,163 @@
 @{
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-</head>
-<body>
-    <table class="table" id="table">
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length) <text>...</text>
+    }
+}
+<h2 style="text-align:left;margin-top:20px;">DANH SÁCH NGƯỜI DÙNG</h2>
+    <p style="text-align:right;margin:20px;">
+        <a id="btnExportPdf" data-toggle="tooltip" data-placement="bottom" title="Export PDF" class="btn waves-effect waves-light btn-success btn-success"> Export PDF</a>
+    </p>
+    <table class="table" id="Table">
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.Fullname)
+                    Họ và tên
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Username)
+                    Tài khoản
+                </th>
+
+                <th>
+                    Địa chỉ
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Password)
+                    Số điện thoại
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Address)
+                    Ngày sinh
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Phone)
+                    Email
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.DateOfBirth)
+                    Giới tính
                 </th>
+                @*<th>
+                       Quyền
+                    </th>*@
                 <th>
-                    @Html.DisplayNameFor(model => model.Email)
+                    Cấp độ
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Gender)
+                <th style=" text-align: center;">
+                    Chỉnh sửa
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Admin)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.RANK.NameRank)
-                </th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fullname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Username)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Phone)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateOfBirth)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Gender)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Admin)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RANK.NameRank)
-                </td>
-                <td>
-                    <a class="btn btn-sm btn-success" href="@Url.Action("Edit","USERs",new { @id = item.IdUser })">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","USERs",new { @id = item.IdUser })">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                    <a class="btn btn-sm btn-info" href="@Url.Action("Details","USERs",new { @id = item.IdUser })">
-                        <i class="fas fa-info-circle"></i>
-                    </a>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fullname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+
+                    <td>
+                        @if (item.Address.Length > 40)
+                        {
+
+                            <a style="font-size: 16px;">  @Html.Raw(item.Address.Substring(0, 20).ToLower())</a>
+                        }
+                        else
+                        {
+                            <a style="font-size: 16px;">
+                                @Html.Raw(item.Address)
+                            </a>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Phone)
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.DateOfBirth).ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @if (item.Gender == false)
+                        {
+                            <span style="color:darkorange; text-align:center;">Nữ</span>
+                        }
+                        else
+                        {
+                            <span style="color: cornflowerblue; text-align: center;">Nam</span>
+                        }
+
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Admin)
+                        </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RANK.NameRank)
+                    </td>
+                    <td style=" text-align: center;">
+                        <a class="btn btn-sm btn-success" href="@Url.Action("Edit","USERs",new { @id = item.IdUser })">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","USERs",new { @id = item.IdUser })">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <a class="btn btn-sm btn-info" href="@Url.Action("Details","USERs",new { @id = item.IdUser })">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                        <a href="#" data-toggle="tooltip" data-placement="top" title="Export Excel" class="btnExportExcel btn btn-sm btn-info" data-id="@item.IdUser">
+                            <i class="fas fa-download"></i>
+                        </a>
+
+                    </td>
+                </tr>
             }
         </tbody>
-  
-    
+
+
     </table>
 </body>
 </html>
+
+@section scripts{
+
+    <script>
+
+
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+
+            $('#btnExportPdf').on('click', function () {
+                $.get("/USERs/ExportPdf", function (resp) {
+                    window.location.href = "/Public/Export/ExportPdf/" + resp;
+                });
+            });
+
+
+            $(document).on('click', '.btnExportExcel', function () {
+
+                var iduser = $(this).data('id');
+
+                $.ajax({
+                    datatype: 'json',
+                    type: 'GET',
+                    url: '/USERs/ExportExcel',
+                    data: { iduser: iduser },
+                    success: function (data) {
+                        if (data !== '') {
+                            window.location.href = "/Public/Export/ExportExcel/" + data;
+                        }
+                    }
+                })
+            });
+
+        });
+    </script>
+}

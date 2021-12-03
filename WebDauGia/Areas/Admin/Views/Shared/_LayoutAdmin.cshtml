@@ -38,7 +38,7 @@
         }
     </style>
 
-
+    <link href="~/Content/custom.css" rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href="~/Areas/Admin/Style/dashboard.css" rel="stylesheet" />
 </head>
@@ -60,7 +60,7 @@
         <div class="row">
 
             <!-- Sidebar -->
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -127,7 +127,7 @@
                     </ul>
                 </div>
             </nav>
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            <main class="col-md-10 ms-sm-auto col-lg-10 px-md-3">
                 @RenderBody()
             </main>
         </div>
@@ -141,16 +141,21 @@
     <script src="~/Areas/Admin/Style/dashboard.js"></script>
     <script src="~/Public/vendor/jquery/jquery.min.js"></script>
 
+
+
+
     <script src="~/Areas/Admin/Helper/ckeditor/ckeditor.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+    @RenderSection("scripts", required: false)
     <script>
         jQuery(document).ready(function () {
-            $('#table').DataTable({
+            $('#Table').DataTable({
                 "language": {
                     "url": "//cdn.datatables.net/plug-ins/1.10.22/i18n/Vietnamese.json"
                 }
             });
         });
     </script>
+
 </body>
 </html>

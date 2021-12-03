@@ -8,7 +8,7 @@
 
 
 <script src="~/Public/js/typed.js"></script>
-@foreach (var introduce in ViewBag.Introduce)
+@foreach (var introduce in Model)
 {
 
     <div id="home" class="intro route bg-image" style="background-image: url(/Public/img/introduce.jpg)">
@@ -25,7 +25,6 @@
         </div>
     </div>
 }
-<!-- Carousel End-->
 
 @section scripts{
     <script>

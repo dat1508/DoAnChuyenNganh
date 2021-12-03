@@ -11,27 +11,28 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+<div class="form-horizontal">
 
 
-        <hr />
-        <div class="form-group">
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="col-md-9">
-                        <h2 class="h2">TẠO MỚI BÀI VIẾT</h2>
-                    </div>
-                    <div class="col-md-3" style="text-align:right;">
-                        @Html.ActionLink("QUAY LẠI", "Index")
-                    </div>
+    <hr />
+    <div class="form-group">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2 class="h2">TẠO MỚI BÀI VIẾT</h2>
+                </div>
+                <div class="col-md-4" style="text-align:right;">
+                    @Html.ActionLink("QUAY LẠI", "Index")
                 </div>
             </div>
         </div>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    </div>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row border border-2 border-dark rounded-3 py-3 col-md-10">
         <div class="form-group">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-8">
                         <div class="form-group">
                             @Html.LabelFor(model => model.IdUser, "Người tạo", htmlAttributes: new { @class = "control-label col-md-2" })
                             <div class="col-md-12">
@@ -54,7 +55,18 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <lable class="control-label col-md-2">Hình ảnh</lable>
+                            <div class="col-md-12">
+                                <input type="file" name="fileUpload" id="fileUpload" class="custom-file-input">
+                                <div class="image-preview" id="imagePreview">
+                                    <img src="" alt="Image Preview" class="image-preview-img " />
+                                    <span class="image-preview-text">Image Preview</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,7 +74,7 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
+            <div class="col-md-12">
                 @Html.TextAreaFor(model => model.Body, new { htmlAttributes = new { @class = "form-control" }, @id = "txtBodyBlog" })
                 @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
                 <script>CKEDITOR.replace("txtBodyBlog");</script>
@@ -71,9 +83,33 @@
 
 
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+            <div class="col-md-offset-2 col-md-12">
                 <input type="submit" value="Tạo" class="btn btn-success form-control" />
             </div>
         </div>
     </div>
-}
+    </div>
+    }
+    <script>
+        var fileUpload = document.getElementById("fileUpload");
+        var previewContainer = document.getElementById("imagePreview");
+        var previewImage = previewContainer.querySelector(".image-preview-img");
+        var previewText = previewContainer.querySelector(".image-preview-text");
+        fileUpload.addEventListener("change", function () {
+            var file = this.files[0];
+            if (file) {
+                var reader = new FileReader();
+                previewText.style.display = "none";
+                previewImage.style.display = "block";
+                reader.readAsDataURL(file);
+                reader.addEventListener("load", function () {
+                    previewImage.setAttribute("src", this.result);
+                });
+            }
+            else {
+                previewText.style.display = null;
+                previewImage.style.display = null;
+                previewImage.setAttribute("src", this.result);
+            }
+        });
+    </script>

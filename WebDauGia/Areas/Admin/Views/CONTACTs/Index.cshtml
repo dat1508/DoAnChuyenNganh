@@ -5,12 +5,12 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-
+<h2 style="text-align:left;margin-top:20px;">DANH SÁCH LIÊN HỆ</h2>
 
 <p style="text-align:right;margin:20px;">
 
 </p>
-<table class="table" id="myTable">
+<table class="table" id="Table">
     <thead>
         <tr>
             <th width="250">
@@ -48,16 +48,16 @@
                     @Html.DisplayFor(modelItem => item.USER.Fullname)
                 </td>
                 <td>
-                    @if (item.Status == false)
-                    {
-                        <span style="color:darkorange;">Chưa xem</span>
-                    }
-                    else
-                    {
-                        <span style="color:cornflowerblue;">Đã xem</span>
-                    }
+                        @if (item.Status == false)
+                        {
+                            <span style="color:darkorange;">Chưa xem</span>
+                        }
+                        else
+                        {
+                            <span style="color:cornflowerblue;">Đã xem</span>
+                        }
                 </td>
-                <td>
+                <td style="text-align: center;">
 
                     <a class="btn btn-sm btn-success" href="@Url.Action("Feedback","CONTACTs",new { @id = item.IdContact })">
                         <i class="fas fa-comments"></i>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,21 +12,24 @@ namespace WebDauGia.Controllers
     {
         // GET: Introduce
         DBContext db = new DBContext();
-        private List<BLOG> GetIntroduce( int count)
+        int pageSize = 1;
+        private List<BLOG> GetIntroduce(int count)
         {
             return db.BLOG.OrderByDescending(a => a.IdBlog).Take(count).ToList();
         }
 
         [Route("gioi-thieu")]
-        public ActionResult Introduce(int? IdCate,  int? IdUser)
+        public ActionResult Introduce( int? pageNum)
         {
-            ViewBag.Introduce = GetIntroduce(1);
+            pageNum = pageNum ?? 1;
             var NewBlog = new List<BLOG>();
             ViewBag.FULLNAME = db.USER.ToList();
             ViewBag.CategoryBlog = db.CATEGORY_BLOG.ToList();
-            NewBlog = db.BLOG.Where(p => p.IdCate == 4 || p.IdUser == IdUser).ToList();
-            return View(NewBlog);
-        }
+            NewBlog = db.BLOG.Where(p => p.IdCate == 4 ).ToList();
         
+            return View(NewBlog.ToPagedList((int)pageNum, pageSize));
+        }
+       
+
     }
 }

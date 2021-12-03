@@ -6,7 +6,7 @@
 
 
 <script src="/Areas/Admin/Helper/ckeditor/ckeditor.js"></script>
-@using (Ajax.BeginForm("UploadProduct", "User", new AjaxOptions { }))
+@using (Ajax.BeginForm("UploadProduct", "User", new AjaxOptions { HttpMethod = "POST" }, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -132,4 +132,7 @@
             })
         });
     </script>
+  
 }
+
+

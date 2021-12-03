@@ -1,4 +1,4 @@
-﻿
+﻿@using WebDauGia.Models
 @model IEnumerable<WebDauGia.Models.PRODUCT>
 @using System.Globalization
 @{
@@ -52,64 +52,72 @@
                 </div>
             </div>
         </div>
+
         <div class="container">
-            <div class="col-md-12">
-                <div class="box slideshow">
-                    <h2 class="mb-0">TÀI SẢN SẮP ĐƯỢC ĐẤU GIÁ</h2>
-                    <p class="lead">Get the inspiration from our world class designers</p>
-                    <div id="get-inspired" class="owl-carousel owl-theme">
-                        <div class="item">
-                            <a href="#"><img src="~/Public/img/bat_dong_san.jpg" alt="Get inspired" class="img-fluid"></a>
+            <section class="gallery">
+
+                <div class="gallery__content">
+                    @foreach (var i in ViewBag.categoryList as List<CATEGORY>)
+                    {
+                        <div class="gallery__items g1">
+                            <a href="#" data-lightbox="roadtrip">
+                                <img src="~/Public/img/gallery/g1.jpg" alt="">
+                                <div class="gallery__text">
+                                    <h3> <span style="color:white;">@i.Name.ToUpper() (@i.PRODUCT.Count())</span></h3>
+                                    <p class="read-more"><a href="#" class="btn btn-primary">Continue reading</a></p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="item">
-                            <a href="#"><img src="img/getinspired2.jpg" alt="Get inspired" class="img-fluid"></a>
+
+
+                        <div class="gallery__items">
+                            <a href="" data-lightbox="roadtrip">
+                                <img src="~/Public/img/gallery/g2.jpg" alt="">
+                                <div class="gallery__text">
+                                    <h3> <span style="color:white;">@i.Name.ToUpper() (@i.PRODUCT.Count())</span></h3>
+                                    <p class="read-more"><a href="#" class="btn btn-primary">Continue reading</a></p>
+                                </div>
+                            </a>
                         </div>
-                        <div class="item">
-                            <a href="#"><img src="img/getinspired3.jpg" alt="Get inspired" class="img-fluid"></a>
+                        <div class="gallery__items">
+                            <a href="" data-lightbox="roadtrip">
+                                <img src="~/Public/img/gallery/g3.jpg" alt="">
+                                <div class="gallery__text">
+                                    <h3> <span style="color:white;">@i.Name.ToUpper() (@i.PRODUCT.Count())</span></h3>
+                                    <p class="read-more"><a href="#" class="btn btn-primary">Continue reading</a></p>
+                                </div>
+                            </a>
                         </div>
-                    </div>
+                        <div class="gallery__items">
+                            <a href="" data-lightbox="roadtrip">
+                                <img src="~/Public/img/gallery/g4.jpg" alt="">
+                                <div class="gallery__text">
+                                    <h3> <span style="color:white;">@i.Name.ToUpper() (@i.PRODUCT.Count())</span></h3>
+                                    <p class="read-more"><a href="#" class="btn btn-primary">Continue reading</a></p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="gallery__items">
+                            <a href="" data-lightbox="roadtrip">
+                                <img src="~/Public/img/gallery/g5.jpg" alt="">
+                                <div class="gallery__text">
+                                    <h3> <span style="color:white;">@i.Name.ToUpper() (@i.PRODUCT.Count())</span></h3>
+                                    <p class="read-more"><a href="#" class="btn btn-primary">Continue reading</a></p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="gallery__items g6">
+                            <a href="" data-lightbox="roadtrip">
+                                <img src="~/Public/img/gallery/g6.jpg" alt="">
+                                <div class="gallery__text">
+                                    <h3> <span style="color:white;">@i.Name.ToUpper() (@i.PRODUCT.Count())</span></h3>
+                                    <p class="read-more"><a href="#" class="btn btn-primary">Continue reading</a></p>
+                                </div>
+                            </a>
+                        </div>
+                    }
                 </div>
-            </div>
-        </div>
-        <div class="box text-center">
-            <div class="container">
-                <div class="col-md-12">
-                    <h3 class="text-uppercase">TIN TỨC ĐẤU GIÁ</h3>
-                    <div class="section-border"></div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="col-md-12">
-                <div id="blog-homepage" class="row">
-                    <div class="col-sm-6">
-                        <div class="post">
-                            <h4><a href="post.html">Fashion now</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">Fashion and style</a></p>
-                            <hr>
-                            <p class="intro">
-                                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
-                                egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
-                                sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-                            </p>
-                            <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="post">
-                            <h4><a href="post.html">Who is who - example blog post</a></h4>
-                            <p class="author-category">By <a href="#">John Slim</a> in <a href="">About Minimal</a></p>
-                            <hr>
-                            <p class="intro">
-                                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
-                                egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
-                                sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-                            </p>
-                            <p class="read-more"><a href="post.html" class="btn btn-primary">Continue reading</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </section>
         </div>
         <div class="box text-center">
 
@@ -131,50 +139,125 @@
                             <img src="~/Public/img/support.png" accesskey="" alt="" class="img-fluid">
                         </div>
                         <div class="col-sm-6 shadow">
+                            @using (Html.BeginForm("ContactPage", "Contact", FormMethod.Post))
+                            {
 
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
+                                @Html.Raw(ViewBag.Notice)<form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input name="name" id="firstname" type="text" class="form-control" placeholder="Họ tên" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
 
-                                            <input id="firstname" type="text" class="form-control" placeholder="Họ tên">
+                                                <input name="phone" id="phone" type="number" class="form-control" placeholder="Số điện thoại" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <input name="email" id="email" type="text" class="form-control" placeholder="Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <input id="Address" type="text" class="form-control" placeholder="Nơi công tác" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <textarea name="title" id="title" class="form-control" placeholder="Tên tài sản" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <textarea name="body" id="message" class="form-control" placeholder="thông tin chi tiết tài sản" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 py-5 text-center">
+                                            <button type="submit" class="form-control bg-success btn btn-primary">
+                                                <i class="fa fa-envelope-o"></i> Gửi tin nhắn
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-
-                                            <input id="phone" type="number" class="form-control" placeholder="Số điện thoại">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-
-                                            <input id="email" type="text" class="form-control" placeholder="Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-
-                                            <input id="Address" type="text" class="form-control" placeholder="Nơi công tác">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-
-                                            <textarea id="message" class="form-control" placeholder="tin nhắn"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 py-5 text-center">
-                                        <button type="submit" class="form-control bg-success btn btn-primary">
-                                            <i class="fa fa-envelope-o"></i> Gửi tin nhắn
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                                </form>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="container">
+            <section id="blog" class="blog-mf sect-pt4 route">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="title-box text-center">
+                                <h3 class="title-a">
+                                    TIN TỨC ĐẤU GIÁ
+                                </h3>
+                                <div class="section-border"></div>
+                                <div class="line-mf"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @foreach (var i in ViewBag.Blog)
+                        {
+                            <a href="@Url.Action("Detail","Blog", new { @id = i.IdBlog}, null)">
+                                <div class="col-md-4">
+                                    <div class="card card-blog">
+                                        <div class="card-img">
+
+                                            @foreach (var img in i.IMG_BLOG)
+                                            {
+
+                                                <img src="@Url.Content(img.LinkImg)" alt="" class="img-fluid">
+                                            }
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="card-category-box">
+                                                <div class="card-category">
+                                                    <h6 class="category">@i.CATEGORY_BLOG.Name</h6>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title"><a href="blog-single.html">@i.Title</a></h3>
+                                            <p class="card-description">
+                                                <a href="#" style="text-transform:lowercase; font-size: 16px;">
+                                                    @if (i.Body.Length > 40)
+                                                    {
+                                                        @Html.Raw(i.Body.Substring(0, 80))
+
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Raw(i.Body)
+                                                    }
+                                                </a>
+                                            </p>
+
+                                        </div>
+                                        <div class="card-footer">
+                                            <div class="post-author">
+                                                <img src="img/testimonial-2.jpg" alt="" class="avatar rounded-circle">
+                                                <span class="author">@i.USER.Fullname</span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
     </div>
 </div>

@@ -5,18 +5,18 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<h2 style="text-align:left;margin-top:20px;">DANH MỤC SẢN PHẨM</h2>
+<p style="text-align:right;margin:20px;">
+    <a href="@Url.Action("Create","CATEGORies")" class="btn btn-primary">Tạo mới</a>
 </p>
-<table class="table" id="table">
+<table class="table" id="Table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+               Tên 
             </th>
-            <th></th>
+            <th style="width:150px; text-align: center;">Chỉnh sửa</th>
         </tr>
         </thead>
     <tbody>
@@ -27,7 +27,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
 
-            <td>
+            <td style=" text-align: center;">
                 <a class="btn btn-sm btn-success" href="@Url.Action("Edit","CATEGORies",new { @id = item.IdCate })">
                     <i class="fas fa-edit"></i>
                 </a>

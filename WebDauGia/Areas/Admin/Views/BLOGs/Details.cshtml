@@ -8,7 +8,7 @@
 <div class="container">
     <hr />
     <div class="form-group">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <div class="row">
                 <div class="col-md-9">
                     <h2 class="h2">XEM CHI TIẾT</h2>
@@ -21,10 +21,10 @@
         </div>
     </div>
     <hr />
-    <div class="row border border-2 border-dark rounded-3 py-3">
+    <div class="row border border-2 border-dark rounded-3 py-3 col-md-10">
         <div class="col-md-12">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="mb-3">
                         <label class="form-label">Tên bài viết</label>
                         <input type="text" name="address" class="form-control" required value="@Model.USER.Fullname" readonly>
@@ -39,10 +39,23 @@
                         <input name="message" class="form-control" rows="7" value="@Model.CATEGORY_BLOG.Name" readonly>
                     </div>
                 </div>
-               
+                <div class="col-md-4">
+
+                    <lable class="control-label col-md-2">Hình ảnh</lable>
+                    <div class="col-md-12">
+                        @foreach (var picture in Model.IMG_BLOG)
+                        {
+
+                            <img src="@picture.LinkImg" alt="Example blog post alt" class="row border border-2 border-dark rounded-3 my-1 py-4 img-fluid shadow">
+
+                        }
+                    </div>
+
+                </div>
                 <div class="col-md-12">
                     <label class="form-label">Nội dung bài viết</label>
                     <textarea rows="10" class="form-control" readonly>@Html.Raw(Model.Body)</textarea>
+              
                 </div>
             </div>
         </div>

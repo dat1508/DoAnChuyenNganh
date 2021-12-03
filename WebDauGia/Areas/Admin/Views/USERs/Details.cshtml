@@ -4,103 +4,89 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>USER</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Fullname)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Fullname)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Username)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Username)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Password)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Password)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Address)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Address)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Phone)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Phone)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.DateOfBirth)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.DateOfBirth)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Email)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Email)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Gender)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Gender)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Admin)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Admin)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.RANK.NameRank)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.RANK.NameRank)
-            </dd>
-    
-        </dl>
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 class="h2">CHI TIẾT THÔNG TIN NGƯỜI DÙNG</h2>
+                </div>
+                <div class="col-md-3" style="text-align:right;">
+                    @Html.ActionLink("CHỈNH SỬA", "Edit", new { id = Model.IdUser }) |
+                    @Html.ActionLink("QUAY LẠI", "Index")
+                </div>
+            </div>
+        </div>
     </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.IdUser }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            @ViewBag.Error
+        </div>
+    }
+    <div class="row border border-2 border-dark rounded-3 py-3 col-md-10">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-mb-6 col-lg-6">
+                    <label class="form-label">Họ và tên</label>
+                    <input type="text" name="address" class="form-control border border-dark" required value="@Model.Fullname" readonly>
+                </div>
+                <div class="col-mb-6 col-lg-6 ">
+                    <label class="form-label">Tài khoản</label>
+                    <input type="text" name="address" class="form-control border border-dark" required value="@Model.Username" readonly>
+                </div>
+
+                <div class="col-mb-6 col-lg-3 ">
+                    <label class="form-label">Cấp độ</label>
+                    <input name="message" class="form-control border border-dark" rows="7" value="@Model.IdRank" readonly>
+                </div>
+                <div class="col-mb-6 col-lg-3 ">
+                    <label class="form-label">Số điện thoại</label>
+                    <input name="message" class="form-control border border-dark" rows="7" value="@Model.Phone" readonly>
+                </div>
+                <div class="col-mb-6 col-lg-3 ">
+                    <label class="form-label">Giới tính</label>
+
+                    @if (@Model.Gender == false)
+                    {
+                        <input name="message" class="form-control border border-dark" rows="7" value="Nữ" readonly>
+                    }
+                    else
+                    {
+                        <input name="message" class="form-control border border-dark" rows="7" value="Nam" readonly>
+                    }
+                </div>
+                <div class="col-mb-6 col-lg-3 ">
+                    <label class="form-label">Vai trò</label>
+                    @if (@Model.Admin == false)
+                    {
+                        <input name="message" class="form-control border border-dark" rows="7" value="Người dùng" readonly>
+                    }
+                    else
+                    {
+                        <input name="message" class="form-control border border-dark" rows="7" value="Admin" readonly>
+                    }
+                </div>
+                <div class="col-mb-6 col-lg-6 ">
+                    <label class="form-label">Ngày sinh</label>
+                    <input name="message" class="form-control border border-dark" rows="7" value="@Model.DateOfBirth.ToString("dd/MM/yyyy")" readonly>
+                </div>
+                <div class="col-mb-6 col-lg-6 ">
+                    <label class="form-label">Email</label>
+                    <input name="message" class="form-control border border-dark" rows="7" value="@Model.Email" readonly>
+                </div>
+                <div class="col-mb-6 col-lg-12 ">
+                    <label class="form-label">Địa chỉ</label>
+                    <input name="message" class="form-control border border-dark" rows="7" value="@Model.Address" readonly>
+                </div>
+
+            </div>
+               
+       
+        </div>
+    </div>
+
+</div>
+

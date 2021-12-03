@@ -1,156 +1,154 @@
-﻿@{
+﻿@using WebDauGia.Models
+@model IEnumerable<WebDauGia.Models.BID>
+@{
     ViewBag.Title = "DashBoard";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 
-    
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Dashboard</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group me-2">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <span data-feather="calendar"></span>
-                            This week
-                        </button>
-                    </div>
-                </div>
 
-                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-
-                <h2>Section title</h2>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Header</th>
-                                <th scope="col">Header</th>
-                                <th scope="col">Header</th>
-                                <th scope="col">Header</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1,001</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,002</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                            <tr>
-                                <td>1,003</td>
-                                <td>information</td>
-                                <td>placeholder</td>
-                                <td>illustrative</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,004</td>
-                                <td>text</td>
-                                <td>random</td>
-                                <td>layout</td>
-                                <td>dashboard</td>
-                            </tr>
-                            <tr>
-                                <td>1,005</td>
-                                <td>dashboard</td>
-                                <td>irrelevant</td>
-                                <td>text</td>
-                                <td>placeholder</td>
-                            </tr>
-                            <tr>
-                                <td>1,006</td>
-                                <td>dashboard</td>
-                                <td>illustrative</td>
-                                <td>rich</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,007</td>
-                                <td>placeholder</td>
-                                <td>tabular</td>
-                                <td>information</td>
-                                <td>irrelevant</td>
-                            </tr>
-                            <tr>
-                                <td>1,008</td>
-                                <td>random</td>
-                                <td>data</td>
-                                <td>placeholder</td>
-                                <td>text</td>
-                            </tr>
-                            <tr>
-                                <td>1,009</td>
-                                <td>placeholder</td>
-                                <td>irrelevant</td>
-                                <td>visual</td>
-                                <td>layout</td>
-                            </tr>
-                            <tr>
-                                <td>1,010</td>
-                                <td>data</td>
-                                <td>rich</td>
-                                <td>dashboard</td>
-                                <td>tabular</td>
-                            </tr>
-                            <tr>
-                                <td>1,011</td>
-                                <td>information</td>
-                                <td>placeholder</td>
-                                <td>illustrative</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,012</td>
-                                <td>text</td>
-                                <td>placeholder</td>
-                                <td>layout</td>
-                                <td>dashboard</td>
-                            </tr>
-                            <tr>
-                                <td>1,013</td>
-                                <td>dashboard</td>
-                                <td>irrelevant</td>
-                                <td>text</td>
-                                <td>visual</td>
-                            </tr>
-                            <tr>
-                                <td>1,014</td>
-                                <td>dashboard</td>
-                                <td>illustrative</td>
-                                <td>rich</td>
-                                <td>data</td>
-                            </tr>
-                            <tr>
-                                <td>1,015</td>
-                                <td>random</td>
-                                <td>tabular</td>
-                                <td>information</td>
-                                <td>text</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </main>
+<main class="col-md-12 ms-sm-auto col-lg-12 px-md-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Dashboard</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+            </div>
+            <form class="form-inline d-block d-lg-flex justify-content-between flex-column flex-md-row  btn btn-sm btn-outline-secondary">
+                <select id="sort-by" name="sort-by" class="form-control border border-dark">
+                    <option value="" hidden>Lọc theo</option>
+                    <option value="filter-by-date">Lọc theo ngày</option>
+                    <option value="filter-by-week">Lọc theo tuần</option>
+                    <option value="filter-by-months">Lọc theo tháng</option>
+                    <option value="filter-by-years">Lọc theo năm</option>
+                </select>
+            </form>
         </div>
     </div>
+    <div id="charfordashboarch">
+        <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+        <input onchange="filterDate" type="date" id="StartDate" value="2020-01-01" />
+        <input onchange="filterDate" type="date" id="EndDate" value="2021-11-27" />
+    </div>
+  
+
+    <h2>Section title</h2>
+    <div class="table-responsive">
+        <div class="container">
+            <table class="table" id="table">
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.USER.Fullname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PRODUCT.NameProduct)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BidPrice)
+                        </th>
+                        <th></th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.USER.Fullname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PRODUCT.NameProduct)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BidPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BidTime)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreateDate)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+@section scripts{
+
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script>
+         $(document).ready(function () {
+            let date = null;
+            $('#sort-by').on('change', function () {
+                date   = $(this).val();
+
+                loadData(date)
+            });
+           
+             function RegistChartBid(bids) {
+                 var lsLabel = [];
+                var lsDataSource = [];
+                $.each(bids, function (index, item) {
+                    lsLabel.push(item.CreateDate);
+                    lsDataSource.push(item.BidPrice);
+                });
+                 console.log(lsLabel);
+                 console.log(lsDataSource);
+                var ctx = document.getElementById('myChart')
+                var barChartData = {
+                    labels: lsLabel,
+                    datasets: [{
+                        label: 'Doanh thu',
+                        backgroundColor: '#0b9663',
+                        data: lsDataSource
+                    }]
+                }
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: barChartData ,
+                });
+             }
+             function filterDate() {
+                 const lsLaBel2 = [...lsLabel];
+                 console.log(lsLaBel2);
+             }
+            function loadData(date) {
+                $.ajax({
+                    type: 'GET',
+                    url: '/DashBoard/filter',
+                    traditional: true,
+                    data: { date: date },
+                    success: function (data) {
+                        RegistChartBid(data);
+
+
+                    }
+                });
+            }
+
+        })
+   
+
+
+
+    </script>
+}
 

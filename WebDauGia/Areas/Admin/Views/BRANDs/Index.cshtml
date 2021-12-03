@@ -5,40 +5,39 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2 style="text-align:left;margin-top:20px;">DANH MỤC HÃNG</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p style="text-align:right;margin:5px;">
+    <a href="@Url.Action("Create","BRANDs")" class="btn btn-primary">Tạo mới</a>
 </p>
-<table class="table" id="table">
+<table class="table" id="Table">
     <thead>
         <tr>
-            <th>
+            <th style="width:900px;">
                 @Html.DisplayNameFor(model => model.Name)
             </th>
-            <th></th>
-        </tr>
+            <th style="width:150px; text-align: center;">Chỉnh sửa</th>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-        
-            <td>
-                <a class="btn btn-sm btn-success" href="@Url.Action("Edit","BRANDs",new { @id = item.IdBrand })">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","BRANDs",new { @id = item.IdBrand })">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
-                <a class="btn btn-sm btn-info" href="@Url.Action("Details","BRANDs",new { @id = item.IdBrand })">
-                    <i class="fas fa-info-circle"></i>
-                </a>
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td style=" text-align: center;">
+                    <a class="btn btn-sm btn-success" href="@Url.Action("Edit","BRANDs",new { @id = item.IdBrand })">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","BRANDs",new { @id = item.IdBrand })">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <a class="btn btn-sm btn-info" href="@Url.Action("Details","BRANDs",new { @id = item.IdBrand })">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </td>
+            </tr>
         }
     </tbody>
 </table>

@@ -10,11 +10,19 @@ namespace WebDauGia.Controllers
     public class HomeController : Controller
     {
         DBContext db = new DBContext();
+
+   
         public ActionResult Index()
         {
+            
+            ViewBag.categoryList = GetNewCategory(1);
             ViewBag.Product = GetNewProduct(7);
-            ViewBag.Blog = GetBlog(5);
+            ViewBag.Blog = GetBlog(3);
             return View();
+        }
+        private List<CATEGORY> GetNewCategory(int count)
+        {
+            return db.CATEGORY.OrderByDescending(a => a.IdCate).Take(count).ToList();
         }
         private List<PRODUCT> GetNewProduct(int count)
         {
@@ -24,18 +32,7 @@ namespace WebDauGia.Controllers
         {
             return db.BLOG.OrderByDescending(a => a.IdBlog).Take(count).ToList();
         }
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+       
 
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }

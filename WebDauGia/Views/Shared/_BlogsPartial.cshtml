@@ -1,18 +1,13 @@
 ﻿@model PagedList.PagedList<WebDauGia.Models.BLOG>
-
 @foreach (var blog in Model)
 {
     <div id="blog-listing" class="col-md-4 my-2">
         <a href="@Url.Action("Detail", "Blog", new { id = blog.IdBlog }, null)">
-            @foreach (var item in blog.IMG_BLOG)
+            @foreach (var img in blog.IMG_BLOG)
             {
-
-                if (blog.IdBlog == item.IdBlog)
-                {
-                    <img src="@item.LinkImg" alt="Example blog post alt" class="img-fluid shadow">
-                }
-
-
+                <img src="@Url.Content(img.LinkImg)" alt="" class="img-fluid" style="width:100%;
+                                            height:100%;
+                                            border-radius: 15px;">
             }
         </a>
     </div>
@@ -22,7 +17,6 @@
             <p class="author-category">
                 <span>in</span> XEMAYDHCV
             </p>
-
         </div>
         <p class="card-title text-dark" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></p>
         <p class="read-more"><a href="@Url.Action("Detail", "Blog", new { id = blog.IdBlog }, null)" class="btn btn-primary">Đọc thêm</a></p>

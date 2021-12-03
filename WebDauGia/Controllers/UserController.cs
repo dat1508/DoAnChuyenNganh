@@ -7,6 +7,8 @@ using WebDauGia.Models;
 using WebDauGia.DAO;
 using System.Data.Entity;
 using System.Net;
+using WebDauGia.Helper.Name;
+using System.IO;
 
 namespace WebDauGia.Controllers
 {
@@ -87,7 +89,8 @@ namespace WebDauGia.Controllers
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
       
-        public ActionResult UploadProduct(FormCollection f, [Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,LowestBid,Status,Desc,StartPrice,PriceBuy,StartingDate,EndingDate,Location,StatusBid")] PRODUCT pRODUCT)
+        public ActionResult UploadProduct(FormCollection f, [Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,LowestBid,Status,Desc,StartPrice,PriceBuy," +
+            "StartingDate,EndingDate,Location,StatusBid,StartBID,EndBID")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {
             if (f["txt-new-cate"] != null) {
                 string namecate = f["txt-new-cate"].ToString().Trim();
@@ -127,6 +130,27 @@ namespace WebDauGia.Controllers
             if (ModelState.IsValid)
             {
                 db.PRODUCT.Add(pRODUCT);
+                if (fileUpload != null)
+                {
+
+                    if (!fileUpload.ContentType.Contains("image")) throw new Exception("File hình không hợp lệ");
+                    if (fileUpload.ContentLength > 3 * 1024 * 1024) throw new Exception("Hình ảnh vượt quá 3Mb");
+                    var fileName = Path.GetFileName(RemoveVietnamse.convertToSlug(pRODUCT.NameProduct.ToLower()) + "-anh-bia.png");
+                    var path = Path.Combine(Server.MapPath("~/Public/img/product/"), fileName);
+                    try
+                    {
+                        if (System.IO.File.Exists(path)) System.IO.File.Delete(path);
+                    }
+                    catch
+                    {
+
+                    }
+                    fileUpload.SaveAs(path);
+                    var img = new IMG();
+                    img.LinkImg = "/Public/img/product/" + fileName;
+                    img.IdProduct = pRODUCT.IdProduct;
+                    db.IMG.Add(img);
+                }
                 db.SaveChanges();
                 ViewBag.IdBrand = new SelectList(db.BRAND.OrderBy(b => b.Name), "IdBrand", "Name", pRODUCT.IdBrand);
                 ViewBag.IdCate = new SelectList(db.CATEGORY.OrderBy(b => b.Name), "IdCate", "Name", pRODUCT.IdCate);

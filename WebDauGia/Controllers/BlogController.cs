@@ -14,7 +14,7 @@ namespace WebDauGia.Controllers
     public class BlogController : Controller
     {
         DBContext db = new DBContext();
-        int pageSize = 1;
+        int pageSize = 5;
         private List<BLOG> GetBlog(List<BLOG> blogs)
         {
             return blogs.OrderByDescending(a => a.IdBlog).ToList();
@@ -39,7 +39,7 @@ namespace WebDauGia.Controllers
             }
             else
             {
-                NewBlog = GetBlog(db.BLOG.Where(p => p.IdCate != 4 || p.IdUser == IdUser).ToList());
+                NewBlog = GetBlog(db.BLOG.ToList());
             }
             return View(NewBlog.ToPagedList((int)pageNum, pageSize));
         }

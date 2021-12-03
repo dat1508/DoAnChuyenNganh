@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebDauGia.Helper.Name;
 using WebDauGia.Models;
 
 namespace WebDauGia.Areas.Admin.Controllers
@@ -51,11 +53,36 @@ namespace WebDauGia.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,Status,Desc,LowestBid,StartPrice,PriceBuy,DateCreate,StartingDate,EndingDate,BidTime,Location,IdOwner,IdBuyer,StatusBid")] PRODUCT pRODUCT)
+        [ValidateInput(false)]
+        public ActionResult Create([Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,Status,Desc,LowestBid," +
+            "StartPrice,PriceBuy,DateCreate,StartingDate,EndingDate,BidTime,Location,IdOwner,IdBuyer,StatusBid, StartBID, EndBID")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {
+            pRODUCT.DateCreate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.PRODUCT.Add(pRODUCT);
+                if (fileUpload != null)
+                {
+
+                    if (!fileUpload.ContentType.Contains("image")) throw new Exception("File hình không hợp lệ");
+                    if (fileUpload.ContentLength > 3 * 1024 * 1024) throw new Exception("Hình ảnh vượt quá 3Mb");
+                    var fileName = Path.GetFileName(RemoveVietnamse.convertToSlug(pRODUCT.NameProduct.ToLower()) + "-anh-bia.png");
+                    var path = Path.Combine(Server.MapPath("~/Public/img/product/"), fileName);
+                    try
+                    {
+                        if (System.IO.File.Exists(path)) System.IO.File.Delete(path);
+                    }
+                    catch
+                    {
+
+                    }
+                    fileUpload.SaveAs(path);
+                    var img = new IMG();
+                    img.LinkImg = "/Public/img/product/" + fileName;
+                    img.IdProduct = pRODUCT.IdProduct;
+                    db.IMG.Add(img);
+                }
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -91,11 +118,46 @@ namespace WebDauGia.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,Status,Desc,LowestBid,StartPrice,PriceBuy,DateCreate,StartingDate,EndingDate,BidTime,Location,IdOwner,IdBuyer,StatusBid")] PRODUCT pRODUCT)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,Status,Desc,LowestBid,StartPrice," +
+            "PriceBuy,DateCreate,StartingDate,EndingDate,BidTime,Location,IdOwner,IdBuyer,StatusBid, StartBID, EndBID")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {
+            var pathold = Path.Combine(Server.MapPath("~/Public/img/product/"), Path.GetFileName(RemoveVietnamse.convertToSlug(pRODUCT.NameProduct.ToLower()) + "-anh-bia.png"));
             if (ModelState.IsValid)
             {
+                //var product = db.PRODUCT.Where(p => p.NameProduct.ToLower() == pRODUCT.NameProduct.ToLower() && pRODUCT.IdProduct != p.IdProduct).FirstOrDefault();
+                //if (product != null || fileUpload == null)
+                //{
+                //    ViewBag.IdBrand = new SelectList(db.BRAND, "IdBrand", "Name", pRODUCT.IdBrand);
+                //    ViewBag.IdCate = new SelectList(db.CATEGORY, "IdCate", "Name", pRODUCT.IdCate);
+                //    ViewBag.Error = "Sản phẩm đã tồn tại và vui lòng nhập đầy đủ thông tin";
+                //    return View(pRODUCT);
+                //}
                 db.Entry(pRODUCT).State = EntityState.Modified;
+                db.SaveChanges();
+                if (fileUpload != null)
+                {
+                    if (!fileUpload.ContentType.Contains("image")) throw new Exception("File hình không hợp lệ");
+                    if (fileUpload.ContentLength > 3 * 1024 * 1024) throw new Exception("Hình ảnh vượt quá 3Mb");
+                    var fileName = Path.GetFileName(RemoveVietnamse.convertToSlug(pRODUCT.NameProduct.ToLower()) + "-anh-bia.png");
+                    var path = Path.Combine(Server.MapPath("~/Public/img/product/"), fileName);
+                    try
+                    {
+                        if (System.IO.File.Exists(pathold)) System.IO.File.Delete(pathold);
+                        if (System.IO.File.Exists(path)) System.IO.File.Delete(path);
+                    }
+                    catch
+                    {
+
+                    }
+                    fileUpload.SaveAs(path);
+                    var img = new IMG();
+                    img.LinkImg = "/Public/img/product/" + fileName;
+                    img.IdProduct = pRODUCT.IdProduct;
+                    var imgold = db.IMG.Where(x => x.IdProduct == img.IdProduct).SingleOrDefault();
+                    db.IMG.Remove(imgold);
+                    db.IMG.Add(img);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

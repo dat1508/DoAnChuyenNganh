@@ -15,26 +15,29 @@
         @input.Substring(0, length) <text>...</text>
     }
 }
-
+<h2 style="text-align:left;margin-top:20px;">DANH SÁCH BÀI VIẾT</h2>
 <p style="text-align:right;margin:20px;">
     <a href="@Url.Action("Create","BLOGs")" class="btn btn-primary">Tạo mới</a>
 </p>
-<table class="table" id="table">
+<table class="table" id="Table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
+            <th width="100">
+                Hình ảnh
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Body)
+                Tiêu đề
+            </th>
+            <th  width="200">
+               Nội dung
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.CATEGORY_BLOG.Name)
+               Thể loại
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.USER.Fullname)
+               Người viết
             </th>
-            <th></th>
+            <th style="text-align:center; width: 150px;"> Chỉnh sửa</th>
         </tr>
     </thead>
 
@@ -43,19 +46,33 @@
         {
         <tr>
             <td>
+                @foreach (var picture in item.IMG_BLOG)
+                {
+                    if (item.IdBlog == picture.IdBlog)
+                    {
+                        <img src="@picture.LinkImg" alt="Example blog post alt" class="img-fluid admin_img">
+                    }
+
+                }
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
+
                 @if (item.Body.Length > 100)
                 {
-                 
-               @Html.Raw(item.Body.Substring(0, 30).ToLower())
+
+                <a style="font-size: 16px;">  @Html.Raw(item.Body.Substring(0, 30).ToLower())</a>
                 }
                 else
                 {
-                    @Html.Raw(item.Body)
-                }
-            </td>
+                        <a style="font-size: 16px;">
+                            @Html.Raw(item.Body)
+                        </a>
+                        }
+
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CATEGORY_BLOG.Name)
             </td>
@@ -63,11 +80,11 @@
                 @Html.DisplayFor(modelItem => item.USER.Fullname)
             </td>
             @*<td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdBlog }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdBlog }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdBlog })
-            </td>*@
-            <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.IdBlog }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdBlog }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdBlog })
+        </td>*@
+            <td style="text-align:center;">
                 <a class="btn btn-sm btn-success" href="@Url.Action("Edit","BLOGs",new { @id = item.IdBlog })">
                     <i class="fas fa-edit"></i>
                 </a>

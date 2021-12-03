@@ -17,6 +17,7 @@
           <Property Name="BidPrice" Type="int" />
           <Property Name="BidTime" Type="datetime" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="BID_REGISTER">
           <Key>
@@ -78,14 +79,14 @@
           <Property Name="IdProduct" Type="int" />
           <Property Name="Price" Type="int" />
           <Property Name="Time" Type="datetime" />
-          <Property Name="Stt" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Stt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="IMG">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LinkImg" Type="nchar" MaxLength="50" />
+          <Property Name="LinkImg" Type="nchar" MaxLength="400" />
           <Property Name="IdProduct" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="IMG_BLOG">
@@ -93,7 +94,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LinkImg" Type="nchar" MaxLength="50" />
+          <Property Name="LinkImg" Type="nchar" MaxLength="1000" />
           <Property Name="IdBlog" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PRODUCT">
@@ -118,6 +119,8 @@
           <Property Name="IdOwner" Type="int" />
           <Property Name="IdBuyer" Type="int" />
           <Property Name="StatusBid" Type="bit" />
+          <Property Name="StartBID" Type="datetime" />
+          <Property Name="EndBID" Type="datetime" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -523,6 +526,7 @@
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__BID__IdProduct__3D5E1FD2" FromRole="BID" ToRole="PRODUCT" />
           <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK__BID__IdUser__37A5467C" FromRole="BID" ToRole="USER" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BID_REGISTER">
           <Key>
@@ -602,7 +606,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LinkImg" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LinkImg" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
           <Property Name="IdProduct" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" FromRole="IMG" ToRole="PRODUCT" />
         </EntityType>
@@ -611,7 +615,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LinkImg" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LinkImg" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
           <Property Name="IdBlog" Type="Int32" Nullable="false" />
           <NavigationProperty Name="BLOG" Relationship="DBDauGiaModel.FK__IMG_BLOG__IdBlog__3F466844" FromRole="IMG_BLOG" ToRole="BLOG" />
         </EntityType>
@@ -645,6 +649,8 @@
           <NavigationProperty Name="IMG" Relationship="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" FromRole="PRODUCT" ToRole="IMG" />
           <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK_PRODUCT_USER" FromRole="PRODUCT" ToRole="USER" />
           <NavigationProperty Name="USER1" Relationship="DBDauGiaModel.FK_PRODUCT_USER1" FromRole="PRODUCT" ToRole="USER" />
+          <Property Name="StartBID" Type="DateTime" Precision="3" />
+          <Property Name="EndBID" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="RANK">
           <Key>
@@ -890,6 +896,7 @@
           <EntitySetMapping Name="BID">
             <EntityTypeMapping TypeName="DBDauGiaModel.BID">
               <MappingFragment StoreEntitySet="BID">
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="BidTime" ColumnName="BidTime" />
                 <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />
@@ -988,6 +995,8 @@
           <EntitySetMapping Name="PRODUCT">
             <EntityTypeMapping TypeName="DBDauGiaModel.PRODUCT">
               <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="EndBID" ColumnName="EndBID" />
+                <ScalarProperty Name="StartBID" ColumnName="StartBID" />
                 <ScalarProperty Name="StatusBid" ColumnName="StatusBid" />
                 <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
                 <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />

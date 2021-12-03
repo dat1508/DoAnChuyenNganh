@@ -47,7 +47,7 @@ namespace WebDauGia.Controllers
                 contact.IdUser = null;
             }
 
-            //contact.status = false;
+            contact.Status = false;
             db.CONTACT.Add(contact);
             db.SaveChanges();
 

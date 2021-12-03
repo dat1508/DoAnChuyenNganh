@@ -1,0 +1,86 @@
+﻿@model List<WebDauGia.Models.USER>
+
+
+<div id="all" style="padding-left: 40px;">
+    <div id="content">
+        <div id="hot">
+            <div class="box py-1">
+                <div class="container">
+                  
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2 style="text-align: center; width: max-content; ">DANH SÁCH NGƯỜI DÙNG ĐÃ ĐĂNG KÝ TÀI KHOẢN </h2>
+
+                                <div class="section-border"></div>
+                            </div>
+                        </div>
+                
+                    </div>
+                </div>
+            <table style="width: max-content; margin: 0 auto; padding: 5px; border: 1px solid #808080;" border="1">
+                <thead style="width:max-content; padding:5px;">
+                    <tr>
+
+                        <th style="width: max-content; padding: 10px;">HỌ VÀ TÊN </th>
+                        <th style="width: max-content; padding: 10px;">TÀI KHOẢN</th>
+                        <th style="width: max-content; padding: 10px;">ĐỊA CHỈ </th>
+                        <th style="width: max-content; padding: 10px;">SỐ ĐIỆN THOẠI</th>
+                        <th style="width: max-content; padding: 10px;">NGÀY SINH </th>
+                        <th style="width: max-content; padding: 10px;">EMAIL</th>
+                        <th style="width: max-content; padding: 10px;">GIỚI TÍNH</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td style="width: max-content; padding: 10px;">
+                                @Html.DisplayFor(modelItem => item.Fullname)
+                            </td>
+                            <td style="width: max-content; padding: 10px;">
+                                @Html.DisplayFor(modelItem => item.Username)
+                            </td>
+
+                            <td style="width: max-content; padding: 10px;">
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td style="width: max-content; padding: 10px;">
+                                @Html.DisplayFor(modelItem => item.Phone)
+                            </td>
+                            <td style="width: max-content; padding: 10px;">
+                               
+                                @Convert.ToDateTime(item.DateOfBirth).ToString("dd/MM/yyyy")
+                            </td>
+                            <td style="width: max-content; padding: 10px;">
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td style="width:max-content; padding:10px;">
+                                @if (item.Gender == false)
+                                {
+                                    <span style="color:darkorange; text-align:center;">Nữ</span>
+                                }
+                                else
+                                {
+                                    <span style="color: black; text-align: center;">Nam</span>
+                                }
+
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6"style="text-align: right; padding: 40px;">
+                        <h4>   TP.HCM, ngày @DateTime.Now.ToString("dd") Tháng @DateTime.Now.ToString("MM") Năm @DateTime.Now.ToString("yyyy")</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+            </div>
