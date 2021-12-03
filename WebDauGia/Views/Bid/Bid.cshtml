@@ -78,8 +78,8 @@
                                 <input class="plus is-form page-item page-link border-dark" type="button" value="+" style="display:inline-block">
                             </div>
                             <a id="datgia" class="btn btn-primary text-center w-75">ĐẶT GIÁ</a>
-                            <div id="start-bid">@Model.StartBID.ToString("dd/MM/yyyy HH:mm:ss")</div>
-                            <div id="end-bid">@Model.EndBID.ToString("dd/MM/yyyy HH:mm:ss")</div>
+                            @*<div id="start-bid">@Model.StartBID.ToString("dd/MM/yyyy HH:mm:ss")</div>
+                            <div id="end-bid">@Model.EndBID.ToString("dd/MM/yyyy HH:mm:ss")</div>*@
                         </div>
                     </div>
                 </div>
@@ -163,8 +163,6 @@
                 }
             })
         }
-
-
 
         function toMilisecond(id) {
             var parts = document.querySelector(`#${id}`).innerText;

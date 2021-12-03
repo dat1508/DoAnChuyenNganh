@@ -11,7 +11,7 @@ namespace WebDauGia.Controllers
     public class BidController : Controller
     {
         DBContext db = new DBContext();
-
+        MyHub hub = new MyHub();
         public ActionResult Bid()
         {
             return View(db.PRODUCT.Find(2));
@@ -46,8 +46,9 @@ namespace WebDauGia.Controllers
             if (Session["userID"] != null)
             {
                 int idUser = Int32.Parse(Session["userID"].ToString());
-                result = db.BID_REGISTER.Any(r => r.IdProduct == idProduct && r.IdUser == idUser);
-                return result;
+                var check = db.BID_REGISTER.FirstOrDefault(r => r.IdProduct == idProduct && r.IdUser == idUser);
+                if (check != null)
+                    return true;
 
             }
             return result;
@@ -59,7 +60,7 @@ namespace WebDauGia.Controllers
             if (Session["userID"] != null)
             {
                 int idUser = Int32.Parse(Session["userID"].ToString());
-                updateTime(idProduct);
+                //updateTime(idProduct);
                 HISTORY history = new HISTORY();
                 history.IdProduct = idProduct;
                 history.IdUser = idUser;
@@ -67,16 +68,18 @@ namespace WebDauGia.Controllers
                 history.Price = price;
                 db.HISTORY.Add(history);
                 db.SaveChanges();
+
+                hub.UpdateData();
             }
         }
 
-        private void updateTime(int idProduct)
+        /*private void updateTime(int idProduct)
         {
             PRODUCT pd = db.PRODUCT.Find(idProduct);
             pd.StartBID = DateTime.Now;
             pd.EndBID = pd.StartBID.AddMinutes((double)pd.BidTime);
             db.SaveChanges();
-        }
+        }*/
 
         public int getLastestPrice(int? idProduct)
         {
@@ -88,10 +91,40 @@ namespace WebDauGia.Controllers
             return 0;
         }
 
-        public void CountDownBidTime(int idProduct, int time)
+        public string finishBid(int idProduct)
+        {
+            HISTORY history = db.HISTORY.Where(h => h.IdProduct == idProduct).OrderByDescending(d => d.Price).FirstOrDefault();
+            BID bid = new BID();
+            PRODUCT product = db.PRODUCT.Find(idProduct);
+            string noti = "";
+            if (history != null && product.StatusBid == true)
+            {
+                bid.IdUser = (int)history.IdUser;
+                bid.IdProduct = idProduct;
+                bid.BidPrice = history.Price;
+                bid.BidTime = history.Time;
+                bid.Status = "Chưa thanh toán";
+                db.BID.Add(bid);
+                product.StatusBid = false;
+                product.IdBuyer = bid.IdUser;
+                db.SaveChanges();
+                noti = "<b style='color: red;'>Đấu giá đã kết thúc, sản phẩm thuộc về " + history.USER.Fullname + "</b>";
+            }
+            else if (history == null && product.StatusBid == true)
+            {
+                noti = "<b style='color: red;'>Cuộc đấu giá đã kết thúc</b>";
+            }
+            else if (history != null && product.StatusBid == false)
+            {
+                noti = "<b style='color: red;'>Đấu giá đã kết thúc, sản phẩm thuộc về " + history.USER.Fullname + "</b>";
+            }
+            return noti;
+        }
+
+        /*public void CountDownBidTime(int idProduct, int time)
         {
             db.PRODUCT.Find(idProduct).BidTimeCountDown = time;
             db.SaveChanges();
-        }
+        }*/
     }
 }
