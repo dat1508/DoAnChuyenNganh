@@ -40,7 +40,29 @@
     @RenderSection("head", required: false)
 </head>
 <body onLoad="renderTime();">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=3976925969082352&autoLogAppEvents=1" nonce="WejoyIci"></script>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '859887334690816',
+                cookie: true,
+                xfbml: true,
+                version: 'v12.0'
+            });
 
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
     <header id="navbar" class=" navbar-b navbar-trans navbar-expand-md fixed-top">
         <!--
         *** TOPBAR ***
@@ -275,7 +297,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6 ">
 
-                        <h4 class="mb-3 text-light"">Facebook fanpage</h4>
+                        <h4 class="mb-3 text-light" ">Facebook fanpage</h4>
                         <p class="text-left">
                             <div class="fb-page" data-href="https://www.facebook.com/xemaydhcv" data-tabs="timeline" data-width="290px" data-height="250px" data-small-header="false" data-adapt-container-width="false" data-hide-cover="false" data-show-facepile="false"><blockquote cite="https://www.facebook.com/xemaydhcv" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/xemaydhcv">Xemay DHCV</a></blockquote></div>
                         </p>

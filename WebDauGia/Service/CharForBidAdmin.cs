@@ -9,7 +9,7 @@ namespace WebDauGia.Service
 {
     public class CharForBidAdmin
     {
-        public static List<ExportBid> RegisterDetail(int id)
+        /*public static List<ExportBid> RegisterDetail(int id)
         {
             using (var db = new DBContext())
             {
@@ -23,6 +23,6 @@ namespace WebDauGia.Service
 
                 return listDetail;
             }
-        }
+        }*/
     }
 }

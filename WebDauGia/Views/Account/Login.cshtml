@@ -27,7 +27,7 @@
             <h1>Đăng nhập</h1>
             <p class="font-italic text-muted mb-0">Nhanh chóng và dễ dàng</p>
 
-            
+
         </div>
 
         <!-- Registeration Form -->
@@ -72,11 +72,9 @@
 
                     <!-- Social Login -->
                     <div class="form-group col-lg-12 mx-auto">
-                        <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                            <i class="fa fa-facebook-f mr-2"></i>
-                            <span class="font-weight-bold">Đăng nhập bằng Facebook</span>
-                        </a>
-
+                        <div class="text-center">
+                        <a class="fb-login-button justify-content-center" onlogin="checkLoginState();" data-width="500" data-size="large" data-button-type="login_with" data-layout="rounded" data-auto-logout-link="false" data-use-continue-as="false"></a>
+                        </div>      
                     </div>
 
                     <!-- Already Registered -->
@@ -90,3 +88,45 @@
     </div>
 </div>
 
+@section scripts {
+    <script>
+        function statusChangeCallback(response) {  
+            console.log('statusChangeCallback');
+            console.log(response);                  
+            if (response.status === 'connected') {   
+                login();
+            } else {                                
+                document.getElementById('status').innerHTML = 'Please log ' +
+                    'into this webpage.';
+            }
+        }
+
+        function checkLoginState() {             
+            FB.getLoginStatus(function (response) {  
+                statusChangeCallback(response);
+            });
+        }
+
+        function login() {
+            FB.login(function (response) {
+                FB.api('/me?fields=id,name,last_name,email,picture', function (response) {
+                    $.ajax({
+                        url: '@Url.Action("LoginFB", "Account")',
+                        type: 'POST',
+                        async: false,
+                        cache: false,
+                        data: { fullname: response.name, email: response.email},
+                        success: function (data) {
+                            window.location = '@Url.Action("Index", "Home")'
+                        },
+                        error: function (request, status, error) {
+                            window.location = '@Url.Action("Login", "Customer")'
+                        }
+                    });
+                });
+            }, { scope: 'public_profile,email' });
+        }
+
+
+    </script>
+}
