@@ -97,7 +97,7 @@ namespace WebDauGia.Controllers
         {
             HISTORY history = db.HISTORY.Where(h => h.IdProduct == idProduct).OrderByDescending(d => d.Price).FirstOrDefault();
             BID bid = new BID();
-         
+            USER uSER = null;
             PRODUCT product = db.PRODUCT.Find(idProduct);
             string noti = "";
             if (history != null && product.StatusBid == true)
@@ -113,6 +113,8 @@ namespace WebDauGia.Controllers
                 product.IdBuyer = bid.IdUser;
                 db.SaveChanges();
                 noti = "<b style='color: red;'>Đấu giá đã kết thúc, sản phẩm thuộc về " + history.USER.Fullname + "</b>";
+
+                uSER = db.USER.Find(history.IdUser);
                 string Address = uSER.Email;
                 string Title = "DTV Auction, xin thông báo đến " + uSER.Fullname ;
                 //string Message = " <b style='color: red;'>Đấu giá đã kết thúc, sản phẩm " + product.NameProduct + " đã thuộc về bạn</b>";
@@ -138,6 +140,10 @@ namespace WebDauGia.Controllers
                   emailService.sendEmail(Address, Title, Message);
             }
             else if (history == null && product.StatusBid == true)
+            {
+                noti = "<b style='color: red;'>Cuộc đấu giá đã kết thúc</b>";
+            }
+            else if (history == null && product.StatusBid == false)
             {
                 noti = "<b style='color: red;'>Cuộc đấu giá đã kết thúc</b>";
             }

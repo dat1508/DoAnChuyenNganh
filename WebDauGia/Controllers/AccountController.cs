@@ -46,6 +46,29 @@ namespace WebDauGia.Controllers
             Session["fullName"] = user.Fullname;
             return RedirectToAction("Index", "Home");
         }
+        public void LoginFB(string fullname, string email)
+        {
+            var fbUser = new USER();
+            if (db.USER.FirstOrDefault(u => u.Email == email) != null)
+            {
+                fbUser = db.USER.FirstOrDefault(u => u.Email == email);
+                Session["userID"] = fbUser.IdUser;
+                Session["fullName"] = fbUser.Fullname;
+            }
+            else
+            {
+                fbUser.Email = email;
+                fbUser.Username = email;
+                fbUser.Fullname = fullname;
+                fbUser.Gender = true;
+                fbUser.DateOfBirth = DateTime.Now;
+                fbUser.Admin = false;
+                db.USER.Add(fbUser);
+                db.SaveChanges();
+                Session["userID"] = db.USER.FirstOrDefault(u => u.Email == email).IdUser;
+                Session["fullName"] = fbUser.Fullname;
+            }
+        }
 
         public ActionResult SignUp()
         {

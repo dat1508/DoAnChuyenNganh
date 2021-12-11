@@ -127,7 +127,7 @@ namespace WebDauGia.Controllers
 
             pRODUCT.NameProduct = NameProduct;
             pRODUCT.Location = Location;
-
+            pRODUCT.StatusBid = false;
             if (ModelState.IsValid)
             {
                 db.PRODUCT.Add(pRODUCT);

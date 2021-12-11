@@ -202,5 +202,20 @@ namespace WebDauGia.Areas.Admin.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult Accept(int id)
+        {
+            PRODUCT pRODUCT = db.PRODUCT.Find(id);
+            if (pRODUCT.StatusBid == true)
+            {
+                pRODUCT.StatusBid = false;
+            }
+            else
+            {
+                pRODUCT.StatusBid = true;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
