@@ -14,7 +14,7 @@ namespace WebDauGia.Controllers
     public class BlogController : Controller
     {
         DBContext db = new DBContext();
-        int pageSize = 5;
+        int pageSize = 3;
         private List<BLOG> GetBlog(List<BLOG> blogs)
         {
             return blogs.OrderByDescending(a => a.IdBlog).ToList();

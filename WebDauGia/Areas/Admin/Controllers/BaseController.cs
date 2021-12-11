@@ -11,10 +11,10 @@ namespace WebDauGia.Areas.Admin.Controllers
     {
         public BaseController()
         {
-            //if (System.Web.HttpContext.Current.Session["UserAdmin"].Equals(""))
-            //{
-            //    System.Web.HttpContext.Current.Response.Redirect("~/Admin/Login");
-            //}
+            if (System.Web.HttpContext.Current.Session["UserAdmin"].Equals(""))
+            {
+                System.Web.HttpContext.Current.Response.Redirect("~/Admin/Login");
+            }
         }
         public  string RenderPartialToString(string viewName, object model, ControllerContext ControllerContext)
         {

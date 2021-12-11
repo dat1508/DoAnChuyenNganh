@@ -65,12 +65,15 @@ namespace WebDauGia.Controllers
             }
             return PartialView("_ProductsPartial", products.ToPagedList((int)pageNum, pageSize));
         }
-
+        private List<PRODUCT> GetNewProduct(int count)
+        {
+            return db.PRODUCT.OrderByDescending(a => a.IdProduct).Take(count).ToList();
+        }
         [Route("san-pham/{url}")]
         public ActionResult Detail(string url)
         {
             int id = PRODUCT.GetIDFromURL(url) ?? 0;
-       
+            ViewBag.Product = GetNewProduct(7);
             if (id == null)
             {
                 return RedirectToAction("Product", "Product");

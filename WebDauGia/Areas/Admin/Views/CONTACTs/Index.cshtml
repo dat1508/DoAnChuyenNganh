@@ -4,7 +4,17 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length) <text>...</text>
+    }
+}
 <h2 style="text-align:left;margin-top:20px;">DANH SÁCH LIÊN HỆ</h2>
 
 <p style="text-align:right;margin:20px;">
@@ -14,16 +24,16 @@
     <thead>
         <tr>
             <th width="250">
-                @Html.DisplayNameFor(model => model.Title)
+                TIêu đề
             </th>
             <th width="200">
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
             <th width="300">
-                @Html.DisplayNameFor(model => model.Body)
+                Nội dung
             </th>
             <th width="100">
-                @Html.DisplayNameFor(model => model.USER.Fullname)
+               Họ và tên
             </th>
             <th width="100">
                 Trạng thái
@@ -42,20 +52,21 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
+
                     @Html.DisplayFor(modelItem => item.Body)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.USER.Fullname)
                 </td>
                 <td>
-                        @if (item.Status == false)
-                        {
-                            <span style="color:darkorange;">Chưa xem</span>
-                        }
-                        else
-                        {
-                            <span style="color:cornflowerblue;">Đã xem</span>
-                        }
+                    @if (item.Status == false)
+                    {
+                        <span style="color:darkorange;">Chưa xem</span>
+                    }
+                    else
+                    {
+                        <span style="color:cornflowerblue;">Đã xem</span>
+                    }
                 </td>
                 <td style="text-align: center;">
 

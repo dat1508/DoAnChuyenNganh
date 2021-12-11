@@ -204,6 +204,7 @@
     <Compile Include="Helper\Excel\ExcelModel.cs" />
     <Compile Include="Helper\MD5\MD5Helper.cs" />
     <Compile Include="Helper\Name\RemoveVietnamse.cs" />
+    <Compile Include="Helper\Security\Login.cs" />
     <Compile Include="Helper\Service\EmailService.cs" />
     <Compile Include="Models\BID.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
@@ -801,6 +802,7 @@
     <Content Include="Public\css\style.violet.css" />
     <Content Include="Public\img\AjaxLoader.gif" />
     <Content Include="Public\img\bannerchinh.jpg" />
+    <Content Include="Public\img\blogs\introduce.jpg" />
     <Content Include="Public\img\Capdongvienthong.jpg" />
     <Content Include="Public\img\gallery\g1.jpg" />
     <Content Include="Public\img\gallery\g2.jpg" />
@@ -1028,8 +1030,6 @@
     <Folder Include="Helper\Chart\" />
     <Folder Include="Public\Export\ExportExcel\" />
     <Folder Include="Public\Export\ExportPdf\" />
-    <Folder Include="Public\img\blogs\" />
-    <Folder Include="Views\Bid\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

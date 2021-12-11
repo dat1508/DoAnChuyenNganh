@@ -5,151 +5,97 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>PRODUCT</h4>
+<div class="container">
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NameProduct)
-        </dt>
+    <div class="form-group">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 class="h2">XEM CHI TIẾT</h2>
+                </div>
+                <div class="col-md-3" style="text-align:right;">
+                    @Html.ActionLink("CHỈNH SỬA", "Edit", new { id = Model.IdProduct }) |
+                    @Html.ActionLink("QUAY LẠI", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row border border-2 border-dark rounded-3 py-3 col-md-10">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.NameProduct" readonly>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.Location" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.IdCate" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.IdBrand" readonly>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.Quantity" readonly>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.LowestBid" readonly>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.StartPrice" readonly>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.PriceBuy" readonly>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.DateCreate" readonly>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.BidTime" readonly>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.Status" readonly>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.StatusBid" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.IdOwner" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.IdBuyer" readonly>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Tên bài viết</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.Desc" readonly>
+                </div>
+                <div class="col-md-4">
+                    <lable class="control-label col-md-2">Hình ảnh</lable>
+                    <div class="col-md-12">
+                        @foreach (var picture in Model.IMG)
+                        {
+                            <img src="@picture.LinkImg" alt="Example blog post alt" class="row border border-2 border-dark rounded-3 my-1 py-4 img-fluid shadow">
+                        }
+                    </div>
+                </div>
+            </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.NameProduct)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Quantity)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Desc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Desc)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LowestBid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LowestBid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PriceBuy)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PriceBuy)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateCreate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateCreate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartingDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartingDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndingDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndingDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BidTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BidTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StatusBid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StatusBid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BRAND.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BRAND.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CATEGORY.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CATEGORY.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.USER.Fullname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.USER.Fullname)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.USER1.Fullname)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.USER1.Fullname)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.IdProduct }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    </div>
+        </div>

@@ -1,6 +1,6 @@
 ﻿@using WebDauGia.Models
 @model PRODUCT
-
+@using System.Globalization
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -412,272 +412,34 @@
                     </div>
                     <div class="container">
                         <div class="product-slider owl-carousel owl-theme">
-                            <div class="item">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
+                            @foreach (var i in ViewBag.Product)
+                            {
+                                <a href="@Url.Action("Detail","Product", new { @id = i.IdProduct}, null)">
+                                    <div class="item">
+                                        <div class="product">
+                                            <div class="flip-container">
+                                                <div class="image">
+                                                    @foreach (var img in i.IMG)
+                                                    {
+                                                        <img src="@Url.Content(img.LinkImg)" alt="" class="img-fluid">
+                                                    }
+                                                </div>
                                             </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div><a href="detail.html" class="invisible">
-                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                             class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
-                                        <p class="price">
-                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.text-->
-                                    <!-- /.ribbon-->
-                                </div>
-                                <!-- /.product-->
-                            </div>
-                            <div class="item">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
+                                            <div class="text">
+                                                <h3>@i.NameProduct</h3>
+                                                <p class="price">
+                                                    <b>Giá khởi điểm:</b>
+                                                    <span> @string.Format(new CultureInfo("vi-VN"), "{0:c}", i.PriceBuy)</span>
+                                                </p>
+                                                <p class="time">
+                                                    <span>Thời gian:@i.StartingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                                                </p>
                                             </div>
                                         </div>
-                                    </div><a href="detail.html" class="invisible">
-                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                             class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
-                                        <p class="price">
-                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
-                                        </p>
                                     </div>
-                                    <!-- /.text-->
-                                    <!-- /.ribbon-->
-                                </div>
-                                <!-- /.product-->
-                            </div>
-                            <div class="item">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div><a href="detail.html" class="invisible">
-                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                             class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
-                                        <p class="price">
-                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.text-->
-                                    <!-- /.ribbon-->
-                                </div>
-                                <!-- /.product-->
-                            </div>
-                            <div class="item">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div><a href="detail.html" class="invisible">
-                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                             class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
-                                        <p class="price">
-                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.text-->
-                                    <!-- /.ribbon-->
-                                </div>
-                                <!-- /.product-->
-                            </div>
-                            <div class="item">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div><a href="detail.html" class="invisible">
-                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                             class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
-                                        <p class="price">
-                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.text-->
-                                    <!-- /.ribbon-->
-                                </div>
-                                <!-- /.product-->
-                            </div>
-                            <div class="item">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div><a href="detail.html" class="invisible">
-                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                             class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
-                                        <p class="price">
-                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.text-->
-                                    <!-- /.ribbon-->
-                                </div>
-                                <!-- /.product-->
-                            </div>
-                            <div class="item">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div><a href="detail.html" class="invisible">
-                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                             class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
-                                        <p class="price">
-                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.text-->
-                                    <!-- /.ribbon-->
-                                </div>
-                                <!-- /.product-->
-                            </div>
-                            <div class="item">
-                                <div class="product">
-                                    <div class="flip-container">
-                                        <div class="flipper">
-                                            <div class="front">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                            <div class="back">
-                                                <a href="detail.html">
-                                                    <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                                         class="img-fluid">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div><a href="detail.html" class="invisible">
-                                        <img src="~/Public/img/Capdongvienthong.jpg" alt=""
-                                             class="img-fluid">
-                                    </a>
-                                    <div class="text">
-                                        <h3><a href="detail.html">@Model.NameProduct</a></h3>
-                                        <p class="price">
-                                            <span class="spanauctionproperty">Giá khởi điểm:</span>
-                                            <span class="spanColorAuctionproperty"> @string.Format("{0:#,##0}", Model.StartPrice) ₫</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.text-->
-                                </div>
-                                <!-- /.product-->
-                            </div>
-                            <!-- /.product-slider-->
+                                </a>
+                            }
                         </div>
-                        <!-- /.container-->
                     </div>
                     <!-- /#hot-->
                     <!-- *** HOT END ***-->

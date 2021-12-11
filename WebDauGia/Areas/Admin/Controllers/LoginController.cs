@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebBanXe.Helpers.MD5;
+using WebDauGia.Service;
 using WebDauGia.Models;
-
+using static WebDauGia.Helper.Security.Login;
 namespace WebDauGia.Areas.Admin.Controllers
 {
     public class LoginController : Controller
     {
         DBContext db = new DBContext();
         // GET: Admin/Auth
+   
         [HttpGet]
         public ActionResult Login()
         {
             return View();
         }
+       
         [HttpPost]
         public ActionResult Login(FormCollection frm)
         {
-            var userName = frm["floatingInput"];
-            var password = MD5Helper.MD5Hash(frm["floatingPassword"]);
+            var userName = frm["floatingInput"].Trim();
+            var password = frm["floatingPassword"].ToString().Trim();
+            var hashedPassword = MD5.MD5Hash(password);
 
             if (String.IsNullOrEmpty(userName))
             {
@@ -34,7 +37,7 @@ namespace WebDauGia.Areas.Admin.Controllers
             }
             else
             {
-                USER user = db.USER.SingleOrDefault(u => u.Username == userName && u.Password == password && u.Admin == true);
+                USER user = db.USER.SingleOrDefault(u => u.Username == userName && u.Password == hashedPassword && u.Admin == true);
                 if (user != null)
                 {
 

@@ -50,56 +50,58 @@
                             <div class="col-sm-6 shadow">
                                 @Html.ValidationSummary(true)
 
-                                @using (Html.BeginForm("ContactPage", "Contact", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                                {
-                                    <form class="needs-validation" novalidate>
-                                        <div class="form-row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <input name="name" type="text" class="form-control" id="validationCustom01" placeholder="Họ tên..." required>
-                                                    <div class="valid-feedback">
-                                                        Looks good!
-                                                    </div>
+                                @using (Html.BeginForm("ContactPage", "Contact", FormMethod.Post, new { @class="needs-validation", role = "form" }))
+        {
+                                @*<form class="needs-validation" novalidate>*@
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input name="name" type="text" class="form-control" id="validationCustom01" placeholder="Họ tên...">
 
+                                                <div class="valid-feedback">
+                                                    Looks good!
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
 
-                                                    <input name="phone" id="phone" type="number" class="form-control" placeholder="Số điện thoại" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-
-                                                    <input name="email" id="email" type="text" class="form-control" placeholder="Email" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-
-                                                    <input id="Address" type="text" class="form-control" placeholder="Nơi công tác" required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-
-                                                    <textarea name="title" id="title" class="form-control" placeholder="Tên tài sản" required></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-
-                                                    <textarea name="body" id="message" class="form-control" placeholder="thông tin chi tiết tài sản" required></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 py-5 text-center">
-                                                <button type="submit" class="form-control bg-success btn btn-primary">
-                                                    <i class="fa fa-envelope-o"></i> Gửi tin nhắn
-                                                </button>
                                             </div>
                                         </div>
-                                    </form>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <input name="phone" id="phone" type="number" class="form-control" placeholder="Số điện thoại" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <input name="email" id="email" type="text" class="form-control" placeholder="Email" required>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+
+                                                <input id="Address" type="text" class="form-control" placeholder="Nơi công tác" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <textarea name="title" id="title" class="form-control" placeholder="Tên tài sản" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+
+                                                <textarea name="body" id="message" class="form-control" placeholder="thông tin chi tiết tài sản" required></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 py-5 text-center">
+                                            <button type="submit" class="form-control bg-success btn btn-primary">
+                                                <i class="fa fa-envelope-o"></i> Gửi tin nhắn
+                                            </button>
+                                        </div>
+                                    </div>
+                                @*</form>*@
                                 }
                             </div>
                         </div>

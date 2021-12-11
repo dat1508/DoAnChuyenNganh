@@ -117,14 +117,14 @@ namespace WebDauGia.Areas.Admin.Controllers
             var pathold = Path.Combine(Server.MapPath("/Public/img/blogs/"), Path.GetFileName(RemoveVietnamse.convertToSlug(bLOG.Title.ToLower()) + "-anh-bia.png"));
             if (ModelState.IsValid)
             {
-                var blog = db.BLOG.Where(p => p.Title.ToLower() == bLOG.Title.ToLower() && p.IdBlog != bLOG.IdBlog).SingleOrDefault();
-                if (blog != null)
-                {
-                    ViewBag.IdCate = new SelectList(db.CATEGORY_BLOG, "IdCate", "NameCate", bLOG.IdCate);
-                    ViewBag.IdUser = new SelectList(db.USER, "IdUser", "FullName", bLOG.IdUser);
-                    ViewBag.Error = "Tiêu đề đã tồn tại";
-                    return View(bLOG);
-                }
+                //var blog = db.BLOG.Where(p => p.Title.ToLower() == bLOG.Title.ToLower() && p.IdBlog != bLOG.IdBlog).SingleOrDefault();
+                //if (blog != null)
+                //{
+                //    ViewBag.IdCate = new SelectList(db.CATEGORY_BLOG, "IdCate", "NameCate", bLOG.IdCate);
+                //    ViewBag.IdUser = new SelectList(db.USER, "IdUser", "FullName", bLOG.IdUser);
+                //    ViewBag.Error = "Tiêu đề đã tồn tại";
+                //    return View(bLOG);
+                //}
                 db.Entry(bLOG).State = EntityState.Modified;
                 db.SaveChanges();
                 //bLOG.IdUser = int.Parse(Session["UserAdmin"].ToString());

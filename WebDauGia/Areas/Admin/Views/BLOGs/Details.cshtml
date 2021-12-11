@@ -40,22 +40,17 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-
                     <lable class="control-label col-md-2">Hình ảnh</lable>
                     <div class="col-md-12">
                         @foreach (var picture in Model.IMG_BLOG)
                         {
-
                             <img src="@picture.LinkImg" alt="Example blog post alt" class="row border border-2 border-dark rounded-3 my-1 py-4 img-fluid shadow">
-
                         }
                     </div>
-
                 </div>
                 <div class="col-md-12">
                     <label class="form-label">Nội dung bài viết</label>
                     <textarea rows="10" class="form-control" readonly>@Html.Raw(Model.Body)</textarea>
-              
                 </div>
             </div>
         </div>
