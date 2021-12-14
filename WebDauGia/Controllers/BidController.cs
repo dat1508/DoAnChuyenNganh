@@ -75,6 +75,27 @@ namespace WebDauGia.Controllers
             }
         }
 
+        [HttpPost]
+        public void buy(int idProduct)
+        {
+            if (Session["userID"] != null)
+            {
+                PRODUCT pro = db.PRODUCT.Find(idProduct);
+                int idUser = Int32.Parse(Session["userID"].ToString());
+                //updateTime(idProduct);
+                HISTORY history = new HISTORY();
+                history.IdProduct = idProduct;
+                history.IdUser = idUser;
+                history.Time = DateTime.Now;
+                history.Price = pro.PriceBuy;
+                pro.EndingDate = DateTime.Now;
+                pro.StatusBid = false;
+                db.HISTORY.Add(history);
+                db.SaveChanges();
+
+                hub.UpdateData();
+            }
+        }
         /*private void updateTime(int idProduct)
         {
             PRODUCT pd = db.PRODUCT.Find(idProduct);

@@ -84,6 +84,12 @@ namespace WebDauGia.Controllers
             ViewBag.ImageList = db.IMG.Where(i => i.IdProduct == product.IdProduct).ToList();
             return View(product);
         }
+
+        public string updateTime(int? idProduct)
+        {
+            PRODUCT p = db.PRODUCT.Find(idProduct);
+            return p.EndingDate.ToString("dd/MM/yyyy HH:mm:ss");
+        }
     }
 }
 

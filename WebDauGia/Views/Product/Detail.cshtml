@@ -96,7 +96,7 @@
                                             <span class="spanauctionproperty">Thời gian kết thúc đấu giá:</span>
                                         </div>
                                         <div class="col-sm-7 col-xs-6">
-                                            <span id="EndingDate" class="spanColorAuctionproperty">@Model.EndingDate.ToString("dd/MM/yyyy HH:mm:ss")</span>
+                                            <span id="EndingDate" class="spanColorAuctionproperty"></span>
                                         </div>
                                     </div>
 
@@ -165,7 +165,10 @@
                                         <div class="col-sm-5 col-xs-6">
                                             <p class="text-left buttons"><a id="datgia" class="btn btn-primary">ĐẶT GIÁ</a></p>
                                         </div>
-                                        <div id="set_price" class="col-sm-7 col-xs-6">
+                                        <div class="col-sm-5 col-xs-6">
+                                            <a id="btn-buy" class="btn btn-info text-white">MUA SẢN PHẨM</a>
+                                        </div>
+                                        <div id="set_price" class="col-sm-6 col-xs-6">
                                             @if (Session["userID"] == null)
                                             {
                                                 <p id="dangkydaugia" class="text-left buttons"><a href="@Url.Action("Login", "Account")" class="btn btn-primary"> ĐĂNG KÝ ĐẤU GIÁ</a></p>
@@ -464,6 +467,7 @@
             connect();
             setInterval(stopCountdown, 1000)
             checkRegister();
+            updateTime();
         });
 
         function connect() {
@@ -471,11 +475,13 @@
 
             hub.client.UpdateData = function () {
                 getLastestPrice();
+                updateTime();
             };
 
             $.connection.hub.start().done(function () {
                 console.log('Kết nối thành công')
                 getLastestPrice();
+                updateTime();
             });
         }
 
@@ -520,6 +526,32 @@
                             },
                             error: function () {
                                 alert('Vui lòng nhập giá tiền')
+                            }
+                        })
+                    } else {
+                        alert('Bạn chưa đăng ký đấu giá')
+                    }
+                },
+                error: function () {
+                }
+            });
+
+        })
+
+        $('#btn-buy').click(function () {
+            $.ajax({
+                type: 'GET',
+                url: '/bid/checkRegister/',
+                data: { idProduct: idProduct },
+                success: function (data) {
+                    if (data == 'True') {
+                        $.ajax({
+                            method: 'POST',
+                            url: '@Url.Action("buy", "Bid")',
+                            data: { idProduct: idProduct},
+                            success: function () {
+                            },
+                            error: function () {
                             }
                         })
                     } else {
@@ -620,6 +652,7 @@
                     document.getElementById('dangkydaugia').style.display = 'none';
                     document.getElementById('datgia').style.display = 'none';
                     document.getElementById('set_price').style.display = 'none';
+                    $('#btn-buy').hide();
                     notify.innerHTML = "<b style='color: red;'>Cuộc đấu giá đã kết thúc</b>"
                     finishBid();
                     checkTime = false;
@@ -698,6 +731,22 @@
                 }
             });
         }
+
+        function updateTime() {
+            $.ajax({
+                method: 'GET',
+                url: '@Url.Action("updateTime", "Product")',
+                data: { idProduct: idProduct },
+                success: function (data) {
+                    $('#EndingDate').empty()
+                    $('#EndingDate').append(data)
+                },
+                error: function () {
+
+                }
+            })
+        }
+
 
         // Get the element with id="defaultOpen" and click on it
         document.getElementById("defaultOpen").click();
