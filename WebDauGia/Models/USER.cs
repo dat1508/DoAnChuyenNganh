@@ -29,15 +29,29 @@ namespace WebDauGia.Models
     
         public int IdUser { get; set; }
         public Nullable<int> IdRank { get; set; }
-        [Display(Name = "HỌ VÀ TÊN")]
+        [Display(Name = "Họ và tên")]
         [Required(ErrorMessage = "Họ tên không được để trống")]
         public string Fullname { get; set; }
+        [Display(Name = "Tên tài khoản")]
+        [Required(ErrorMessage = "Tên tài khoản không được để trống")]
         public string Username { get; set; }
+        [Display(Name = "Mật khẩu")]
+        [Required(ErrorMessage = "Mật khẩu không được để trống")]
         public string Password { get; set; }
+        [Display(Name = "Địa chỉ")]
+        [Required(ErrorMessage = "Địa chỉ không được để trống")]
         public string Address { get; set; }
+        [Display(Name = "Số điện thoại")]
+        [Required(ErrorMessage = "Số điện thoại không được để trống")]
         public string Phone { get; set; }
+        [Display(Name = "Ngày sinh")]
+        [Required(ErrorMessage = "Ngày sinh không được để trống")]
         public System.DateTime DateOfBirth { get; set; }
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "Email không được để trống")]
         public string Email { get; set; }
+        [Display(Name = "Giới tính")]
+        [Required(ErrorMessage = "Giới tính không được để trống")]
         public Nullable<bool> Gender { get; set; }
         public Nullable<bool> Admin { get; set; }
     

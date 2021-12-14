@@ -52,6 +52,7 @@ namespace WebDauGia.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "IdUser,IdRank,Fullname,Username,Password,Address,Phone,DateOfBirth,Email,Gender,Admin")] USER uSER)
         {
+            uSER.Admin = true;
             if (ModelState.IsValid)
             {
                 db.USER.Add(uSER);

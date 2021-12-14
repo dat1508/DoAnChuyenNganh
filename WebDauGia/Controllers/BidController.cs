@@ -102,7 +102,7 @@ namespace WebDauGia.Controllers
             string noti = "";
             if (history != null && product.StatusBid == true)
             {
-                USER uSER = db.USER.Find(history.IdUser);
+                uSER = db.USER.Find(history.IdUser);
                 bid.IdUser = (int)history.IdUser;
                 bid.IdProduct = idProduct;
                 bid.BidPrice = history.Price;

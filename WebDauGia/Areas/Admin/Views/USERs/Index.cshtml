@@ -3,6 +3,8 @@
 @{
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
+
+<script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
 @helper Truncate(string input, int length)
 {
     if (input.Length < length)
@@ -15,116 +17,127 @@
     }
 }
 <h2 style="text-align:left;margin-top:20px;">DANH SÁCH NGƯỜI DÙNG</h2>
-    <p style="text-align:right;margin:20px;">
-        <a id="btnExportPdf" data-toggle="tooltip" data-placement="bottom" title="Export PDF" class="btn waves-effect waves-light btn-success btn-success"> Export PDF</a>
-    </p>
-    <table class="table" id="Table">
-        <thead>
+<p style="text-align:right;margin:20px;">
+    <a href="@Url.Action("Create","USERs")" class="btn btn-primary">Tạo mới</a>
+</p>
+<p style="text-align:right;margin:20px;">
+    <a id="btnExportPdf" data-toggle="tooltip" data-placement="bottom" title="Export PDF" class="btn waves-effect waves-light btn-success btn-success"> Export PDF</a>
+</p>
+<table class="table" id="Table">
+    <thead>
+        <tr>
+            <th>
+                Họ và tên
+            </th>
+            <th>
+                Tài khoản
+            </th>
+
+            <th>
+                Địa chỉ
+            </th>
+            <th>
+                Số điện thoại
+            </th>
+            <th>
+                Ngày sinh
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Giới tính
+            </th>
+            @*<th>
+                   Quyền
+                </th>*@
+            <th>
+               Vai trò
+            </th>
+            <th style=" text-align: center;">
+                Chỉnh sửa
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    Họ và tên
-                </th>
-                <th>
-                    Tài khoản
-                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
 
-                <th>
-                    Địa chỉ
-                </th>
-                <th>
-                    Số điện thoại
-                </th>
-                <th>
-                    Ngày sinh
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Giới tính
-                </th>
-                @*<th>
-                       Quyền
-                    </th>*@
-                <th>
-                    Cấp độ
-                </th>
-                <th style=" text-align: center;">
-                    Chỉnh sửa
-                </th>
+                <td>
+                    @if (item.Address.Length > 40)
+                    {
+
+                        <a style="font-size: 16px;">  @Html.Raw(item.Address.Substring(0, 20).ToLower())</a>
+                    }
+                    else
+                    {
+                        <a style="font-size: 16px;">
+                            @Html.Raw(item.Address)
+                        </a>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Convert.ToDateTime(item.DateOfBirth).ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td style="text-align:center;">
+                    @if (item.Gender == false)
+                    {
+                        <img src="~/Public/img/woman.png" />
+                    }
+                    else
+                    {
+                        <img src="~/Public/img/man.png" />
+                    }
+
+                </td>
+                <td style="text-align: center;">
+                  
+                    @if (item.Admin == false)
+                    {
+                        <span style="color:black; text-align:center;">Người dùng</span>
+                    }
+                    else
+                    {
+                        <span style="color: red; text-align: center;">Admin</span>
+                    }
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.RANK.NameRank)
+                </td>*@
+                <td style=" text-align: center;">
+                    <a class="btn btn-sm btn-success" href="@Url.Action("Edit","USERs",new { @id = item.IdUser })">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","USERs",new { @id = item.IdUser })">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                    <a class="btn btn-sm btn-info" href="@Url.Action("Details","USERs",new { @id = item.IdUser })">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                    <a href="#" data-toggle="tooltip" data-placement="top" title="Export Excel" class="btnExportExcel btn btn-sm btn-info" data-id="@item.IdUser">
+                        <i class="fas fa-download"></i>
+                    </a>
+
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Fullname)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Username)
-                    </td>
-
-                    <td>
-                        @if (item.Address.Length > 40)
-                        {
-
-                            <a style="font-size: 16px;">  @Html.Raw(item.Address.Substring(0, 20).ToLower())</a>
-                        }
-                        else
-                        {
-                            <a style="font-size: 16px;">
-                                @Html.Raw(item.Address)
-                            </a>
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Phone)
-                    </td>
-                    <td>
-                        @Convert.ToDateTime(item.DateOfBirth).ToString("dd/MM/yyyy")
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @if (item.Gender == false)
-                        {
-                            <span style="color:darkorange; text-align:center;">Nữ</span>
-                        }
-                        else
-                        {
-                            <span style="color: cornflowerblue; text-align: center;">Nam</span>
-                        }
-
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.Admin)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RANK.NameRank)
-                    </td>
-                    <td style=" text-align: center;">
-                        <a class="btn btn-sm btn-success" href="@Url.Action("Edit","USERs",new { @id = item.IdUser })">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                        <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","USERs",new { @id = item.IdUser })">
-                            <i class="fas fa-trash-alt"></i>
-                        </a>
-                        <a class="btn btn-sm btn-info" href="@Url.Action("Details","USERs",new { @id = item.IdUser })">
-                            <i class="fas fa-info-circle"></i>
-                        </a>
-                        <a href="#" data-toggle="tooltip" data-placement="top" title="Export Excel" class="btnExportExcel btn btn-sm btn-info" data-id="@item.IdUser">
-                            <i class="fas fa-download"></i>
-                        </a>
-
-                    </td>
-                </tr>
-            }
-        </tbody>
+        }
+    </tbody>
 
 
-    </table>
+</table>
 </body>
 </html>
 
@@ -163,3 +176,10 @@
         });
     </script>
 }
+<style>
+    img {
+        height: 50px;
+        width: 50px;
+        text-align: center;
+    }
+</style>
