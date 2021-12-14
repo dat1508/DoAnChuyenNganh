@@ -25,63 +25,72 @@
         <div class="col-md-12">
             <div class="row">
                 <div class="col-md-12">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Tên sản phẩm</label>
                     <input type="text" name="address" class="form-control" required value="@Model.NameProduct" readonly>
                 </div>
                 <div class="col-md-12">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Địa chỉ</label>
                     <input type="text" name="address" class="form-control" required value="@Model.Location" readonly>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Tên bài viết</label>
-                    <input type="text" name="address" class="form-control" required value="@Model.IdCate" readonly>
+                    <label class="form-label">Loại sản phẩm</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.CATEGORY.Name" readonly>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Tên bài viết</label>
-                    <input type="text" name="address" class="form-control" required value="@Model.IdBrand" readonly>
+                    <label class="form-label">Thương hiệu</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.BRAND.Name" readonly>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Số lượng</label>
                     <input type="text" name="address" class="form-control" required value="@Model.Quantity" readonly>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Bước giá</label>
                     <input type="text" name="address" class="form-control" required value="@Model.LowestBid" readonly>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Giá khởi điểm</label>
                     <input type="text" name="address" class="form-control" required value="@Model.StartPrice" readonly>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Giá mua</label>
                     <input type="text" name="address" class="form-control" required value="@Model.PriceBuy" readonly>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Ngày tạo</label>
                     <input type="text" name="address" class="form-control" required value="@Model.DateCreate" readonly>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Thời gian đặt giá</label>
                     <input type="text" name="address" class="form-control" required value="@Model.BidTime" readonly>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Trạng thái</label>
                     <input type="text" name="address" class="form-control" required value="@Model.Status" readonly>
                 </div>
                 <div class="col-md-6 col-lg-3">
-                    <label class="form-label">Tên bài viết</label>
-                    <input type="text" name="address" class="form-control" required value="@Model.StatusBid" readonly>
+                    <label class="form-label">Duyệt sản phẩm</label>
+
+                    @if (@Model.StatusBid == false)
+                    {
+                        <input name="message" class="form-control border border-dark" rows="7" value="Chưa được duyệt" readonly>
+                    }
+                    else
+                    {
+                        <input name="message" class="form-control border border-dark" rows="7" value="Đã duyệt" readonly>
+                    }
+                  
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Tên bài viết</label>
-                    <input type="text" name="address" class="form-control" required value="@Model.IdOwner" readonly>
+                    <label class="form-label">Người bán sản phẩm</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.USER1.Fullname" readonly>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Tên bài viết</label>
-                    <input type="text" name="address" class="form-control" required value="@Model.IdBuyer" readonly>
+                    <label class="form-label">Người mua sản phẩm</label>
+                    <input type="text" name="address" class="form-control" required value="@Model.USER.Fullname" readonly>
                 </div>
                 <div class="col-md-12">
-                    <label class="form-label">Tên bài viết</label>
+                    <label class="form-label">Mô tả sản phẩm</label>
                     <input type="text" name="address" class="form-control" required value="@Model.Desc" readonly>
                 </div>
                 <div class="col-md-4">

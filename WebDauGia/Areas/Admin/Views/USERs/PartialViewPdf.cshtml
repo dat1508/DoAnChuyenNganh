@@ -28,47 +28,59 @@
                         <th style="width: max-content; padding: 10px;">NGÀY SINH </th>
                         <th style="width: max-content; padding: 10px;">EMAIL</th>
                         <th style="width: max-content; padding: 10px;">GIỚI TÍNH</th>
+                        <th style="width: max-content; padding: 10px;">VAI TRÒ</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-                        <tr>
+                    <tr>
 
-                            <td style="width: max-content; padding: 10px;">
-                                @Html.DisplayFor(modelItem => item.Fullname)
-                            </td>
-                            <td style="width: max-content; padding: 10px;">
-                                @Html.DisplayFor(modelItem => item.Username)
-                            </td>
+                        <td style="width: max-content; padding: 10px;">
+                            @Html.DisplayFor(modelItem => item.Fullname)
+                        </td>
+                        <td style="width: max-content; padding: 10px;">
+                            @Html.DisplayFor(modelItem => item.Username)
+                        </td>
 
-                            <td style="width: max-content; padding: 10px;">
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td style="width: max-content; padding: 10px;">
-                                @Html.DisplayFor(modelItem => item.Phone)
-                            </td>
-                            <td style="width: max-content; padding: 10px;">
-                               
-                                @Convert.ToDateTime(item.DateOfBirth).ToString("dd/MM/yyyy")
-                            </td>
-                            <td style="width: max-content; padding: 10px;">
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td style="width:max-content; padding:10px;">
-                                @if (item.Gender == false)
-                                {
-                                    <span style="color:darkorange; text-align:center;">Nữ</span>
-                                }
-                                else
-                                {
-                                    <span style="color: black; text-align: center;">Nam</span>
-                                }
+                        <td style="width: max-content; padding: 10px;">
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td style="width: max-content; padding: 10px;">
+                            @Html.DisplayFor(modelItem => item.Phone)
+                        </td>
+                        <td style="width: max-content; padding: 10px;">
 
-                            </td>
+                            @Convert.ToDateTime(item.DateOfBirth).ToString("dd/MM/yyyy")
+                        </td>
+                        <td style="width: max-content; padding: 10px;">
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td style="width:max-content; padding:10px;">
+                            @if (item.Gender == false)
+                            {
+                                <span style="color:darkorange; text-align:center;">Nữ</span>
+                            }
+                            else
+                            {
+                                <span style="color: black; text-align: center;">Nam</span>
+                            }
+
+                        </td>
+                        <td style="width:max-content; padding:10px;">
+                            @if (item.Admin == false)
+                            {
+                                <span style="color:black; text-align:center;">Người dùng</span>
+                            }
+                            else
+                            {
+                                <span style="color: red; text-align: center;">Admin</span>
+                            }
+
+                        </td>
 
 
-                        </tr>
+                    </tr>
                     }
                 </tbody>
             </table>

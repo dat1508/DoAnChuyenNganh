@@ -30,14 +30,14 @@
                 Tên sản phẩm
             </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.Quantity)
-                </th>*@
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>*@
             @*<th>
-                    @Html.DisplayNameFor(model => model.Desc)
-                </th>*@
+            @Html.DisplayNameFor(model => model.Desc)
+        </th>*@
             @*<th>
-                    @Html.DisplayNameFor(model => model.LowestBid)
-                </th>*@
+            @Html.DisplayNameFor(model => model.LowestBid)
+        </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.StartPrice)
             </th>
@@ -45,30 +45,30 @@
                 @Html.DisplayNameFor(model => model.PriceBuy)
             </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.StartingDate)
+            <th style="width:130px;">
+                Ngày bắt đầu
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EndingDate)
+            <th style="width:130px;">
+               Ngày kết thúc
             </th>
 
             <th width="100">
                 Địa chỉ
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.StatusBid)
+            <th width="80">
+                Được đấu giá
             </th>
             @*<th>
-                    @Html.DisplayNameFor(model => model.BRAND.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.CATEGORY.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.USER.Fullname)
-                </th>*@
+            @Html.DisplayNameFor(model => model.BRAND.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CATEGORY.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.USER.Fullname)
+        </th>*@
 
-            <th style="width: 150px; text-align:center;"> Chỉnh sửa</th>
+            <th style="width: 100px; text-align:center;"> Chỉnh sửa</th>
         </tr>
     </thead>
 
@@ -94,92 +94,115 @@
                     }
                     else
                     {
-                        <a style="font-size: 16px;">
-                            @Html.Raw(item.NameProduct)
-                        </a>
+                        <img src="@picture.LinkImg" alt="Example blog post alt" class="img-fluid admin_img">
                     }
 
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Quantity)
-                    </td>*@
+                }
+            </td>
+            <td width="100">
+                @if (item.NameProduct.Length > 30)
+                {
 
-                @*<td>
-                        @if (item.Desc.Length > 100)
-                        {
-
-                            <a style="font-size: 16px;">  @Html.Raw(item.Desc.Substring(0, 30).ToLower())</a>
-                        }
-                        else
-                        {
-                            <a style="font-size: 16px;">
-                                @Html.Raw(item.Desc)
-                            </a>
-                        }
-                    </td>*@
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.LowestBid)
-                    </td>*@
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartPrice)
-
-
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PriceBuy)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.StartingDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EndingDate)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Location)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.StatusBid)
-                </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.BRAND.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.CATEGORY.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.USER.Fullname)
-                    </td>*@
-
-                <td style=" text-align: center;">
-                    @*<a class="btn btn-sm btn-success" href="@Url.Action("Edit","PRODUCTs",new { @id = item.IdProduct })">
-                            <i class="fas fa-edit"></i>
-                        </a>*@
-                    @if (item.StatusBid == true)
-                    {
-                        <a class="btn btn-sm btn-success" href="@Url.Action("Accept","PRODUCTs",new { @id = item.IdProduct })">
-                            <i class="fas fa-toggle-on"></i>
-
-                        </a>
-                    }
-                    else
-                    {
-                        <a class="btn btn-sm btn-danger" href="@Url.Action("Accept","PRODUCTs",new { @id = item.IdProduct })">
-                            <i class="fas fa-toggle-off"></i>
-                        </a>
-
-                    }
-
-
-                    <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","PRODUCTs",new { @id = item.IdProduct })">
-                        <i class="fas fa-trash-alt"></i>
+                    <a style="font-size: 16px;">  @Html.Raw(item.NameProduct.Substring(0, 29).ToLower())</a>
+                }
+                else
+                {
+                    <a style="font-size: 16px;">
+                        @Html.Raw(item.NameProduct)
                     </a>
-                    <a class="btn btn-sm btn-info" href="@Url.Action("Details","PRODUCTs",new { @id = item.IdProduct })">
-                        <i class="fas fa-info-circle"></i>
+                }
+
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>*@
+
+            @*<td>
+            @if (item.Desc.Length > 100)
+            {
+
+                <a style="font-size: 16px;">  @Html.Raw(item.Desc.Substring(0, 30).ToLower())</a>
+            }
+            else
+            {
+                <a style="font-size: 16px;">
+                    @Html.Raw(item.Desc)
+                </a>
+            }
+        </td>*@
+            @*<td>
+            @Html.DisplayFor(modelItem => item.LowestBid)
+        </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.StartPrice)
+
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceBuy)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndingDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+           
+            <td style="text-align:center;">
+                @if (item.StatusBid == false)
+                {
+
+                    <a>  <i class="fas fa-times" style="font-size:30px;color:red"></i> </a>
+
+                }
+                else
+                {
+                    <a> <i class="fas fa-check" style="font-size:30px;color:green"></i>  </a>
+                }
+            </td>
+            @*<td>
+            @Html.DisplayFor(modelItem => item.BRAND.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CATEGORY.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.USER.Fullname)
+        </td>*@
+
+            <td style=" text-align: center;">
+                @*<a class="btn btn-sm btn-success" href="@Url.Action("Edit","PRODUCTs",new { @id = item.IdProduct })">
+                <i class="fas fa-edit"></i>
+            </a>*@
+                @if (item.StatusBid == true)
+                {
+                    <a class="btn btn-sm btn-success" href="@Url.Action("Accept","PRODUCTs",new { @id = item.IdProduct })">
+                        <i class="fas fa-toggle-on"></i>
+
                     </a>
-                </td>
-            </tr>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("Accept","PRODUCTs",new { @id = item.IdProduct })">
+                        <i class="fas fa-toggle-off"></i>
+                    </a>
+
+                }
+
+
+                <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","PRODUCTs",new { @id = item.IdProduct })">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+                <a class="btn btn-sm btn-info" href="@Url.Action("Details","PRODUCTs",new { @id = item.IdProduct })">
+                    <i class="fas fa-info-circle"></i>
+                </a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

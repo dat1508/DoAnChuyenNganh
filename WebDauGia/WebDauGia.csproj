@@ -813,12 +813,14 @@
     <Content Include="Public\img\introduce.jpg" />
     <Content Include="Public\img\logo\LOGOCHINH.svg" />
     <Content Include="Public\img\logo\LogochinhPNG.png" />
+    <Content Include="Public\img\man.png" />
     <Content Include="Public\img\product\kawasaki-z1000.jpg" />
     <Content Include="Public\img\product\xemayyamaha.jpg" />
     <Content Include="Public\img\search-solid.svg" />
     <Content Include="Public\img\section-border.png" />
     <Content Include="Public\img\support.png" />
     <Content Include="Public\img\texture-bw.png" />
+    <Content Include="Public\img\woman.png" />
     <Content Include="Public\js\front.js" />
     <Content Include="Public\js\login.js" />
     <Content Include="Public\js\map.js" />

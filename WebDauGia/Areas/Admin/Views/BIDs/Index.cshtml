@@ -13,18 +13,18 @@
                 @Html.DisplayNameFor(model => model.BidPrice)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BidTime)
+               Thời gian đặt
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PRODUCT.NameProduct)
+               Tên sản phẩm
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.USER.Fullname)
+                Tên tài khoản
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Status)
+              Thanh toán
             </th>
-            <th></th>
+            <th>Chỉnh sửa</th>
         </tr>
     </thead>
 
@@ -38,27 +38,51 @@
             <td>
                 @Html.DisplayFor(modelItem => item.BidTime)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.PRODUCT.NameProduct)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.USER.Fullname)
             </td>
-            <td style=" text-align: center;">
-                <a class="btn btn-sm btn-success" href="@Url.Action("Edit","BIDs",new { @id = item.Id })">
-                    <i class="fas fa-edit"></i>
-                </a>
-                <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","BIDs",new { @id = item.Id})">
-                    <i class="fas fa-trash-alt"></i>
-                </a>
-                <a class="btn btn-sm btn-info" href="@Url.Action("Details","BIDs",new { @id = item.Id })">
-                    <i class="fas fa-info-circle"></i>
-                </a>
+            <td style="text-align:center;">
+                @if (item.Status == "Chưa thanh toán")
+                {
+
+                    <a>  <i class="fas fa-times" style="font-size:30px;color:red"></i>   </a>
+
+                }
+                else
+                {
+                    <a> <i class="fas fa-check" style="font-size:30px;color:green"></i> </a>
+                }
             </td>
-         
+            <td style=" text-align: center;">
+                @if (item.Status == "Đã thanh toán")
+                {
+                    <a class="btn btn-sm btn-success" href="@Url.Action("Accept","BIDs",new { @id = item.Id })">
+                        <i class="fas fa-toggle-on"></i>
+
+                    </a>
+                }
+                else
+                {
+                    <a class="btn btn-sm btn-danger" href="@Url.Action("Accept","BIDs",new { @id = item.Id })">
+                        <i class="fas fa-toggle-off"></i>
+                    </a>
+
+                }
+                @*<a class="btn btn-sm btn-success" href="@Url.Action("Edit","BIDs",new { @id = item.Id })">
+                <i class="fas fa-edit"></i>
+            </a>
+            <a class="btn btn-sm btn-danger" href="@Url.Action("Delete","BIDs",new { @id = item.Id})">
+                <i class="fas fa-trash-alt"></i>
+            </a>
+            <a class="btn btn-sm btn-info" href="@Url.Action("Details","BIDs",new { @id = item.Id })">
+                <i class="fas fa-info-circle"></i>
+            </a>*@
+            </td>
+
         </tr>
         }
 </tbody>

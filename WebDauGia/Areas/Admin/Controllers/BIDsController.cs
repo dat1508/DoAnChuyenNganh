@@ -123,7 +123,20 @@ namespace WebDauGia.Areas.Admin.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        public ActionResult Accept(int id)
+        {
+            BID bID = db.BID.SingleOrDefault(m => m.Id == id);
+            if (bID.Status == "Đã thanh toán")
+            {
+                bID.Status = "Chưa thanh toán";
+            }
+            else
+            {
+                bID.Status = "Đã thanh toán";
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
