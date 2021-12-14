@@ -264,8 +264,6 @@
                                 <div class="row novaticDivAuctionProperty">
                                 </div>
                             </div>
-
-
                         </div>
                         <div id="detail-modal" aria-hidden="true" class="modal fade" style="margin-top: 130px">
                             <div role="document" class="modal-dialog">
@@ -462,9 +460,10 @@
         $(document).ready(function () {
             checkHistory();
             idCount = setInterval(countdown, 1000);
-            checkRegister();
+
             connect();
             setInterval(stopCountdown, 1000)
+            checkRegister();
         });
 
         function connect() {
@@ -479,6 +478,7 @@
                 getLastestPrice();
             });
         }
+
         $('#btn-confirm-register').click(function () {
             $.ajax({
                 type: 'GET',
@@ -502,20 +502,34 @@
         })
 
         $('#datgia').click(function () {
-            if (inputPrice.value <= lastestPrice) {
-                alert('Vui lòng nhập giá cao hơn')
-            }
             $.ajax({
-                method: 'POST',
-                url: '@Url.Action("Bid", "Bid")',
-                data: { idProduct: idProduct, price: inputPrice.value },
-                success: function () {
-                    loadHistory()
+                type: 'GET',
+                url: '/bid/checkRegister/',
+                data: { idProduct: idProduct },
+                success: function (data) {
+                    if (data == 'True') {
+                        if (inputPrice.value <= lastestPrice) {
+                            alert('Vui lòng nhập giá cao hơn')
+                        }
+                        $.ajax({
+                            method: 'POST',
+                            url: '@Url.Action("Bid", "Bid")',
+                            data: { idProduct: idProduct, price: inputPrice.value },
+                            success: function () {
+                                loadHistory()
+                            },
+                            error: function () {
+                                alert('Vui lòng nhập giá tiền')
+                            }
+                        })
+                    } else {
+                        alert('Bạn chưa đăng ký đấu giá')
+                    }
                 },
                 error: function () {
-                    alert('Vui lòng nhập giá tiền')
                 }
-            })
+            });
+
         })
 
         function checkHistory() {

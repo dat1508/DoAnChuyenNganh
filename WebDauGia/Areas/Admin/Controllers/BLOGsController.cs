@@ -185,6 +185,11 @@ namespace WebDauGia.Areas.Admin.Controllers
         {
             BLOG bLOG = db.BLOG.Find(id);
             db.BLOG.Remove(bLOG);
+
+            foreach (var item in db.IMG_BLOG.Where(i => i.IdBlog == id).ToList())
+            {
+                db.IMG_BLOG.Remove(item);
+            }
             db.SaveChanges();
             return RedirectToAction("Index");
         }

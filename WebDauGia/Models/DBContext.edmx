@@ -34,7 +34,7 @@
           </Key>
           <Property Name="IdBlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
-          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" />
           <Property Name="Body" Type="ntext" />
           <Property Name="IdCate" Type="int" Nullable="false" />
         </EntityType>
@@ -554,7 +554,7 @@
           </Key>
           <Property Name="IdBlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdCate" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CATEGORY_BLOG" Relationship="DBDauGiaModel.FK__BLOG__IdCate__403A8C7D" FromRole="BLOG" ToRole="CATEGORY_BLOG" />
