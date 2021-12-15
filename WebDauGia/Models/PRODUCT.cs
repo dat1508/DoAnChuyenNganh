@@ -23,7 +23,7 @@ namespace WebDauGia.Models
             this.HISTORY = new HashSet<HISTORY>();
             this.IMG = new HashSet<IMG>();
         }
-    
+
         public int IdProduct { get; set; }
         public int IdCate { get; set; }
         public int IdBrand { get; set; }
@@ -59,9 +59,6 @@ namespace WebDauGia.Models
         public System.DateTime EndingDate { get; set; }
         [Display(Name = "Thời gian đặt giá")]
         [Required(ErrorMessage = "Thời gian đặt giá không được để trống")]
-        public Nullable<int> BidTime { get; set; }
-        [Display(Name = "Vị trí")]
-        [Required(ErrorMessage = "Vị trí sản phẩm không được để trống")]
         public string Location { get; set; }
         [Display(Name = "Người bán")]
         public Nullable<int> IdOwner { get; set; }
@@ -69,7 +66,7 @@ namespace WebDauGia.Models
         public Nullable<int> IdBuyer { get; set; }
         [Display(Name = "Duyệt sản phẩm")]
         public Nullable<bool> StatusBid { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BID> BID { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

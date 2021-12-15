@@ -118,7 +118,7 @@ namespace WebDauGia.Controllers
                     pRODUCT.IdBrand = brand.IdBrand;
                 }
             }
-            pRODUCT.BidTime = null;
+     
             pRODUCT.DateCreate = DateTime.Now;
             pRODUCT.IdOwner = Int32.Parse(Session["userID"].ToString());
             pRODUCT.IdBuyer = null;

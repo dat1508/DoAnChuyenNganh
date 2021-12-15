@@ -20,6 +20,7 @@ namespace WebDauGia.Models
         public Nullable<int> BidPrice { get; set; }
         public Nullable<System.DateTime> BidTime { get; set; }
         public string Status { get; set; }
+        public Nullable<System.DateTime> CreateDate { get; set; }
     
         public virtual PRODUCT PRODUCT { get; set; }
         public virtual USER USER { get; set; }
