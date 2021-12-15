@@ -73,14 +73,19 @@
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="form-group">
-                            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-12" })
-                            <div class="col-md-12">
-                                <div class="checkbox">
-                                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control border border-dark" } })
-                                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control border border-dark" } })
+                    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+                        <select _ngcontent-c18="" class="form-control ng-pristine ng-valid ng-touched" formcontrolname="gioi_tinh">
+                            <option _ngcontent-c18="" value="">Chọn giới tính</option>
+                            <option _ngcontent-c18="" value="0">Nam</option>
+                            <option _ngcontent-c18="" value="1">Nữ</option>
+                        </select>
                     </div>
                     <div class="col-md-6 col-lg-3">
                         <div class="form-group">

@@ -13,7 +13,7 @@ namespace WebDauGia.Areas.Admin.Controllers
         {
             if (System.Web.HttpContext.Current.Session["UserAdmin"].Equals(""))
             {
-                System.Web.HttpContext.Current.Response.Redirect("~/Admin/Login");
+                System.Web.HttpContext.Current.Response.Redirect("~/Admin/Login/Login");
             }
         }
         public  string RenderPartialToString(string viewName, object model, ControllerContext ControllerContext)

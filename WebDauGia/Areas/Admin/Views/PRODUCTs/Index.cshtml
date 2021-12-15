@@ -141,15 +141,15 @@
                 </td>
 
                 <td style="text-align:center;">
-                    @if (item.StatusBid == false)
+                    @if (item.StatusBid == true)
                     {
+                        <a> <i class="fas fa-check" style="font-size:30px;color:green"></i>  </a>
 
-                        <a>  <i class="fas fa-times" style="font-size:30px;color:red"></i> </a>
 
                     }
                     else
                     {
-                        <a> <i class="fas fa-check" style="font-size:30px;color:green"></i>  </a>
+                        <a>  <i class="fas fa-times" style="font-size:30px;color:red"></i> </a>
                     }
                 </td>
                 @*<td>

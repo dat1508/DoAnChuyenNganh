@@ -626,6 +626,7 @@
         function countdown () {
             notify.innerHTML = "<b style='color: green;'>Thời gian bắt đầu đăng ký đấu giá:</b>"
             document.getElementById('datgia').style.display = 'none';
+            $('#btn-buy').hide();
             document.getElementById('set_price').style.display = 'none';
             var milliseconds = DateTime('StartingDate');
             var now = new Date().getTime();
@@ -638,6 +639,7 @@
             if (gap < 0) {
                 notify.innerHTML = "<b style='color: green;'>Cuộc đấu giá đang diễn ra:</b>"
                 document.getElementById('dangkydaugia').style.display = 'none';
+                $('#btn-buy').show();
                 document.getElementById('datgia').style.display = 'block';
                 document.getElementById('set_price').style.display = 'block';
                 var milliseconds = DateTime('EndingDate');

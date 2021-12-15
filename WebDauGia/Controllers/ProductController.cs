@@ -17,7 +17,7 @@ namespace WebDauGia.Controllers
         public ActionResult Product(int? pageNum)
         {
             pageNum = pageNum ?? 1;
-            List<PRODUCT> products = db.PRODUCT.ToList();
+            List<PRODUCT> products = db.PRODUCT.Where(x => x.StatusBid == true).ToList();
             ViewBag.categoryList = db.CATEGORY.ToList();
             ViewBag.brandList = db.BRAND.ToList();
             return View(products.ToPagedList((int)pageNum, pageSize));
@@ -28,7 +28,7 @@ namespace WebDauGia.Controllers
         {
             Debug.WriteLine(idbrand);
             pageNum = pageNum ?? 1;
-            List<PRODUCT> products = db.PRODUCT.ToList();
+            List<PRODUCT> products = db.PRODUCT.Where(x => x.StatusBid == true).ToList();
             if (idcate != null)
             {
                 products = products.Where(p => p.CATEGORY.IdCate == idcate).ToList();

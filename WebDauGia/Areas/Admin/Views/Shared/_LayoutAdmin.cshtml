@@ -48,7 +48,7 @@
         <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <input class="form-control form-control-dark w-100" type="text" placeholder="Tìm kiếm..." aria-label="Search">
         <div class="navbar-nav">
             <div class="nav-item text-nowrap">
                 <a class="nav-link px-3" href="@Url.Action("Logout","Login")">Đăng xuất</a>
@@ -63,12 +63,12 @@
             <nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block bg-light sidebar collapse">
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
+                        @*<li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index","DashBoard")">
                                 <span data-feather="home"></span>
                                 Trang chủ
                             </a>
-                        </li>
+                        </li>*@
                         <li class="nav-item">
                             <a class="nav-link" href="@Url.Action("Index","BIDs")">
                                 <span data-feather="shopping-bag"></span>

@@ -88,7 +88,6 @@ namespace WebDauGia.Controllers
                 history.Time = DateTime.Now;
                 history.Price = pro.PriceBuy;
                 pro.EndingDate = DateTime.Now;
-                pro.StatusBid = false;
                 db.HISTORY.Add(history);
                 db.SaveChanges();
                 finishBid(idProduct);
@@ -133,8 +132,6 @@ namespace WebDauGia.Controllers
                 product.IdBuyer = bid.IdUser;
                 db.SaveChanges();
                 noti = "<b style='color: red;'>Đấu giá đã kết thúc, sản phẩm thuộc về " + history.USER.Fullname + "</b>";
-
-                uSER = db.USER.Find(history.IdUser);
                 string Address = uSER.Email;
                 string Title = "DTV Auction, xin thông báo đến " + uSER.Fullname ;
                 //string Message = " <b style='color: red;'>Đấu giá đã kết thúc, sản phẩm " + product.NameProduct + " đã thuộc về bạn</b>";
