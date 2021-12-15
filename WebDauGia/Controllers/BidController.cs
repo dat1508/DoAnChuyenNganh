@@ -92,7 +92,7 @@ namespace WebDauGia.Controllers
                 pro.StatusBid = false;
                 db.HISTORY.Add(history);
                 db.SaveChanges();
-
+                finishBid(idProduct);
                 hub.UpdateData();
             }
         }
