@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="338e1c6ff8ea4f26af71b7bb5859d21a" Name="Diagram1" ZoomLevel="70">
-        <EntityTypeShape EntityType="DBDauGiaModel.CONTACT" Width="1.5" PointX="6.625" PointY="6.5" />
-        <EntityTypeShape EntityType="DBDauGiaModel.BID" Width="1.5" PointX="12.25" PointY="6.375" />
-        <EntityTypeShape EntityType="DBDauGiaModel.BID_REGISTER" Width="1.5" PointX="7" PointY="3.625" />
-        <EntityTypeShape EntityType="DBDauGiaModel.BLOG" Width="1.5" PointX="7" PointY="10.375" />
-        <EntityTypeShape EntityType="DBDauGiaModel.BRAND" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DBDauGiaModel.CATEGORY" Width="1.5" PointX="7.75" PointY="15" />
-        <EntityTypeShape EntityType="DBDauGiaModel.CATEGORY_BLOG" Width="1.5" PointX="4.75" PointY="10.875" />
-        <EntityTypeShape EntityType="DBDauGiaModel.HISTORY" Width="1.5" PointX="15.25" PointY="6.5" />
-        <EntityTypeShape EntityType="DBDauGiaModel.IMG" Width="1.5" PointX="12.25" PointY="9.75" />
-        <EntityTypeShape EntityType="DBDauGiaModel.IMG_BLOG" Width="1.5" PointX="9.25" PointY="11.75" />
-        <EntityTypeShape EntityType="DBDauGiaModel.PRODUCT" Width="1.5" PointX="10" PointY="4.625" />
-        <EntityTypeShape EntityType="DBDauGiaModel.RANK" Width="1.5" PointX="2.5" PointY="6.75" />
+      <Diagram DiagramId="338e1c6ff8ea4f26af71b7bb5859d21a" Name="Diagram1" ZoomLevel="33">
+        <EntityTypeShape EntityType="DBDauGiaModel.BID" Width="1.5" PointX="7.5" PointY="7.375" />
+        <EntityTypeShape EntityType="DBDauGiaModel.BID_REGISTER" Width="1.5" PointX="10.5" PointY="8.625" />
+        <EntityTypeShape EntityType="DBDauGiaModel.BLOG" Width="1.5" PointX="8.25" PointY="11.375" />
+        <EntityTypeShape EntityType="DBDauGiaModel.BRAND" Width="1.5" PointX="3" PointY="16.125" />
+        <EntityTypeShape EntityType="DBDauGiaModel.CATEGORY" Width="1.5" PointX="3" PointY="7.75" />
+        <EntityTypeShape EntityType="DBDauGiaModel.CATEGORY_BLOG" Width="1.5" PointX="6" PointY="17.875" />
+        <EntityTypeShape EntityType="DBDauGiaModel.CONTACT" Width="1.5" PointX="5.25" PointY="30.75" />
+        <EntityTypeShape EntityType="DBDauGiaModel.HISTORY" Width="1.5" PointX="10.5" PointY="11.5" />
+        <EntityTypeShape EntityType="DBDauGiaModel.IMG" Width="1.5" PointX="7.5" PointY="14.75" />
+        <EntityTypeShape EntityType="DBDauGiaModel.IMG_BLOG" Width="1.5" PointX="10.5" PointY="14.75" />
+        <EntityTypeShape EntityType="DBDauGiaModel.PRODUCT" Width="1.5" PointX="5.25" PointY="9.75" />
+        <EntityTypeShape EntityType="DBDauGiaModel.RANK" Width="1.5" PointX="0.75" PointY="11.75" />
         <EntityTypeShape EntityType="DBDauGiaModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DBDauGiaModel.USER" Width="1.5" PointX="4.75" PointY="5.375" />
+        <EntityTypeShape EntityType="DBDauGiaModel.USER" Width="1.5" PointX="3" PointY="10.375" />
         <AssociationConnector Association="DBDauGiaModel.FK__BID__IdProduct__3D5E1FD2" />
         <AssociationConnector Association="DBDauGiaModel.FK__BID__IdUser__37A5467C" />
         <AssociationConnector Association="DBDauGiaModel.FK_BID_REGISTER_PRODUCT" />
@@ -35,7 +35,7 @@
         <AssociationConnector Association="DBDauGiaModel.FK_PRODUCT_USER" />
         <AssociationConnector Association="DBDauGiaModel.FK_PRODUCT_USER1" />
         <AssociationConnector Association="DBDauGiaModel.FK__USER__IdRank__3A81B327" />
-        </Diagram>
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
