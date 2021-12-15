@@ -632,7 +632,6 @@
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StartingDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndingDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="BidTime" Type="Int32" />
           <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="IdOwner" Type="Int32" />
           <Property Name="IdBuyer" Type="Int32" />
@@ -992,7 +991,6 @@
                 <ScalarProperty Name="IdBuyer" ColumnName="IdBuyer" />
                 <ScalarProperty Name="IdOwner" ColumnName="IdOwner" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="BidTime" ColumnName="BidTime" />
                 <ScalarProperty Name="EndingDate" ColumnName="EndingDate" />
                 <ScalarProperty Name="StartingDate" ColumnName="StartingDate" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
