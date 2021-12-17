@@ -34,7 +34,7 @@
           </Key>
           <Property Name="IdBlog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdUser" Type="int" Nullable="false" />
-          <Property Name="Title" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" />
           <Property Name="Body" Type="ntext" />
           <Property Name="IdCate" Type="int" Nullable="false" />
         </EntityType>
@@ -85,7 +85,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="LinkImg" Type="nchar" MaxLength="400" />
+          <Property Name="LinkImg" Type="nchar" MaxLength="50" />
           <Property Name="IdProduct" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="IMG_BLOG">
@@ -143,7 +143,7 @@
           <Property Name="IdUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdRank" Type="int" />
           <Property Name="Fullname" Type="nvarchar" MaxLength="100" />
-          <Property Name="Username" Type="nchar" MaxLength="20" />
+          <Property Name="Username" Type="nchar" MaxLength="50" />
           <Property Name="Password" Type="nchar" MaxLength="40" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" />
           <Property Name="Phone" Type="nchar" MaxLength="20" />
@@ -236,6 +236,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__PRODUCT__IdBrand__3C69FB99">
+          <End Role="BRAND" Type="Self.BRAND" Multiplicity="1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BRAND">
+              <PropertyRef Name="IdBrand" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="IdBrand" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PRODUCT__IdCate__3B75D760">
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CATEGORY">
+              <PropertyRef Name="IdCate" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="IdCate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__USER__IdRank__3A81B327">
           <End Role="RANK" Type="Self.RANK" Multiplicity="0..1" />
           <End Role="USER" Type="Self.USER" Multiplicity="*" />
@@ -296,6 +320,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PRODUCT_USER">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="IdBuyer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_USER1">
+          <End Role="USER" Type="Self.USER" Multiplicity="0..1" />
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="USER">
+              <PropertyRef Name="IdUser" />
+            </Principal>
+            <Dependent Role="PRODUCT">
+              <PropertyRef Name="IdOwner" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DBDauGiaModelStoreContainer">
           <EntitySet Name="BID" EntityType="Self.BID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BID_REGISTER" EntityType="Self.BID_REGISTER" Schema="dbo" store:Type="Tables" />
@@ -339,6 +387,14 @@
             <End Role="BLOG" EntitySet="BLOG" />
             <End Role="IMG_BLOG" EntitySet="IMG_BLOG" />
           </AssociationSet>
+          <AssociationSet Name="FK__PRODUCT__IdBrand__3C69FB99" Association="Self.FK__PRODUCT__IdBrand__3C69FB99">
+            <End Role="BRAND" EntitySet="BRAND" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PRODUCT__IdCate__3B75D760" Association="Self.FK__PRODUCT__IdCate__3B75D760">
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
           <AssociationSet Name="FK__USER__IdRank__3A81B327" Association="Self.FK__USER__IdRank__3A81B327">
             <End Role="RANK" EntitySet="RANK" />
             <End Role="USER" EntitySet="USER" />
@@ -359,19 +415,27 @@
             <End Role="USER" EntitySet="USER" />
             <End Role="HISTORY" EntitySet="HISTORY" />
           </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_USER" Association="Self.FK_PRODUCT_USER">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_USER1" Association="Self.FK_PRODUCT_USER1">
+            <End Role="USER" EntitySet="USER" />
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBDauGiaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DBContext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="CONTACT" EntityType="DBDauGiaModel.CONTACT" />
           <EntitySet Name="BID" EntityType="DBDauGiaModel.BID" />
           <EntitySet Name="BID_REGISTER" EntityType="DBDauGiaModel.BID_REGISTER" />
           <EntitySet Name="BLOG" EntityType="DBDauGiaModel.BLOG" />
           <EntitySet Name="BRAND" EntityType="DBDauGiaModel.BRAND" />
           <EntitySet Name="CATEGORY" EntityType="DBDauGiaModel.CATEGORY" />
           <EntitySet Name="CATEGORY_BLOG" EntityType="DBDauGiaModel.CATEGORY_BLOG" />
+          <EntitySet Name="CONTACT" EntityType="DBDauGiaModel.CONTACT" />
           <EntitySet Name="HISTORY" EntityType="DBDauGiaModel.HISTORY" />
           <EntitySet Name="IMG" EntityType="DBDauGiaModel.IMG" />
           <EntitySet Name="IMG_BLOG" EntityType="DBDauGiaModel.IMG_BLOG" />
@@ -443,19 +507,7 @@
             <End Role="RANK" EntitySet="RANK" />
             <End Role="USER" EntitySet="USER" />
           </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="CONTACT">
-          <Key>
-            <PropertyRef Name="IdContact" />
-          </Key>
-          <Property Name="IdContact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="IdUser" Type="Int32" />
-          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK__CONTACT__IdUser__38996AB5" FromRole="CONTACT" ToRole="USER" />
-        </EntityType>
+        </EntityContainer>
         <EntityType Name="BID">
           <Key>
             <PropertyRef Name="Id" />
@@ -489,7 +541,7 @@
           </Key>
           <Property Name="IdBlog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdUser" Type="Int32" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
           <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="IdCate" Type="Int32" Nullable="false" />
           <NavigationProperty Name="CATEGORY_BLOG" Relationship="DBDauGiaModel.FK__BLOG__IdCate__403A8C7D" FromRole="BLOG" ToRole="CATEGORY_BLOG" />
@@ -520,6 +572,18 @@
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BLOG" Relationship="DBDauGiaModel.FK__BLOG__IdCate__403A8C7D" FromRole="CATEGORY_BLOG" ToRole="BLOG" />
         </EntityType>
+        <EntityType Name="CONTACT">
+          <Key>
+            <PropertyRef Name="IdContact" />
+          </Key>
+          <Property Name="IdContact" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK__CONTACT__IdUser__38996AB5" FromRole="CONTACT" ToRole="USER" />
+        </EntityType>
         <EntityType Name="HISTORY">
           <Key>
             <PropertyRef Name="Stt" />
@@ -537,7 +601,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LinkImg" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
+          <Property Name="LinkImg" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="IdProduct" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" FromRole="IMG" ToRole="PRODUCT" />
         </EntityType>
@@ -606,7 +670,7 @@
           <Property Name="IdUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdRank" Type="Int32" />
           <Property Name="Fullname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Username" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
@@ -821,18 +885,6 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DBDauGiaModelStoreContainer" CdmEntityContainer="DBContext">
-          <EntitySetMapping Name="CONTACT">
-            <EntityTypeMapping TypeName="DBDauGiaModel.CONTACT">
-              <MappingFragment StoreEntitySet="CONTACT">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Body" ColumnName="Body" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="IdContact" ColumnName="IdContact" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="BID">
             <EntityTypeMapping TypeName="DBDauGiaModel.BID">
               <MappingFragment StoreEntitySet="BID">
@@ -887,6 +939,18 @@
               <MappingFragment StoreEntitySet="CATEGORY_BLOG">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="IdCate" ColumnName="IdCate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACT">
+            <EntityTypeMapping TypeName="DBDauGiaModel.CONTACT">
+              <MappingFragment StoreEntitySet="CONTACT">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdContact" ColumnName="IdContact" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -979,7 +1043,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->

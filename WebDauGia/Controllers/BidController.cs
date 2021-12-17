@@ -82,7 +82,6 @@ namespace WebDauGia.Controllers
             {
                 PRODUCT pro = db.PRODUCT.Find(idProduct);
                 int idUser = Int32.Parse(Session["userID"].ToString());
-                //updateTime(idProduct);
                 HISTORY history = new HISTORY();
                 history.IdProduct = idProduct;
                 history.IdUser = idUser;
