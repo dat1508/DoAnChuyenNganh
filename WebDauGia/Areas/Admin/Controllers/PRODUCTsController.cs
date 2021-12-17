@@ -58,9 +58,23 @@ namespace WebDauGia.Areas.Admin.Controllers
             "StartPrice,PriceBuy,DateCreate,StartingDate,EndingDate,Location,IdOwner,IdBuyer,StatusBid")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {
             pRODUCT.DateCreate = DateTime.Now;
-     
+            if (pRODUCT.StartingDate > pRODUCT.EndingDate)
+            {
+                ViewBag.alert = "<span style='color: red; font - size:medium'>Thời gian kết thúc không được nhỏ hơn thời gian bắt đầu</span>";
+            }
             if (ModelState.IsValid)
             {
+                ViewBag.alert = "";
+                if (pRODUCT.StartingDate > pRODUCT.EndingDate)
+                {
+                    ViewBag.alert = "<span style='color: red; font - size:medium'>Thời gian không hợp lệ</span>";
+                    ViewBag.IdBrand = new SelectList(db.BRAND, "IdBrand", "Name", pRODUCT.IdBrand);
+                    ViewBag.IdCate = new SelectList(db.CATEGORY, "IdCate", "Name", pRODUCT.IdCate);
+                    ViewBag.IdBuyer = new SelectList(db.USER, "IdUser", "Fullname", pRODUCT.IdBuyer);
+                    ViewBag.IdOwner = new SelectList(db.USER, "IdUser", "Fullname", pRODUCT.IdOwner);
+                    return View(pRODUCT);
+                }
+
                 db.PRODUCT.Add(pRODUCT);
                 if (fileUpload != null)
                 {
@@ -124,16 +138,30 @@ namespace WebDauGia.Areas.Admin.Controllers
             "PriceBuy,DateCreate,StartingDate,EndingDate,Location,IdOwner,IdBuyer,StatusBid")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {
             var pathold = Path.Combine(Server.MapPath("~/Public/img/product/"), Path.GetFileName(RemoveVietnamse.convertToSlug(pRODUCT.NameProduct.ToLower()) + "-anh-bia.png"));
+           
             if (ModelState.IsValid)
             {
-                //var product = db.PRODUCT.Where(p => p.NameProduct.ToLower() == pRODUCT.NameProduct.ToLower() && pRODUCT.IdProduct != p.IdProduct).FirstOrDefault();
-                //if (product != null || fileUpload == null)
-                //{
-                //    ViewBag.IdBrand = new SelectList(db.BRAND, "IdBrand", "Name", pRODUCT.IdBrand);
-                //    ViewBag.IdCate = new SelectList(db.CATEGORY, "IdCate", "Name", pRODUCT.IdCate);
-                //    ViewBag.Error = "Sản phẩm đã tồn tại và vui lòng nhập đầy đủ thông tin";
-                //    return View(pRODUCT);
-                //}
+                ViewBag.alert = "";
+                if (pRODUCT.StartingDate > pRODUCT.EndingDate)
+                {
+                    ViewBag.alert01 = "<span style='color: red; font - size:medium'>Thời gian không hợp lệ</span>";
+                    ViewBag.IdBrand = new SelectList(db.BRAND, "IdBrand", "Name", pRODUCT.IdBrand);
+                    ViewBag.IdCate = new SelectList(db.CATEGORY, "IdCate", "Name", pRODUCT.IdCate);
+                    ViewBag.IdBuyer = new SelectList(db.USER, "IdUser", "Fullname", pRODUCT.IdBuyer);
+                    ViewBag.IdOwner = new SelectList(db.USER, "IdUser", "Fullname", pRODUCT.IdOwner);
+                    return View(pRODUCT);
+                }
+                else if (pRODUCT.DateCreate > pRODUCT.StartingDate /*|| pRODUCT.StartingDate < DateTime.Now*/)
+                {
+                    ViewBag.alert02 = "<span style='color: red; font - size:medium'>Thời gian không hợp lệ</span>";
+                    ViewBag.IdBrand = new SelectList(db.BRAND, "IdBrand", "Name", pRODUCT.IdBrand);
+                    ViewBag.IdCate = new SelectList(db.CATEGORY, "IdCate", "Name", pRODUCT.IdCate);
+                    ViewBag.IdBuyer = new SelectList(db.USER, "IdUser", "Fullname", pRODUCT.IdBuyer);
+                    ViewBag.IdOwner = new SelectList(db.USER, "IdUser", "Fullname", pRODUCT.IdOwner);
+                    return View(pRODUCT);
+                }
+                
+
                 db.Entry(pRODUCT).State = EntityState.Modified;
                 db.SaveChanges();
                 if (fileUpload != null)

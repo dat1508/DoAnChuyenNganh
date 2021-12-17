@@ -112,6 +112,7 @@
                                             <div class="col-md-12">
                                                 @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime-local" } })
                                                 @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
+                                                @Html.Raw(ViewBag.alert)
                                             </div>
                                         </div>
                                     </div>
@@ -121,6 +122,7 @@
                                             <div class="col-md-12">
                                                 @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime-local" } })
                                                 @Html.ValidationMessageFor(model => model.EndingDate, "", new { @class = "text-danger" })
+                                                @Html.Raw(ViewBag.alert)
                                             </div>
                                         </div>
                                     </div>

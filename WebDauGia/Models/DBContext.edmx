@@ -17,7 +17,6 @@
           <Property Name="BidPrice" Type="int" />
           <Property Name="BidTime" Type="datetime" />
           <Property Name="Status" Type="nvarchar" MaxLength="20" />
-          <Property Name="CreateDate" Type="datetime" />
         </EntityType>
         <EntityType Name="BID_REGISTER">
           <Key>
@@ -471,7 +470,6 @@
           <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__BID__IdProduct__3D5E1FD2" FromRole="BID" ToRole="PRODUCT" />
           <NavigationProperty Name="USER" Relationship="DBDauGiaModel.FK__BID__IdUser__37A5467C" FromRole="BID" ToRole="USER" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="BID_REGISTER">
           <Key>
@@ -838,7 +836,6 @@
           <EntitySetMapping Name="BID">
             <EntityTypeMapping TypeName="DBDauGiaModel.BID">
               <MappingFragment StoreEntitySet="BID">
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="BidTime" ColumnName="BidTime" />
                 <ScalarProperty Name="BidPrice" ColumnName="BidPrice" />

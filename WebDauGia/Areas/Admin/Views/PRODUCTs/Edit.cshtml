@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-group">
-                                        @Html.LabelFor(model => model.LowestBid, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        @Html.LabelFor(model => model.LowestBid, htmlAttributes: new { @class = "control-label col-md-12" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.LowestBid, new { htmlAttributes = new { @class = "form-control border border-dark" } })
                                             @Html.ValidationMessageFor(model => model.LowestBid, "", new { @class = "text-danger" })
@@ -118,6 +118,7 @@
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime-local" } })
                                             @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
+                                            @Html.Raw(ViewBag.alert01)
                                         </div>
                                     </div>
                                 </div>
@@ -127,21 +128,24 @@
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime-local" } })
                                             @Html.ValidationMessageFor(model => model.EndingDate, "", new { @class = "text-danger" })
+                                            @Html.Raw(ViewBag.alert01)
                                         </div>
                                     </div>
                                 </div>
 
-                             
+
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.DateCreate, htmlAttributes: new { @class = "control-label col-md-12" })
                                         <div class="col-md-12">
                                             @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime-local" } })
                                             @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
+                                            @Html.Raw(ViewBag.alert02)
+
                                         </div>
                                     </div>
                                 </div>
-                              
+
                                 <div class="col-md-6 col-lg-3">
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-12" })
@@ -151,17 +155,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-3">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-12" })
-                                        <div class="col-md-10">
-                                            <div class="checkbox">
-                                                @Html.EditorFor(model => model.StatusBid)
-                                                @Html.ValidationMessageFor(model => model.StatusBid, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         @Html.LabelFor(model => model.IdOwner, "IdOwner", htmlAttributes: new { @class = "control-label col-md-12" })
@@ -185,13 +179,24 @@
                                     <div class="form-group">
                                         <lable class="control-label col-md-2">Hình ảnh</lable>
                                         <div class="col-md-12">
-                                          
-                                              <input type="file" name="fileUpload" id="fileUpload">
-                                              <div class="image-preview" id="imagePreview">
-                                                  @foreach (var picture in Model.IMG)
-                                                  {
-                                              <img src="@picture.LinkImg" alt="" class="image-preview-img " style="display:block;" />}
-                                                              </div>
+
+                                            <input type="file" name="fileUpload" id="fileUpload">
+                                            <div class="image-preview" id="imagePreview">
+                                                @foreach (var picture in Model.IMG)
+                                                {
+                                <img src="@picture.LinkImg" alt="" class="image-preview-img " style="display:block;" />}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 ">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-12" })
+                                        <div class="col-md-10">
+                                            <div class="checkbox">
+                                                @Html.EditorFor(model => model.StatusBid)
+                                                @Html.ValidationMessageFor(model => model.StatusBid, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -30,6 +30,7 @@ namespace WebDauGia.Models
         [Required(ErrorMessage = "Nội dung không được để trống")]
         public string Body { get; set; }
         [Display(Name = "Thể loại bài viết")]
+        [Required(ErrorMessage = "Thể loại bài viết không được để trống")]
         public int IdCate { get; set; }
 
         public virtual CATEGORY_BLOG CATEGORY_BLOG { get; set; }
