@@ -14,7 +14,7 @@ namespace WebDauGia.Controllers
    
         public ActionResult Index()
         {
-            
+       
             ViewBag.categoryList = GetNewCategory(1);
             ViewBag.Product = GetNewProduct(7);
             ViewBag.Blog = GetBlog(3);
@@ -26,7 +26,7 @@ namespace WebDauGia.Controllers
         }
         private List<PRODUCT> GetNewProduct(int count)
         {
-            return db.PRODUCT.OrderByDescending(a => a.IdProduct).Take(count).ToList();
+            return db.PRODUCT.Where(a => a.StatusBid == true).Take(count).ToList();
         }
         private List<BLOG> GetBlog(int count)
         {
