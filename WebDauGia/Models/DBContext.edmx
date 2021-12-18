@@ -601,7 +601,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="LinkImg" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="LinkImg" Type="String" MaxLength="400" FixedLength="true" Unicode="true" />
           <Property Name="IdProduct" Type="Int32" Nullable="false" />
           <NavigationProperty Name="PRODUCT" Relationship="DBDauGiaModel.FK__IMG__IdProduct__3E52440B" FromRole="IMG" ToRole="PRODUCT" />
         </EntityType>

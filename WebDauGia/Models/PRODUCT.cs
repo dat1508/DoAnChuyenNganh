@@ -24,11 +24,7 @@ namespace WebDauGia.Models
         }
     
         public int IdProduct { get; set; }
-        [Display(Name = "Loại sản phẩm")]
-        [Required(ErrorMessage = "Loại sản phẩm không được để trống")]
         public int IdCate { get; set; }
-        [Display(Name = "Loại thương hiệu")]
-        [Required(ErrorMessage = "Loại thương hiệu không được để trống")]
         public int IdBrand { get; set; }
         public string NameProduct { get; set; }
         public string Quantity { get; set; }
@@ -41,14 +37,8 @@ namespace WebDauGia.Models
         public System.DateTime StartingDate { get; set; }
         public System.DateTime EndingDate { get; set; }
         public string Location { get; set; }
-        [Display(Name = "Người bán")]
-        [Required(ErrorMessage = "Người bán không được để trống")]
         public Nullable<int> IdOwner { get; set; }
-        [Display(Name = "Người mua")]
-        [Required(ErrorMessage = "Người mua không được để trống")]
         public Nullable<int> IdBuyer { get; set; }
-        [Display(Name = "Duyệt sản phẩm")]
-        [Required(ErrorMessage = "Duyệt sản phẩm không được để trống")]
         public Nullable<bool> StatusBid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

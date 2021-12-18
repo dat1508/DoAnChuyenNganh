@@ -126,8 +126,9 @@ namespace WebDauGia.Controllers
             var Location = f["Location"];
 
             pRODUCT.NameProduct = NameProduct;
-            pRODUCT.Location = Location;
             pRODUCT.StatusBid = false;
+            pRODUCT.Location = Location;
+            
             if (ModelState.IsValid)
             {
                 db.PRODUCT.Add(pRODUCT);

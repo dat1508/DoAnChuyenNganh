@@ -90,14 +90,7 @@
                                     @Html.EditorFor(model => model.LowestBid, new { htmlAttributes = new { @class = "form-control border border-dark" } })
                                     @Html.ValidationMessageFor(model => model.LowestBid, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="col-md-6 col-lg-3">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.LowestBid, htmlAttributes: new { @class = "control-label col-md-12" })
-                                        <div class="col-md-12">
-                                            @Html.EditorFor(model => model.LowestBid, new { htmlAttributes = new { @class = "form-control border border-dark" } })
-                                            @Html.ValidationMessageFor(model => model.LowestBid, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
+                            </div>
 
                         </div>
 
@@ -117,60 +110,29 @@
                                     @Html.EditorFor(model => model.PriceBuy, new { htmlAttributes = new { @class = "form-control border border-dark" } })
                                     @Html.ValidationMessageFor(model => model.PriceBuy, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="col-md-6 col-lg-3">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.StartingDate, htmlAttributes: new { @class = "control-label col-md-12" })
-                                        <div class="col-md-12">
-                                            @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime" } })
-                                            @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
-                                            @Html.Raw(ViewBag.alert01)
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StartingDate, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.StartingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime" } })
+                                    @Html.ValidationMessageFor(model => model.StartingDate, "", new { @class = "text-danger" })
+                                    @Html.Raw(ViewBag.alert01)
                                 </div>
-                                <div class="col-md-6 col-lg-3">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.EndingDate, htmlAttributes: new { @class = "control-label col-md-12" })
-                                        <div class="col-md-12">
-                                            @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime" } })
-                                            @Html.ValidationMessageFor(model => model.EndingDate, "", new { @class = "text-danger" })
-                                            @Html.Raw(ViewBag.alert01)
-                                        </div>
-                                    </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.EndingDate, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.EndingDate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime" } })
+                                    @Html.ValidationMessageFor(model => model.EndingDate, "", new { @class = "text-danger" })
+                                    @Html.Raw(ViewBag.alert01)
                                 </div>
                             </div>
                         </div>
 
-
-                                <div class="col-md-6 col-lg-3">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.DateCreate, htmlAttributes: new { @class = "control-label col-md-12" })
-                                        <div class="col-md-12">
-                                            @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime" } })
-                                            @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
-                                            @Html.Raw(ViewBag.alert02)
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 col-lg-3">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-12" })
-                                        <div class="col-md-12">
-                                            @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-dark" } })
-                                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.IdOwner, "IdOwner", htmlAttributes: new { @class = "control-label col-md-12" })
-                                        <div class="col-md-12">
-                                            @Html.DropDownList("IdOwner", null, htmlAttributes: new { @class = "form-control border border-dark" })
-                                            @Html.ValidationMessageFor(model => model.IdOwner, "", new { @class = "text-danger" })
-                                        </div>
-                                    </div>
 
                         <div class="col-md-6 col-lg-3">
                             <div class="form-group">
@@ -178,6 +140,7 @@
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control border border-dark", @type = "datetime" } })
                                     @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
+                                    @Html.Raw(ViewBag.alert02)
                                 </div>
                             </div>
                         </div>
@@ -189,33 +152,9 @@
                                     @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control border border-dark" } })
                                     @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <lable class="control-label col-md-2">Hình ảnh</lable>
-                                        <div class="col-md-12">
-
-                                            <input type="file" name="fileUpload" id="fileUpload">
-                                            <div class="image-preview" id="imagePreview">
-                                                @foreach (var picture in Model.IMG)
-                                                {
-                                <img src="@picture.LinkImg" alt="" class="image-preview-img " style="display:block;" />}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 ">
-                                    <div class="form-group">
-                                        @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-12" })
-                                        <div class="col-md-10">
-                                            <div class="checkbox">
-                                                @Html.EditorFor(model => model.StatusBid)
-                                                @Html.ValidationMessageFor(model => model.StatusBid, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
+
                         <div class="col-md-6">
                             <div class="form-group">
                                 @Html.LabelFor(model => model.IdOwner, "IdOwner", htmlAttributes: new { @class = "control-label col-md-12" })
@@ -232,6 +171,17 @@
                                 <div class="col-md-12">
                                     @Html.DropDownList("IdBuyer", null, htmlAttributes: new { @class = "form-control border border-dark" })
                                     @Html.ValidationMessageFor(model => model.IdBuyer, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StatusBid, htmlAttributes: new { @class = "control-label col-md-12" })
+                                <div class="col-md-10">
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.StatusBid)
+                                        @Html.ValidationMessageFor(model => model.StatusBid, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -269,11 +219,9 @@
                     <input type="submit" value="Lưu " class="btn btn-success form-control" />
                 </div>
             </div>
-
         </div>
-    </div>}
-
-
+    </div>
+}
 
 <script>
     var fileUpload = document.getElementById("fileUpload");

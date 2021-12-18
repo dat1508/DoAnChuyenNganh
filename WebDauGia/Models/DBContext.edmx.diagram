@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="338e1c6ff8ea4f26af71b7bb5859d21a" Name="Diagram1" ZoomLevel="33">
+      <Diagram DiagramId="338e1c6ff8ea4f26af71b7bb5859d21a" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="DBDauGiaModel.BID" Width="1.5" PointX="7.5" PointY="7.375" />
         <EntityTypeShape EntityType="DBDauGiaModel.BID_REGISTER" Width="1.5" PointX="10.5" PointY="8.625" />
         <EntityTypeShape EntityType="DBDauGiaModel.BLOG" Width="1.5" PointX="8.25" PointY="11.375" />
