@@ -25,7 +25,7 @@ namespace WebDauGia.Controllers
             }
             int userID = Int32.Parse(Session["userID"].ToString());
             USER user = userDAO.getUserByID(userID);
-            return PartialView("_UserInforPartial",user);
+            return View("Userinfor",user);
         }
 
         [HttpPost]
@@ -39,9 +39,9 @@ namespace WebDauGia.Controllers
                 db.Entry(uSER).State = EntityState.Modified;
                 Session["fullName"] = uSER.Fullname;
                 db.SaveChanges();
-                return PartialView("_UserInforPartial", uSER);
+                return View("Userinfor", uSER);
             }
-            return PartialView("_UserInforPartial", uSER);
+            return View("Userinfor", uSER);
         }
 
         public ActionResult HistoryBid()
@@ -88,7 +88,6 @@ namespace WebDauGia.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-      
         public ActionResult UploadProduct(FormCollection f, [Bind(Include = "IdProduct,IdCate,IdBrand,NameProduct,Quantity,LowestBid,Status,Desc,StartPrice,PriceBuy," +
             "StartingDate,EndingDate,Location,StatusBid")] PRODUCT pRODUCT, HttpPostedFileBase fileUpload)
         {

@@ -36,9 +36,7 @@ namespace WebDauGia.Models
         public System.DateTime DateOfBirth { get; set; }
         public string Email { get; set; }
         public Nullable<bool> Gender { get; set; }
-        [Display(Name = "Vai trò")]
         public Nullable<bool> Admin { get; set; }
-
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BID> BID { get; set; }
