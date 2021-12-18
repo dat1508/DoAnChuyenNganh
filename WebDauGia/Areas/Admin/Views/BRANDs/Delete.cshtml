@@ -12,7 +12,7 @@
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-9">
-                    <h2 class="h2">XEM CHI TIẾT</h2>
+                    <h2 class="h2">XÓA DANH MỤC HÃNG</h2>
                 </div>
                 <div class="col-md-3" style="text-align:right;">
                 
@@ -29,6 +29,7 @@
                     <div class="mb-3">
                         <label class="form-label">Tên bài viết</label>
                         <input type="text" name="address" class="form-control" required value="@Model.Name" readonly>
+                      @Html.Raw(ViewBag.alertdelete);
                     </div>
                 </div>
             </div>
