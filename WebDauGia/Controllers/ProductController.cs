@@ -17,7 +17,22 @@ namespace WebDauGia.Controllers
         public ActionResult Product(int? pageNum)
         {
             pageNum = pageNum ?? 1;
-            List<PRODUCT> products = db.PRODUCT.Where(x => x.StatusBid == true).ToList();
+           // List<PRODUCT> products = db.PRODUCT.Where(x => x.StatusBid == true).ToList();
+
+            List<PRODUCT> products = (List<PRODUCT>)  MemoryCacheHelper.GetValue("ListProductOnBid");
+
+
+            if (products == null)
+            {
+                MemoryCacheHelper.Add("ListProductOnBid", GetNewProduct(7), DateTimeOffset.UtcNow.AddHours(1));
+
+            }
+            products = (List<PRODUCT>)MemoryCacheHelper.GetValue("ListProductOnBid");
+
+
+
+
+
             ViewBag.categoryList = db.CATEGORY.ToList();
             ViewBag.brandList = db.BRAND.ToList();
             return View(products.ToPagedList((int)pageNum, pageSize));
@@ -72,8 +87,26 @@ namespace WebDauGia.Controllers
         [Route("san-pham/{url}")]
         public ActionResult Detail(string url)
         {
+
             int id = PRODUCT.GetIDFromURL(url) ?? 0;
-            ViewBag.Product = GetNewProduct(7);
+
+
+
+            List<PRODUCT> products = (List<PRODUCT>)MemoryCacheHelper.GetValue("ListProductOnBid");
+
+
+            if (products == null)
+            {
+                MemoryCacheHelper.Add("ListProductOnBid", GetNewProduct(7), DateTimeOffset.UtcNow.AddHours(1));
+
+            }
+            products = (List<PRODUCT>)MemoryCacheHelper.GetValue("ListProductOnBid");
+
+
+
+
+
+            ViewBag.Product = products;
             if (id == null)
             {
                 return RedirectToAction("Product", "Product");
